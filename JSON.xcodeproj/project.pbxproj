@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C06C9D720D19A2A008092CC /* AnyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C06C9D620D19A2A008092CC /* AnyJSON.swift */; };
 		8C8BCD9820D149AF00DEAD7F /* JSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BCD8E20D149AE00DEAD7F /* JSON.framework */; };
 		8C8BCD9D20D149AF00DEAD7F /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BCD9C20D149AF00DEAD7F /* JSONTests.swift */; };
 		8C8BCDA920D149D400DEAD7F /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BCDA820D149D400DEAD7F /* JSON.swift */; };
-		8C8BCDAD20D155D500DEAD7F /* AnyJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BCDAC20D155D500DEAD7F /* AnyJSONTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,13 +28,13 @@
 		8C06C9C120D16A94008092CC /* SingleValueDecodingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleValueDecodingContainer.swift; sourceTree = "<group>"; };
 		8C06C9CE20D17FDB008092CC /* UnkeyedDecodingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnkeyedDecodingContainer.swift; sourceTree = "<group>"; };
 		8C06C9D020D18557008092CC /* KeyedDecodingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedDecodingContainer.swift; sourceTree = "<group>"; };
+		8C06C9D620D19A2A008092CC /* AnyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyJSON.swift; sourceTree = "<group>"; };
 		8C8BCD8E20D149AE00DEAD7F /* JSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C8BCD9220D149AF00DEAD7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C8BCD9720D149AF00DEAD7F /* JSONTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSONTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C8BCD9C20D149AF00DEAD7F /* JSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
 		8C8BCD9E20D149AF00DEAD7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C8BCDA820D149D400DEAD7F /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
-		8C8BCDAC20D155D500DEAD7F /* AnyJSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyJSONTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				8C8BCDA820D149D400DEAD7F /* JSON.swift */,
+				8C06C9D620D19A2A008092CC /* AnyJSON.swift */,
 				8C06C9C020D16A77008092CC /* Decoder */,
 				8C8BCD9220D149AF00DEAD7F /* Info.plist */,
 			);
@@ -99,7 +100,6 @@
 			isa = PBXGroup;
 			children = (
 				8C8BCD9C20D149AF00DEAD7F /* JSONTests.swift */,
-				8C8BCDAC20D155D500DEAD7F /* AnyJSONTests.swift */,
 				8C8BCD9E20D149AF00DEAD7F /* Info.plist */,
 			);
 			path = JSONTests;
@@ -212,6 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C06C9D720D19A2A008092CC /* AnyJSON.swift in Sources */,
 				8C8BCDA920D149D400DEAD7F /* JSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,7 +221,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C8BCDAD20D155D500DEAD7F /* AnyJSONTests.swift in Sources */,
 				8C8BCD9D20D149AF00DEAD7F /* JSONTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
