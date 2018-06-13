@@ -33,99 +33,102 @@ struct _SingleValueDecodingContainer: SingleValueDecodingContainer {
     }
 
     func decode(_ type: Int.Type) throws -> Int {
-        guard let int = json.int else {
+        guard let value = json.number as? Int else {
             // FIXME: Add debugDescription.
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
-        return int
+        return value
     }
 
     func decode(_ type: Int8.Type) throws -> Int8 {
-        guard let int8 = json.int8 else {
+        guard let value = json.number as? Int8 else {
             // FIXME: Add debugDescription.
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
-        return int8
+        return value
     }
 
     func decode(_ type: Int16.Type) throws -> Int16 {
-        guard let int16 = json.int16 else {
+        guard let value = json.number as? Int16 else {
             // FIXME: Add debugDescription.
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
-        return int16
+        return value
+
     }
 
     func decode(_ type: Int32.Type) throws -> Int32 {
-        guard let int32 = json.int32 else {
+        guard let value = json.number as? Int32 else {
             // FIXME: Add debugDescription.
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
-        return int32
+        return value
+
     }
 
     func decode(_ type: Int64.Type) throws -> Int64 {
-        guard let int64 = json.int64 else {
+        guard let value = json.number as? Int64 else {
             // FIXME: Add debugDescription.
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
-        return int64
+        return value
+
     }
 
     func decode(_ type: UInt.Type) throws -> UInt {
-        guard let uInt = json.uInt else {
+        guard let value = json.number as? UInt else {
             // FIXME: Add debugDescription.
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
-        return uInt
+        return value
     }
 
     func decode(_ type: UInt8.Type) throws -> UInt8 {
-        guard let uInt8 = json.uInt8 else {
+        guard let value = json.number as? UInt8 else {
             // FIXME: Add debugDescription.
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
-        return uInt8
+        return value
     }
 
     func decode(_ type: UInt16.Type) throws -> UInt16 {
-        guard let uInt16 = json.uInt16 else {
+        guard let value = json.number as? UInt16 else {
             // FIXME: Add debugDescription.
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
-        return uInt16
+        return value
     }
 
     func decode(_ type: UInt32.Type) throws -> UInt32 {
-        guard let uInt32 = json.uInt32 else {
+        guard let value = json.number as? UInt32 else {
             // FIXME: Add debugDescription.
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
-        return uInt32
+        return value
     }
 
     func decode(_ type: UInt64.Type) throws -> UInt64 {
-        guard let uInt64 = json.uInt64 else {
+        guard let value = json.number as? UInt64 else {
             // FIXME: Add debugDescription.
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
-        return uInt64
+        return value
     }
 
     func decode(_ type: Float.Type) throws -> Float {
-        guard let float = json.float else {
+        guard let value = json.number as? Float else {
             // FIXME: Add debugDescription.
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
-        return float
+        return value
     }
 
     func decode(_ type: Double.Type) throws -> Double {
-        guard let double = json.double else {
+        guard let value = json.number as? Double else {
             // FIXME: Add debugDescription.
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
-        return double
+        return value
     }
 
     func decode(_ type: String.Type) throws -> String {

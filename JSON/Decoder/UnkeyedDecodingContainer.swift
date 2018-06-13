@@ -50,7 +50,7 @@ struct _UnkeyedDecodingContainer: UnkeyedDecodingContainer {
     }
 
     mutating func decode(_ type: Int.Type) throws -> Int {
-        guard let value = json.array?[currentIndex].int else {
+        guard let value = json.array?[currentIndex].number as? Int else {
             // FIXME:
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
@@ -59,43 +59,47 @@ struct _UnkeyedDecodingContainer: UnkeyedDecodingContainer {
     }
 
     mutating func decode(_ type: Int8.Type) throws -> Int8 {
-        guard let value = json.array?[currentIndex].int8 else {
+        guard let value = json.array?[currentIndex].number as? Int8 else {
             // FIXME:
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
         currentIndex += 1
         return value
+
     }
 
     mutating func decode(_ type: Int16.Type) throws -> Int16 {
-        guard let value = json.array?[currentIndex].int16 else {
+        guard let value = json.array?[currentIndex].number as? Int16 else {
             // FIXME:
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
         currentIndex += 1
         return value
+
     }
 
     mutating func decode(_ type: Int32.Type) throws -> Int32 {
-        guard let value = json.array?[currentIndex].int32 else {
+        guard let value = json.array?[currentIndex].number as? Int32 else {
             // FIXME:
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
         currentIndex += 1
         return value
+
     }
 
     mutating func decode(_ type: Int64.Type) throws -> Int64 {
-        guard let value = json.array?[currentIndex].int64 else {
+        guard let value = json.array?[currentIndex].number as? Int64 else {
             // FIXME:
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
         currentIndex += 1
         return value
+
     }
 
     mutating func decode(_ type: UInt.Type) throws -> UInt {
-        guard let value = json.array?[currentIndex].uInt else {
+        guard let value = json.array?[currentIndex].number as? UInt else {
             // FIXME:
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
@@ -104,7 +108,7 @@ struct _UnkeyedDecodingContainer: UnkeyedDecodingContainer {
     }
 
     mutating func decode(_ type: UInt8.Type) throws -> UInt8 {
-        guard let value = json.array?[currentIndex].uInt8 else {
+        guard let value = json.array?[currentIndex].number as? UInt8 else {
             // FIXME:
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
@@ -113,7 +117,7 @@ struct _UnkeyedDecodingContainer: UnkeyedDecodingContainer {
     }
 
     mutating func decode(_ type: UInt16.Type) throws -> UInt16 {
-        guard let value = json.array?[currentIndex].uInt16 else {
+        guard let value = json.array?[currentIndex].number as? UInt16 else {
             // FIXME:
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
@@ -122,7 +126,7 @@ struct _UnkeyedDecodingContainer: UnkeyedDecodingContainer {
     }
 
     mutating func decode(_ type: UInt32.Type) throws -> UInt32 {
-        guard let value = json.array?[currentIndex].uInt32 else {
+        guard let value = json.array?[currentIndex].number as? UInt32 else {
             // FIXME:
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
@@ -131,7 +135,7 @@ struct _UnkeyedDecodingContainer: UnkeyedDecodingContainer {
     }
 
     mutating func decode(_ type: UInt64.Type) throws -> UInt64 {
-        guard let value = json.array?[currentIndex].uInt64 else {
+        guard let value = json.array?[currentIndex].number as? UInt64 else {
             // FIXME:
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
@@ -140,7 +144,7 @@ struct _UnkeyedDecodingContainer: UnkeyedDecodingContainer {
     }
 
     mutating func decode(_ type: Float.Type) throws -> Float {
-        guard let value = json.array?[currentIndex].float else {
+        guard let value = json.array?[currentIndex].number as? Float else {
             // FIXME:
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
@@ -149,7 +153,7 @@ struct _UnkeyedDecodingContainer: UnkeyedDecodingContainer {
     }
 
     mutating func decode(_ type: Double.Type) throws -> Double {
-        guard let value = json.array?[currentIndex].double else {
+        guard let value = json.array?[currentIndex].number as? Double else {
             // FIXME:
             throw DecodingError.typeMismatch(type, DecodingError.Context(codingPath: codingPath, debugDescription: ""))
         }
