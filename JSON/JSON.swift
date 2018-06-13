@@ -45,3 +45,142 @@ extension JSON {
         return nil
     }
 }
+
+extension Dictionary: JSON where Key == String, Value: JSON {
+    public var object: Object? {
+        return self
+    }
+}
+
+extension Array: JSON where Element: JSON {
+    public var array: JSON.Array? {
+        return self
+    }
+}
+
+extension Bool: JSON {
+    public var trueOrFalse: Bool? {
+        return self
+    }
+}
+
+extension Optional: JSON where Wrapped: JSON {
+    public var object: Object? {
+        return self?.object
+    }
+
+    public var array: JSON.Array? {
+        return self?.array
+    }
+
+    public var trueOrFalse: Bool? {
+        return self?.trueOrFalse
+    }
+
+    public var isNull: Bool {
+        switch self {
+        case nil:
+            return true
+        case let json?:
+            return json.isNull
+        }
+    }
+
+    public var string: String? {
+        return self?.string
+    }
+
+    public var number: Number? {
+        return self?.number
+    }
+}
+
+extension NSNull: JSON {
+    public var isNull: Bool {
+        return true
+    }
+}
+
+extension String: JSON {
+    public var string: String? {
+        return self
+    }
+}
+
+extension Int: JSON {
+    public var number: Number? {
+        return self as Number
+    }
+}
+
+extension Int8: JSON {
+    public var number: Number? {
+        return self as Number
+    }
+}
+
+extension Int16: JSON {
+    public var number: Number? {
+        return self as Number
+    }
+}
+
+extension Int32: JSON {
+    public var number: Number? {
+        return self as Number
+    }
+}
+
+extension Int64: JSON {
+    public var number: Number? {
+        return self as Number
+    }
+}
+
+extension UInt: JSON {
+    public var number: Number? {
+        return self as Number
+    }
+}
+
+extension UInt8: JSON {
+    public var number: Number? {
+        return self as Number
+    }
+}
+
+extension UInt16: JSON {
+    public var number: Number? {
+        return self as Number
+    }
+}
+
+extension UInt32: JSON {
+    public var number: Number? {
+        return self as Number
+    }
+}
+
+extension UInt64: JSON {
+    public var number: Number? {
+        return self as Number
+    }
+}
+
+extension Float: JSON {
+    public var number: Number? {
+        return self as Number
+    }
+}
+
+extension Double: JSON {
+    public var number: Number? {
+        return self as Number
+    }
+}
+
+extension NSNumber: JSON {
+    public var number: Number? {
+        return self
+    }
+}
