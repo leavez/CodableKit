@@ -16,14 +16,6 @@ extension Bool: JSON {
 }
 
 extension Optional: JSON where Wrapped: JSON {
-    public var isTrue: Bool {
-        return self?.isTrue ?? false
-    }
-
-    public var isFalse: Bool {
-        return self?.isFalse ?? false
-    }
-
     public var isNull: Bool {
         switch self {
         case nil:

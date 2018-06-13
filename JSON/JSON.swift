@@ -7,39 +7,30 @@
 
 import Foundation
 
-public typealias Number = NSNumber
-
-/// https://json.org
 public protocol JSON {
-    // object
-    var object: [String: JSON]? { get }
-    // array
-    var array: [JSON]? { get }
-    // value
-    var isTrue: Bool { get }
-    var isFalse: Bool { get }
+    typealias Object = [String: JSON]
+    typealias Array = [JSON]
+    typealias Number = NSNumber
+
+    var object: Object? { get }
+    var array: Array? { get }
+    var trueOrFalse: Bool? { get }
     var isNull: Bool { get }
-    // string
     var string: String? { get }
-    // number
     var number: Number? { get }
 }
 
 extension JSON {
-    public var object: [String: JSON]? {
+    public var object: Object? {
         return nil
     }
 
-    public var array: [JSON]? {
+    public var array: Array? {
         return nil
     }
 
-    public var isTrue: Bool {
-        return false
-    }
-
-    public var isFalse: Bool {
-        return false
+    public var trueOrFalse: Bool? {
+        return nil
     }
 
     public var isNull: Bool {

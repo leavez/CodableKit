@@ -5,7 +5,7 @@
 //  Created by 李孛 on 2018/6/14.
 //
 
-extension Number: JSON {
+extension JSON.Number: JSON {
     public var number: Number? {
         return self
     }
