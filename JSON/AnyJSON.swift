@@ -14,8 +14,6 @@ public struct AnyJSON {
     /// The value can be:
     ///
     /// - `JSON`
-    /// - `[String: AnyJSON]`
-    /// - `[AnyJSON]`
     /// - `NSDictionary`
     /// - `NSArray`
     public let base: Any
@@ -60,8 +58,6 @@ extension AnyJSON: JSON {
         switch base {
         case let json as JSON:
             return json.object
-        case let object as [String: AnyJSON]:
-            return object
         case let jsonObject as [String: Any]:
             return jsonObject.mapValues(AnyJSON.init(jsonObject:))
         default:
@@ -73,8 +69,6 @@ extension AnyJSON: JSON {
         switch base {
         case let json as JSON:
             return json.array
-        case let anyJSON as [AnyJSON]:
-            return anyJSON
         case let jsonObject as [Any]:
             return jsonObject.map(AnyJSON.init(jsonObject:))
         default:
