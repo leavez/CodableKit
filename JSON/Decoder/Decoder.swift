@@ -24,11 +24,17 @@ class _JSONDecoder: Decoder {
     var userInfo: [CodingUserInfoKey: Any] = [:]
 
     func container<Key: CodingKey>(keyedBy type: Key.Type) throws -> KeyedDecodingContainer<Key> {
-        fatalError()
+        guard let object = stroage.last?.object else {
+            fatalError()
+        }
+        return KeyedDecodingContainer(_KeyedDecodingContainer(object: object, decoder: self, codingPath: codingPath))
     }
 
     func unkeyedContainer() throws -> UnkeyedDecodingContainer {
-        fatalError()
+        guard let array = stroage.last?.array else {
+            fatalError()
+        }
+        return _UnkeyedDecodingContainer(array: array, decoder: self, codingPath: codingPath)
     }
 
     func singleValueContainer() throws -> SingleValueDecodingContainer {
