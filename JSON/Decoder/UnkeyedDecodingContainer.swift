@@ -41,7 +41,7 @@ struct _UnkeyedDecodingContainer: UnkeyedDecodingContainer {
         guard !isAtEnd else {
             fatalError()
         }
-        guard let value = array[currentIndex].trueOrFalse else {
+        guard let value = array[currentIndex].bool else {
             fatalError()
         }
         currentIndex += 1

@@ -21,14 +21,14 @@ class JSONTests: XCTestCase {
         XCTAssert(json.array?[0].string == "value")
         // true
         json = true
-        XCTAssert(json.trueOrFalse == true)
+        XCTAssert(json.bool == true)
         json = NSNumber(value: true)
-        XCTAssert(json.trueOrFalse == true)
+        XCTAssert(json.bool == true)
         // false
         json = false
-        XCTAssert(json.trueOrFalse == false)
+        XCTAssert(json.bool == false)
         json = NSNumber(value: false)
-        XCTAssert(json.trueOrFalse == false)
+        XCTAssert(json.bool == false)
         // null
         json = Optional<Bool>.none
         XCTAssert(json.isNull)
@@ -48,7 +48,7 @@ class JSONTests: XCTestCase {
         json = ["null": nil, "true": true, "number": 42]
         XCTAssert(json.object?["null"]?.isNull == true)
         XCTAssert(json.object?["not_null"]?.isNull == nil)
-        XCTAssert(json.object?["true"]?.trueOrFalse == true)
+        XCTAssert(json.object?["true"]?.bool == true)
         XCTAssert(json.object?["number"]?.number == 42.0)
         json = [
             "object": ["number": 42.0, "string": "string"],
@@ -62,18 +62,18 @@ class JSONTests: XCTestCase {
         json = ["null", nil, true, 42]
         XCTAssert(json.array?[0].isNull == false)
         XCTAssert(json.array?[1].isNull == true)
-        XCTAssert(json.array?[2].trueOrFalse == true)
+        XCTAssert(json.array?[2].bool == true)
         XCTAssert(json.array?[3].number == 42)
         // true
         json = true
-        XCTAssert(json.trueOrFalse == true)
+        XCTAssert(json.bool == true)
         json = AnyJSON(NSNumber(value: true))
-        XCTAssert(json.trueOrFalse == true)
+        XCTAssert(json.bool == true)
         // false
         json = false
-        XCTAssert(json.trueOrFalse == false)
+        XCTAssert(json.bool == false)
         json = AnyJSON(NSNumber(value: false))
-        XCTAssert(json.trueOrFalse == false)
+        XCTAssert(json.bool == false)
         // null
         json = nil
         XCTAssert(json.isNull == true)

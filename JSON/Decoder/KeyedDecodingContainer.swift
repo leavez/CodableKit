@@ -38,7 +38,7 @@ struct _KeyedDecodingContainer<Key: CodingKey>: KeyedDecodingContainerProtocol {
         guard let json = object[key.stringValue] else {
             fatalError()
         }
-        guard let value = json.trueOrFalse else {
+        guard let value = json.bool else {
             fatalError()
         }
         return value

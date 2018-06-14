@@ -77,8 +77,8 @@ extension AnyJSON: JSON {
         }
     }
 
-    public var trueOrFalse: Bool? {
-        return json?.trueOrFalse
+    public var bool: Bool? {
+        return json?.bool
     }
 
     public var isNull: Bool {

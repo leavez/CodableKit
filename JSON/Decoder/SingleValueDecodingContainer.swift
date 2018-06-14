@@ -35,7 +35,7 @@ struct _SingleValueDecodingContainer: SingleValueDecodingContainer {
     }
 
     func decode(_ type: Bool.Type) throws -> Bool {
-        guard let value = json.trueOrFalse else {
+        guard let value = json.bool else {
             throw DecodingError._typeMismatch(at: codingPath, expectation: type, reality: json)
         }
         return value
