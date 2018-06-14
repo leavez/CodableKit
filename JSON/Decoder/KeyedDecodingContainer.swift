@@ -6,10 +6,10 @@
 //
 
 struct _KeyedDecodingContainer<Key: CodingKey>: KeyedDecodingContainerProtocol {
-    let object: JSON.Object
+    let object: Object
     let decoder: _JSONDecoder
 
-    init(object: JSON.Object, decoder: _JSONDecoder, codingPath: [CodingKey]) {
+    init(object: Object, decoder: _JSONDecoder, codingPath: [CodingKey]) {
         self.object = object
         self.decoder = decoder
         self.codingPath = codingPath

@@ -26,7 +26,7 @@ class _JSONDecoder: Decoder {
     func container<Key: CodingKey>(keyedBy type: Key.Type) throws -> KeyedDecodingContainer<Key> {
         guard let object = stroage.last?.object else {
             throw DecodingError._typeMismatch(at: codingPath,
-                                              expectation: JSON.Object.self,
+                                              expectation: Object.self,
                                               reality: stroage.last as Any)
         }
         return KeyedDecodingContainer(_KeyedDecodingContainer(object: object, decoder: self, codingPath: codingPath))
@@ -35,7 +35,7 @@ class _JSONDecoder: Decoder {
     func unkeyedContainer() throws -> UnkeyedDecodingContainer {
         guard let array = stroage.last?.array else {
             throw DecodingError._typeMismatch(at: codingPath,
-                                              expectation: JSON.Array.self,
+                                              expectation: Array.self,
                                               reality: stroage.last as Any)
         }
         return _UnkeyedDecodingContainer(array: array, decoder: self, codingPath: codingPath)

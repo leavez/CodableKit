@@ -6,10 +6,10 @@
 //
 
 struct _UnkeyedDecodingContainer: UnkeyedDecodingContainer {
-    let array: JSON.Array
+    let array: Array
     let decoder: _JSONDecoder
 
-    init(array: JSON.Array, decoder: _JSONDecoder, codingPath: [CodingKey]) {
+    init(array: Array, decoder: _JSONDecoder, codingPath: [CodingKey]) {
         self.array = array
         self.decoder = decoder
         self.codingPath = codingPath

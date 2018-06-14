@@ -67,7 +67,7 @@ extension AnyJSON: JSON {
         }
     }
 
-    public var array: JSON.Array? {
+    public var array: Array? {
         switch base {
         case let json as JSON:
             return json.array
