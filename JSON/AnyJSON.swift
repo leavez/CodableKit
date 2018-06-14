@@ -7,18 +7,29 @@
 
 import Foundation
 
+/// A type-erased JSON value.
 public struct AnyJSON {
+
+    /// The value wrapped by this instance.
+    ///
+    /// The value can be:
+    ///
+    /// - `JSON`
+    /// - `[String: AnyJSON]`
+    /// - `[AnyJSON]`
+    /// - `NSDictionary`
+    /// - `NSArray`
     public let base: Any
 
-    public init(_ base: JSON) {
-        self.base = base
+    public init(_ json: JSON) {
+        base = json
     }
 
-    public init?(_ base: Data) {
-        guard let jsonObject = try? JSONSerialization.jsonObject(with: base) else {
+    public init?(_ data: Data) {
+        guard let jsonObject = try? JSONSerialization.jsonObject(with: data) else {
             return nil
         }
-        self.base = jsonObject
+        base = jsonObject
     }
 
     public init?(_ base: Any) {
@@ -29,7 +40,12 @@ public struct AnyJSON {
     }
 
     private init(jsonObject: Any) {
-        self.base = jsonObject
+        assert(JSONSerialization.isValidJSONObject(jsonObject))
+        base = jsonObject
+    }
+
+    private var json: JSON? {
+        return base as? JSON
     }
 }
 
@@ -38,6 +54,8 @@ extension AnyJSON: JSON {
         switch base {
         case let json as JSON:
             return json.object
+        case let object as [String: AnyJSON]:
+            return object
         case let jsonObject as [String: Any]:
             return jsonObject.mapValues(AnyJSON.init(jsonObject:))
         default:
@@ -49,6 +67,8 @@ extension AnyJSON: JSON {
         switch base {
         case let json as JSON:
             return json.array
+        case let anyJSON as [AnyJSON]:
+            return anyJSON
         case let jsonObject as [Any]:
             return jsonObject.map(AnyJSON.init(jsonObject:))
         default:
@@ -57,31 +77,31 @@ extension AnyJSON: JSON {
     }
 
     public var trueOrFalse: Bool? {
-        return (base as? JSON)?.trueOrFalse
+        return json?.trueOrFalse
     }
 
     public var isNull: Bool {
-        return (base as? JSON)?.isNull ?? false
+        return json?.isNull ?? false
     }
 
     public var string: String? {
-        return (base as? JSON)?.string
+        return json?.string
     }
 
     public var number: Number? {
-        return (base as? JSON)?.number
+        return json?.number
     }
 }
 
 extension AnyJSON: ExpressibleByDictionaryLiteral {
     public init(dictionaryLiteral elements: (String, AnyJSON)...) {
-        self.base = Dictionary(uniqueKeysWithValues: elements)
+        base = Dictionary(uniqueKeysWithValues: elements)
     }
 }
 
 extension AnyJSON: ExpressibleByArrayLiteral {
     public init(arrayLiteral elements: AnyJSON...) {
-        self.base = elements
+        base = elements
     }
 }
 
@@ -93,7 +113,7 @@ extension AnyJSON: ExpressibleByBooleanLiteral {
 
 extension AnyJSON: ExpressibleByNilLiteral {
     public init(nilLiteral: ()) {
-        self.base = NSNull()
+        self.init(NSNull())
     }
 }
 

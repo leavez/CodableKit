@@ -64,6 +64,12 @@ extension Bool: JSON {
     }
 }
 
+extension NSNumber: JSON {
+    public var trueOrFalse: Bool? {
+        return self as? Bool
+    }
+}
+
 extension Optional: JSON where Wrapped: JSON {
     public var object: Object? {
         return self?.object
@@ -179,7 +185,7 @@ extension Double: JSON {
     }
 }
 
-extension NSNumber: JSON {
+extension NSNumber {
     public var number: Number? {
         return self
     }
