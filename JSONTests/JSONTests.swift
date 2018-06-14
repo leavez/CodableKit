@@ -8,9 +8,4 @@
 import XCTest
 @testable import JSON
 
-class JSONTests: XCTestCase {
-    func test() {
-        let anyJSON = AnyJSON(["a": 1])!
-        print(anyJSON)
-    }
-}
+class JSONTests: XCTestCase {}

@@ -10,8 +10,12 @@ import Foundation
 public struct AnyJSON {
     public let base: Any
 
-    init?(_ base: Any) {
-        guard base is JSON || JSONSerialization.isValidJSONObject(base) else {
+    public init(_ base: JSON) {
+        self.base = base
+    }
+
+    public init?(_ base: Any) {
+        guard JSONSerialization.isValidJSONObject(base) else {
             return nil
         }
         self.base = base
