@@ -7,10 +7,13 @@
 
 import Foundation
 
+/// A type represents JSON as native type.
+///
+/// [https://json.org](https://json.org)
 public protocol JSON {
     typealias Object = [String: JSON]
     typealias Array = [JSON]
-    typealias Number = NSNumber
+    typealias Number = NSNumber // FIXME: Use `NSNumber` for now, needs a better solution. Maybe `AnyNumeric`?
 
     var object: Object? { get }
     var array: Array? { get }
@@ -115,73 +118,73 @@ extension String: JSON {
 
 extension Int: JSON {
     public var number: Number? {
-        return self as Number
+        return self as NSNumber
     }
 }
 
 extension Int8: JSON {
     public var number: Number? {
-        return self as Number
+        return self as NSNumber
     }
 }
 
 extension Int16: JSON {
     public var number: Number? {
-        return self as Number
+        return self as NSNumber
     }
 }
 
 extension Int32: JSON {
     public var number: Number? {
-        return self as Number
+        return self as NSNumber
     }
 }
 
 extension Int64: JSON {
     public var number: Number? {
-        return self as Number
+        return self as NSNumber
     }
 }
 
 extension UInt: JSON {
     public var number: Number? {
-        return self as Number
+        return self as NSNumber
     }
 }
 
 extension UInt8: JSON {
     public var number: Number? {
-        return self as Number
+        return self as NSNumber
     }
 }
 
 extension UInt16: JSON {
     public var number: Number? {
-        return self as Number
+        return self as NSNumber
     }
 }
 
 extension UInt32: JSON {
     public var number: Number? {
-        return self as Number
+        return self as NSNumber
     }
 }
 
 extension UInt64: JSON {
     public var number: Number? {
-        return self as Number
+        return self as NSNumber
     }
 }
 
 extension Float: JSON {
     public var number: Number? {
-        return self as Number
+        return self as NSNumber
     }
 }
 
 extension Double: JSON {
     public var number: Number? {
-        return self as Number
+        return self as NSNumber
     }
 }
 
