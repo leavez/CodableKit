@@ -25,22 +25,35 @@ class _JSONDecoder: Decoder {
 
     func container<Key: CodingKey>(keyedBy type: Key.Type) throws -> KeyedDecodingContainer<Key> {
         guard let object = stroage.last?.object else {
-            fatalError()
+            throw DecodingError._typeMismatch(at: codingPath,
+                                              expectation: JSON.Object.self,
+                                              reality: stroage.last as Any)
         }
         return KeyedDecodingContainer(_KeyedDecodingContainer(object: object, decoder: self, codingPath: codingPath))
     }
 
     func unkeyedContainer() throws -> UnkeyedDecodingContainer {
         guard let array = stroage.last?.array else {
-            fatalError()
+            throw DecodingError._typeMismatch(at: codingPath,
+                                              expectation: JSON.Array.self,
+                                              reality: stroage.last as Any)
         }
         return _UnkeyedDecodingContainer(array: array, decoder: self, codingPath: codingPath)
     }
 
     func singleValueContainer() throws -> SingleValueDecodingContainer {
         guard let json = stroage.last else {
-            fatalError()
+            throw DecodingError._typeMismatch(at: codingPath, expectation: JSON.self, reality: stroage.last as Any)
         }
         return _SingleValueDecodingContainer(json: json, decoder: self, codingPath: codingPath)
+    }
+}
+
+// MARK: -
+
+extension DecodingError {
+    static func _typeMismatch(at path: [CodingKey], expectation: Any.Type, reality: Any) -> DecodingError {
+        let description = "Expected to decode \(expectation) but found \(reality) instead."
+        return .typeMismatch(expectation, Context(codingPath: path, debugDescription: description))
     }
 }

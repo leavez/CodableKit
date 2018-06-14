@@ -9,7 +9,6 @@ import Foundation
 
 /// A type-erased JSON value.
 public struct AnyJSON {
-
     /// The value wrapped by this instance.
     ///
     /// The value can be:
@@ -48,6 +47,8 @@ public struct AnyJSON {
         return base as? JSON
     }
 }
+
+// MARK: - JSON
 
 extension AnyJSON: JSON {
     public var object: Object? {
@@ -92,6 +93,8 @@ extension AnyJSON: JSON {
         return json?.number
     }
 }
+
+// MARK: - Literal
 
 extension AnyJSON: ExpressibleByDictionaryLiteral {
     public init(dictionaryLiteral elements: (String, AnyJSON)...) {

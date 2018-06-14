@@ -15,6 +15,7 @@
 		8C8BCD9820D149AF00DEAD7F /* JSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BCD8E20D149AE00DEAD7F /* JSON.framework */; };
 		8C8BCD9D20D149AF00DEAD7F /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BCD9C20D149AF00DEAD7F /* JSONTests.swift */; };
 		8C8BCDA920D149D400DEAD7F /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BCDA820D149D400DEAD7F /* JSON.swift */; };
+		8CAF7F9620D287DB0006D6F2 /* DecoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAF7F9520D287DB0006D6F2 /* DecoderTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		8C8BCD9C20D149AF00DEAD7F /* JSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
 		8C8BCD9E20D149AF00DEAD7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C8BCDA820D149D400DEAD7F /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		8CAF7F9520D287DB0006D6F2 /* DecoderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				8C8BCD9C20D149AF00DEAD7F /* JSONTests.swift */,
+				8CAF7F9520D287DB0006D6F2 /* DecoderTests.swift */,
 				8C8BCD9E20D149AF00DEAD7F /* Info.plist */,
 			);
 			path = JSONTests;
@@ -229,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CAF7F9620D287DB0006D6F2 /* DecoderTests.swift in Sources */,
 				8C8BCD9D20D149AF00DEAD7F /* JSONTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
