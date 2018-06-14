@@ -67,5 +67,25 @@ class JSONTests: XCTestCase {
         // true
         json = true
         XCTAssert(json.trueOrFalse == true)
+        json = AnyJSON(NSNumber(value: true))
+        XCTAssert(json.trueOrFalse == true)
+        // false
+        json = false
+        XCTAssert(json.trueOrFalse == false)
+        json = AnyJSON(NSNumber(value: false))
+        XCTAssert(json.trueOrFalse == false)
+        // null
+        json = nil
+        XCTAssert(json.isNull == true)
+        json = AnyJSON(NSNull())
+        XCTAssert(json.isNull == true)
+        // string
+        json = "string"
+        XCTAssert(json.string == "string")
+        // number
+        json = 42
+        XCTAssert(json.number == 42.0)
+        json = 0.01
+        XCTAssert(json.number == 0.01)
     }
 }
