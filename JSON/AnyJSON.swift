@@ -20,6 +20,12 @@ public struct AnyJSON {
     /// - `NSArray`
     public let base: Any
 
+    private var json: JSON? {
+        return base as? JSON
+    }
+
+    // MARK: Initializer
+
     public init(_ json: JSON) {
         base = json
     }
@@ -41,10 +47,6 @@ public struct AnyJSON {
     private init(jsonObject: Any) {
         assert(JSONSerialization.isValidJSONObject(jsonObject))
         base = jsonObject
-    }
-
-    private var json: JSON? {
-        return base as? JSON
     }
 }
 
