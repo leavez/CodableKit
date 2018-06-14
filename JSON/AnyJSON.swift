@@ -51,6 +51,9 @@ public struct AnyJSON {
 // MARK: - JSON
 
 extension AnyJSON: JSON {
+    public var string: String? { return json?.string }
+    public var number: Number? { return json?.number }
+
     public var object: Object? {
         switch base {
         case let json as JSON:
@@ -77,24 +80,29 @@ extension AnyJSON: JSON {
         }
     }
 
-    public var bool: Bool? {
-        return json?.bool
-    }
-
-    public var isNull: Bool {
-        return json?.isNull ?? false
-    }
-
-    public var string: String? {
-        return json?.string
-    }
-
-    public var number: Number? {
-        return json?.number
-    }
+    public var bool: Bool? { return json?.bool }
+    public var isNull: Bool { return json?.isNull ?? false }
 }
 
 // MARK: - Literal
+
+extension AnyJSON: ExpressibleByStringLiteral {
+    public init(stringLiteral value: String) {
+        self.init(value)
+    }
+}
+
+extension AnyJSON: ExpressibleByIntegerLiteral {
+    public init(integerLiteral value: Int) {
+        self.init(value)
+    }
+}
+
+extension AnyJSON: ExpressibleByFloatLiteral {
+    public init(floatLiteral value: Double) {
+        self.init(value)
+    }
+}
 
 extension AnyJSON: ExpressibleByDictionaryLiteral {
     public init(dictionaryLiteral elements: (String, AnyJSON)...) {
@@ -117,23 +125,5 @@ extension AnyJSON: ExpressibleByBooleanLiteral {
 extension AnyJSON: ExpressibleByNilLiteral {
     public init(nilLiteral: ()) {
         self.init(NSNull())
-    }
-}
-
-extension AnyJSON: ExpressibleByStringLiteral {
-    public init(stringLiteral value: String) {
-        self.init(value)
-    }
-}
-
-extension AnyJSON: ExpressibleByIntegerLiteral {
-    public init(integerLiteral value: Int) {
-        self.init(value)
-    }
-}
-
-extension AnyJSON: ExpressibleByFloatLiteral {
-    public init(floatLiteral value: Double) {
-        self.init(value)
     }
 }
