@@ -7,15 +7,15 @@
 
 import Foundation
 
-extension JSONDecoder {
+open class Decoder {
     open func decode<T: Decodable>(_ type: T.Type, from json: JSON) throws -> T {
-        let decoder = _JSONDecoder()
+        let decoder = _Decoder()
         decoder.stroage.append(json)
         return try T.init(from: decoder)
     }
 }
 
-class _JSONDecoder: Decoder {
+final class _Decoder: Swift.Decoder {
     var stroage: [JSON] = []
 
     // MARK: - Decoder

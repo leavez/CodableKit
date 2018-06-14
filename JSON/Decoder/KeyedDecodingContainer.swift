@@ -7,9 +7,9 @@
 
 struct _KeyedDecodingContainer<Key: CodingKey>: KeyedDecodingContainerProtocol {
     let object: Object
-    let decoder: _JSONDecoder
+    let decoder: _Decoder
 
-    init(object: Object, decoder: _JSONDecoder, codingPath: [CodingKey]) {
+    init(object: Object, decoder: _Decoder, codingPath: [CodingKey]) {
         self.object = object
         self.decoder = decoder
         self.codingPath = codingPath
@@ -216,11 +216,11 @@ struct _KeyedDecodingContainer<Key: CodingKey>: KeyedDecodingContainerProtocol {
         fatalError()
     }
 
-    func superDecoder() throws -> Decoder {
+    func superDecoder() throws -> Swift.Decoder {
         return decoder
     }
 
-    func superDecoder(forKey key: Key) throws -> Decoder {
+    func superDecoder(forKey key: Key) throws -> Swift.Decoder {
         return decoder
     }
 }

@@ -7,9 +7,9 @@
 
 struct _UnkeyedDecodingContainer: UnkeyedDecodingContainer {
     let array: Array
-    let decoder: _JSONDecoder
+    let decoder: _Decoder
 
-    init(array: Array, decoder: _JSONDecoder, codingPath: [CodingKey]) {
+    init(array: Array, decoder: _Decoder, codingPath: [CodingKey]) {
         self.array = array
         self.decoder = decoder
         self.codingPath = codingPath
@@ -234,7 +234,7 @@ struct _UnkeyedDecodingContainer: UnkeyedDecodingContainer {
         return _UnkeyedDecodingContainer(array: array, decoder: decoder, codingPath: codingPath)
     }
 
-    mutating func superDecoder() throws -> Decoder {
+    mutating func superDecoder() throws -> Swift.Decoder {
         return decoder
     }
 

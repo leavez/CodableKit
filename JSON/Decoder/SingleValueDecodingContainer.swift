@@ -7,9 +7,9 @@
 
 struct _SingleValueDecodingContainer: SingleValueDecodingContainer {
     private let json: JSON
-    private let decoder: _JSONDecoder
+    private let decoder: _Decoder
 
-    init(json: JSON, decoder: _JSONDecoder, codingPath: [CodingKey]) {
+    init(json: JSON, decoder: _Decoder, codingPath: [CodingKey]) {
         self.json = json
         self.decoder = decoder
         self.codingPath = codingPath
