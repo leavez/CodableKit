@@ -10,7 +10,7 @@ import Foundation
 /// JSON value.
 ///
 /// [https://json.org](https://json.org)
-public enum JSON: Equatable {
+public enum JSON {
     case string(String)
     case number(NSNumber)
     case object([String: JSON])
@@ -20,100 +20,45 @@ public enum JSON: Equatable {
     case null
 }
 
-// MARK: - Literals
-
-extension JSON: ExpressibleByStringLiteral {
-    public init(stringLiteral value: String) {
-        self = .string(value)
-    }
-}
-
-extension JSON: ExpressibleByIntegerLiteral {
-    public init(integerLiteral value: Int) {
-        self = .number(NSNumber(value: value))
-    }
-}
-
-extension JSON: ExpressibleByFloatLiteral {
-    public init(floatLiteral value: Double) {
-        self = .number(NSNumber(value: value))
-    }
-}
-
-extension JSON: ExpressibleByDictionaryLiteral {
-    public init(dictionaryLiteral elements: (String, JSON)...) {
-        self = .object(Dictionary(uniqueKeysWithValues: elements))
-    }
-}
-
-extension JSON: ExpressibleByArrayLiteral {
-    public init(arrayLiteral elements: JSON...) {
-        self = .array(elements)
-    }
-}
-
-extension JSON: ExpressibleByBooleanLiteral {
-    public init(booleanLiteral value: Bool) {
-        if value {
-            self = .true
-        } else {
-            self = .false
-        }
-    }
-}
-
-extension JSON: ExpressibleByNilLiteral {
-    public init(nilLiteral: ()) {
-        self = .null
-    }
-}
-
-// MARK: - Convenience Properties
+private let booleanType = type(of: NSNumber(value: true))
 
 extension JSON {
-    public var string: String? {
-        if case let .string(string) = self {
-            return string
-        }
-        return nil
-    }
-
-    public var number: NSNumber? {
-        if case let .number(number) = self {
-            return number
-        }
-        return nil
-    }
-
-    public var object: [String: JSON]? {
-        if case let .object(object) = self {
-            return object
-        }
-        return nil
-    }
-
-    public var array: [JSON]? {
-        if case let .array(array) = self {
-            return array
-        }
-        return nil
-    }
-
-    public var bool: Bool? {
-        switch self {
-        case .true:
-            return true
-        case .false:
-            return false
+    public init?(_ any: Any) {
+        switch any {
+        case let string as String:
+            self = .string(string)
+        case let number as NSNumber:
+            if type(of: number) == booleanType {
+                if number.boolValue {
+                    self = .true
+                } else {
+                    self = .false
+                }
+            } else {
+                self = .number(number)
+            }
+        case let _object as [String: Any]:
+            var object: [String: JSON] = [:]
+            for (key, value) in _object {
+                guard let json = JSON(value) else {
+                    return nil
+                }
+                object[key] = json
+            }
+            self = .object(object)
+        case let _array as [Any]:
+            var array: [JSON] = []
+            for element in _array {
+                guard let json = JSON(element) else {
+                    return nil
+                }
+                array.append(json)
+            }
+            self = .array(array)
+        case _ as NSNull:
+            self = .null
         default:
             return nil
         }
-    }
-
-    public var isNull: Bool {
-        if self == .null {
-            return true
-        }
-        return false
     }
 }
