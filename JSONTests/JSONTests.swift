@@ -38,5 +38,7 @@ class JSONTests: XCTestCase {
             .data(using: .utf8)!
         let jsonObject = try! JSONSerialization.jsonObject(with: data)
         _ = JSON(jsonObject)!
+
+        _ = JSON.Decoder()
     }
 }
