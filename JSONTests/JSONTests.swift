@@ -38,7 +38,24 @@ class JSONTests: XCTestCase {
             .data(using: .utf8)!
         let jsonObject = try! JSONSerialization.jsonObject(with: data)
         _ = JSON(jsonObject)!
+    }
 
-        _ = JSON.Decoder()
+    func testDecoder() {
+        struct Model: Decodable {
+            let string: String
+            let number: Int
+            let array: [Int]
+            let bool: Bool
+            let null: Int?
+        }
+        let json: JSON = [
+            "string": "string",
+            "number": 42,
+            "array": [1, 2, 3, 4],
+            "bool": true,
+            "null": nil
+        ]
+        let model = try! JSON.Decoder().decode(Model.self, from: json)
+        print(model)
     }
 }
