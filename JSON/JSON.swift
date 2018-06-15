@@ -11,67 +11,16 @@ import Foundation
 ///
 /// [https://json.org](https://json.org)
 public enum JSON: Equatable {
-    public typealias String = Swift.String
-    public typealias Number = NSNumber
-    public typealias Object = [String: JSON]
-    public typealias Array = [JSON]
-
     case string(String)
-    case number(Number)
-    case object(Object)
-    case array(Array)
+    case number(NSNumber)
+    case object([String: JSON])
+    case array([JSON])
     case `true`
     case `false`
     case null
 }
 
 // MARK: - Initializers
-
-extension JSON {
-    public init(_ string: String) {
-        self = .string(string)
-    }
-
-    public init(_ number: Int) {
-        self = .number(number as Number)
-    }
-
-    public init(_ number: Int8) {
-        self = .number(number as Number)
-    }
-
-    public init(_ number: Int16) {
-        self = .number(number as Number)
-    }
-
-    public init(_ number: Int32) {
-        self = .number(number as Number)
-    }
-
-    public init(_ number: Int64) {
-        self = .number(number as Number)
-    }
-
-    public init(_ number: UInt) {
-        self = .number(number as Number)
-    }
-
-    public init(_ number: UInt8) {
-        self = .number(number as Number)
-    }
-
-    public init(_ number: UInt16) {
-        self = .number(number as Number)
-    }
-
-    public init(_ number: UInt32) {
-        self = .number(number as Number)
-    }
-
-    public init(_ number: UInt64) {
-        self = .number(number as Number)
-    }
-}
 
 // MARK: - Literals
 
@@ -83,19 +32,19 @@ extension JSON: ExpressibleByStringLiteral {
 
 extension JSON: ExpressibleByIntegerLiteral {
     public init(integerLiteral value: Int) {
-        self = .number(value as Number)
+        self = .number(NSNumber(value: value))
     }
 }
 
 extension JSON: ExpressibleByFloatLiteral {
     public init(floatLiteral value: Double) {
-        self = .number(value as Number)
+        self = .number(NSNumber(value: value))
     }
 }
 
 extension JSON: ExpressibleByDictionaryLiteral {
     public init(dictionaryLiteral elements: (String, JSON)...) {
-        self = .object(Object(uniqueKeysWithValues: elements))
+        self = .object(Dictionary(uniqueKeysWithValues: elements))
     }
 }
 
@@ -131,21 +80,21 @@ extension JSON {
         return nil
     }
 
-    public var number: Number? {
+    public var number: NSNumber? {
         if case let .number(number) = self {
             return number
         }
         return nil
     }
 
-    public var object: Object? {
+    public var object: [String: JSON]? {
         if case let .object(object) = self {
             return object
         }
         return nil
     }
 
-    public var array: Array? {
+    public var array: [JSON]? {
         if case let .array(array) = self {
             return array
         }
