@@ -25,7 +25,55 @@ public enum JSON: Equatable {
     case null
 }
 
-// MARK: - Literal
+// MARK: - Initializers
+
+extension JSON {
+    public init(_ string: String) {
+        self = .string(string)
+    }
+
+    public init(_ number: Int) {
+        self = .number(number as Number)
+    }
+
+    public init(_ number: Int8) {
+        self = .number(number as Number)
+    }
+
+    public init(_ number: Int16) {
+        self = .number(number as Number)
+    }
+
+    public init(_ number: Int32) {
+        self = .number(number as Number)
+    }
+
+    public init(_ number: Int64) {
+        self = .number(number as Number)
+    }
+
+    public init(_ number: UInt) {
+        self = .number(number as Number)
+    }
+
+    public init(_ number: UInt8) {
+        self = .number(number as Number)
+    }
+
+    public init(_ number: UInt16) {
+        self = .number(number as Number)
+    }
+
+    public init(_ number: UInt32) {
+        self = .number(number as Number)
+    }
+
+    public init(_ number: UInt64) {
+        self = .number(number as Number)
+    }
+}
+
+// MARK: - Literals
 
 extension JSON: ExpressibleByStringLiteral {
     public init(stringLiteral value: String) {
@@ -73,7 +121,7 @@ extension JSON: ExpressibleByNilLiteral {
     }
 }
 
-// MARK: - Convenience Property
+// MARK: - Convenience Properties
 
 extension JSON {
     public var string: String? {

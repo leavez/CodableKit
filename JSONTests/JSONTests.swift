@@ -9,7 +9,10 @@ import XCTest
 @testable import JSON
 
 class JSONTests: XCTestCase {
-    func testLiteral() {
+    func testInitializers() {
+    }
+
+    func testLiterals() {
         XCTAssert(JSON.string("string") == "string")
         XCTAssert(JSON.number(42) == 42.0)
         XCTAssert(JSON.object(["key": "value"]) == ["key": "value"])
@@ -19,7 +22,7 @@ class JSONTests: XCTestCase {
         XCTAssert(JSON.null == nil)
     }
 
-    func testConvenienceProperty() {
+    func testConvenienceProperties() {
         let json: JSON = [
             "string": "string",
             "number": 42.0,
@@ -45,5 +48,8 @@ class JSONTests: XCTestCase {
         XCTAssert(object["true"] == true)
         XCTAssert(object["false"] != true)
         XCTAssert(object["null"] == nil as JSON)
+    }
+
+    func test() {
     }
 }
