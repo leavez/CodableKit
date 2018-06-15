@@ -20,8 +20,6 @@ public enum JSON: Equatable {
     case null
 }
 
-// MARK: - Initializers
-
 // MARK: - Literals
 
 extension JSON: ExpressibleByStringLiteral {

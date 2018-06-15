@@ -9,8 +9,7 @@ import XCTest
 @testable import JSON
 
 class JSONTests: XCTestCase {
-    func testInitializers() {
-    }
+    func testInitializers() {}
 
     func testLiterals() {
         XCTAssert(JSON.string("string") == "string")
@@ -48,8 +47,5 @@ class JSONTests: XCTestCase {
         XCTAssert(object["true"] == true)
         XCTAssert(object["false"] != true)
         XCTAssert(object["null"] == nil as JSON)
-    }
-
-    func test() {
     }
 }
