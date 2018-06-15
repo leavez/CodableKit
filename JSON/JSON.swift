@@ -7,6 +7,9 @@
 
 import Foundation
 
+/// JSON value.
+///
+/// [https://json.org](https://json.org)
 public enum JSON: Equatable {
     public typealias String = Swift.String
     public typealias Number = NSNumber
@@ -67,5 +70,55 @@ extension JSON: ExpressibleByBooleanLiteral {
 extension JSON: ExpressibleByNilLiteral {
     public init(nilLiteral: ()) {
         self = .null
+    }
+}
+
+// MARK: - Convenience Property
+
+extension JSON {
+    public var string: String? {
+        if case let .string(string) = self {
+            return string
+        }
+        return nil
+    }
+
+    public var number: Number? {
+        if case let .number(number) = self {
+            return number
+        }
+        return nil
+    }
+
+    public var object: Object? {
+        if case let .object(object) = self {
+            return object
+        }
+        return nil
+    }
+
+    public var array: Array? {
+        if case let .array(array) = self {
+            return array
+        }
+        return nil
+    }
+
+    public var bool: Bool? {
+        switch self {
+        case .true:
+            return true
+        case .false:
+            return false
+        default:
+            return nil
+        }
+    }
+
+    public var isNull: Bool {
+        if self == .null {
+            return true
+        }
+        return false
     }
 }
