@@ -12,7 +12,6 @@ public struct AnyJSON {
     /// The value wrapped by this instance.
     ///
     /// The value can be:
-    ///
     /// - `JSON`
     /// - `NSDictionary`
     /// - `NSArray`

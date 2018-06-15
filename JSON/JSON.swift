@@ -34,7 +34,7 @@ extension JSON {
 ///
 /// [https://json.org](https://json.org)
 public typealias String = Swift.String
-extension String: JSON { public var string: String? { return self } }
+extension Swift.String: JSON { public var string: String? { return self } }
 
 // MARK: - Number
 
