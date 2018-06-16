@@ -13,40 +13,40 @@ extension JSON {
             return try T.init(from: decoder)
         }
     }
-}
 
-final class _Decoder: Decoder {
-    var stroage: [JSON] = []
+    final class _Decoder: Swift.Decoder {
+        var stroage: [JSON] = []
 
-    // MARK: Decoder
+        // MARK: Decoder
 
-    var codingPath: [CodingKey] = []
-    var userInfo: [CodingUserInfoKey: Any] = [:]
+        var codingPath: [CodingKey] = []
+        var userInfo: [CodingUserInfoKey: Any] = [:]
 
-    func container<Key: CodingKey>(keyedBy type: Key.Type) throws -> KeyedDecodingContainer<Key> {
-        guard let value = stroage.last else { fatalError() }
-        switch value {
-        case .object(let object):
-            return KeyedDecodingContainer(_KeyedDecodingContainer(codingPath: codingPath,
-                                                                  decoder: self,
-                                                                  object: object))
-        default:
-            fatalError()
+        func container<Key: CodingKey>(keyedBy type: Key.Type) throws -> Swift.KeyedDecodingContainer<Key> {
+            guard let value = stroage.last else { fatalError() }
+            switch value {
+            case .object(let object):
+                return Swift.KeyedDecodingContainer(KeyedDecodingContainer(codingPath: codingPath,
+                                                                           decoder: self,
+                                                                           object: object))
+            default:
+                fatalError()
+            }
         }
-    }
 
-    func unkeyedContainer() throws -> UnkeyedDecodingContainer {
-        guard let value = stroage.last else { fatalError() }
-        switch value {
-        case .array(let array):
-            return _UnkeyedDecodingContainer(codingPath: codingPath, decoder: self, array: array)
-        default:
-            fatalError()
+        func unkeyedContainer() throws -> Swift.UnkeyedDecodingContainer {
+            guard let value = stroage.last else { fatalError() }
+            switch value {
+            case .array(let array):
+                return UnkeyedDecodingContainer(codingPath: codingPath, decoder: self, array: array)
+            default:
+                fatalError()
+            }
         }
-    }
 
-    func singleValueContainer() throws -> SingleValueDecodingContainer {
-        guard let value = stroage.last else { fatalError() }
-        return _SingleValueDecodingContainer(codingPath: codingPath, decoder: self, value: value)
+        func singleValueContainer() throws -> Swift.SingleValueDecodingContainer {
+            guard let value = stroage.last else { fatalError() }
+            return SingleValueDecodingContainer(codingPath: codingPath, decoder: self, value: value)
+        }
     }
 }
