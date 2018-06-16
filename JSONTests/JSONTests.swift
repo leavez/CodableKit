@@ -56,6 +56,6 @@ class JSONTests: XCTestCase {
             "null": nil
         ]
         let model = try! JSON.Decoder().decode(Model.self, from: json)
-        print("\(json)")
+        print("\(model)")
     }
 }
