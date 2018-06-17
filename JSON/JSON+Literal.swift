@@ -7,48 +7,20 @@
 
 import Foundation
 
-extension JSON: ExpressibleByStringLiteral {
-    public init(stringLiteral value: String) {
-        self = .string(value)
-    }
+extension JSON {
+    public init(stringLiteral value: String) { self = .string(value) }
+    public init(integerLiteral value: Int) { self = .number(NSNumber(value: value)) }
+    public init(floatLiteral value: Double) { self = .number(NSNumber(value: value)) }
+    public init(dictionaryLiteral elements: (String, JSON)...) { self = .object(Dictionary(uniqueKeysWithValues: elements)) }
+    public init(arrayLiteral elements: JSON...) { self = .array(elements) }
+    public init(booleanLiteral value: Bool) { self = value ? .true : .false }
+    public init(nilLiteral: ()) { self = .null }
 }
 
-extension JSON: ExpressibleByIntegerLiteral {
-    public init(integerLiteral value: Int) {
-        self = .number(NSNumber(value: value))
-    }
-}
-
-extension JSON: ExpressibleByFloatLiteral {
-    public init(floatLiteral value: Double) {
-        self = .number(NSNumber(value: value))
-    }
-}
-
-extension JSON: ExpressibleByDictionaryLiteral {
-    public init(dictionaryLiteral elements: (String, JSON)...) {
-        self = .object(Dictionary(uniqueKeysWithValues: elements))
-    }
-}
-
-extension JSON: ExpressibleByArrayLiteral {
-    public init(arrayLiteral elements: JSON...) {
-        self = .array(elements)
-    }
-}
-
-extension JSON: ExpressibleByBooleanLiteral {
-    public init(booleanLiteral value: Bool) {
-        if value {
-            self = .true
-        } else {
-            self = .false
-        }
-    }
-}
-
-extension JSON: ExpressibleByNilLiteral {
-    public init(nilLiteral: ()) {
-        self = .null
-    }
-}
+extension JSON: ExpressibleByStringLiteral {}
+extension JSON: ExpressibleByIntegerLiteral {}
+extension JSON: ExpressibleByFloatLiteral {}
+extension JSON: ExpressibleByDictionaryLiteral {}
+extension JSON: ExpressibleByArrayLiteral {}
+extension JSON: ExpressibleByBooleanLiteral {}
+extension JSON: ExpressibleByNilLiteral {}

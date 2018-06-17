@@ -62,14 +62,3 @@ extension JSON {
         }
     }
 }
-
-extension JSON {
-    public var isNull: Bool {
-        switch self {
-        case .null:
-            return true
-        default:
-            return false
-        }
-    }
-}

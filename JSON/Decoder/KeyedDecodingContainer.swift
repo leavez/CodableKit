@@ -10,20 +10,24 @@ extension JSON {
         let codingPath: [CodingKey]
         let decoder: JSON._Decoder
         let object: [String: JSON]
+    }
+}
 
-        private func value(forKey key: Key) throws -> JSON {
-            guard let value = object[key.stringValue] else {
-                let description = "No value associated with key \(key) (\"\(key.stringValue)\"."
-                throw DecodingError.keyNotFound(key, DecodingError.Context(codingPath: codingPath,
-                                                                           debugDescription: description))
-            }
-            return value
+extension JSON.KeyedDecodingContainer {
+    private func value(forKey key: Key) throws -> JSON {
+        guard let value = object[key.stringValue] else {
+            let description = "No value associated with key \(key) (\"\(key.stringValue)\"."
+            throw DecodingError.keyNotFound(key, DecodingError.Context(codingPath: codingPath,
+                                                                       debugDescription: description))
         }
+        return value
     }
 }
 
 extension JSON.KeyedDecodingContainer: KeyedDecodingContainerProtocol {
-    var allKeys: [Key] { return object.keys.compactMap(Key.init) }
+    var allKeys: [Key] {
+        return object.keys.compactMap(Key.init)
+    }
 
     func contains(_ key: Key) -> Bool {
         return object.keys.contains(key.stringValue)
@@ -31,8 +35,6 @@ extension JSON.KeyedDecodingContainer: KeyedDecodingContainerProtocol {
 
     func decodeNil(forKey key: Key) throws -> Bool {
         let value = try self.value(forKey: key)
-        decoder.codingPath.append(key)
-        defer { decoder.codingPath.removeLast() }
         return value.isNull
     }
 
@@ -146,15 +148,14 @@ extension JSON.KeyedDecodingContainer: KeyedDecodingContainerProtocol {
         forKey key: Key
     ) throws -> KeyedDecodingContainer<NestedKey> {
         let value = try self.value(forKey: key)
-        decoder.codingPath.append(key)
-        defer { decoder.codingPath.removeLast() }
+        let codingPath = self.codingPath + [key]
         switch value {
         case .object(let object):
-            return KeyedDecodingContainer(JSON.KeyedDecodingContainer<NestedKey>(codingPath: codingPath + [key],
+            return KeyedDecodingContainer(JSON.KeyedDecodingContainer<NestedKey>(codingPath: codingPath,
                                                                                  decoder: decoder,
                                                                                  object: object))
         default:
-            throw DecodingError._typeMismatch(at: decoder.codingPath,
+            throw DecodingError._typeMismatch(at: codingPath,
                                               expectation: [String: JSON].self,
                                               reality: value)
         }
@@ -162,13 +163,12 @@ extension JSON.KeyedDecodingContainer: KeyedDecodingContainerProtocol {
 
     func nestedUnkeyedContainer(forKey key: Key) throws -> UnkeyedDecodingContainer {
         let value = try self.value(forKey: key)
-        decoder.codingPath.append(key)
-        defer { decoder.codingPath.removeLast() }
+        let codingPath = self.codingPath + [key]
         switch value {
         case .array(let array):
-            return JSON.UnkeyedDecodingContainer(codingPath: codingPath + [key], decoder: decoder, array: array)
+            return JSON.UnkeyedDecodingContainer(codingPath: codingPath, decoder: decoder, array: array)
         default:
-            throw DecodingError._typeMismatch(at: decoder.codingPath, expectation: [JSON].self, reality: value)
+            throw DecodingError._typeMismatch(at: codingPath, expectation: [JSON].self, reality: value)
         }
     }
 
@@ -178,8 +178,6 @@ extension JSON.KeyedDecodingContainer: KeyedDecodingContainerProtocol {
 
     func superDecoder(forKey key: Key) throws -> Decoder {
         let value = try self.value(forKey: key)
-        decoder.codingPath.append(key)
-        defer { decoder.codingPath.removeLast() }
-        return JSON._Decoder(value: value, codingPath: decoder.codingPath, userInfo: decoder.userInfo)
+        return JSON._Decoder(codingPath: codingPath + [key], userInfo: decoder.userInfo, value: value)
     }
 }
