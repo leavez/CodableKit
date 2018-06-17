@@ -17,8 +17,7 @@ extension JSON {
         ///   - type: The type of the value to decode from the supplied `JSON` value.
         ///   - value: The `JSON` value to decode.
         open func decode<T: Decodable>(_ type: T.Type, from value: JSON) throws -> T {
-            let decoder = _Decoder(value: value)
-            decoder.userInfo = userInfo
+            let decoder = _Decoder(value: value, codingPath: [], userInfo: userInfo)
             return try T.init(from: decoder)
         }
     }
@@ -30,12 +29,14 @@ extension JSON {
             return stroage.last!
         }
 
-        init(value: JSON) {
+        init(value: JSON, codingPath: [CodingKey], userInfo: [CodingUserInfoKey: Any]) {
             stroage.append(value)
+            self.codingPath = codingPath
+            self.userInfo = userInfo
         }
 
-        var codingPath: [CodingKey] = []
-        var userInfo: [CodingUserInfoKey: Any] = [:]
+        var codingPath: [CodingKey]
+        let userInfo: [CodingUserInfoKey: Any]
 
         func container<Key: CodingKey>(keyedBy type: Key.Type) throws -> Swift.KeyedDecodingContainer<Key> {
             switch topValue {
