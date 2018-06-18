@@ -17,8 +17,8 @@ extension JSON.KeyedDecodingContainer {
     private func value(forKey key: Key) throws -> JSON {
         guard let value = object[key.stringValue] else {
             let description = "No value associated with key \(key) (\"\(key.stringValue)\"."
-            throw DecodingError.keyNotFound(key, DecodingError.Context(codingPath: codingPath,
-                                                                       debugDescription: description))
+            let context = DecodingError.Context(codingPath: codingPath, debugDescription: description)
+            throw DecodingError.keyNotFound(key, context)
         }
         return value
     }
@@ -149,16 +149,11 @@ extension JSON.KeyedDecodingContainer: KeyedDecodingContainerProtocol {
     ) throws -> KeyedDecodingContainer<NestedKey> {
         let value = try self.value(forKey: key)
         let codingPath = self.codingPath + [key]
-        switch value {
-        case .object(let object):
-            return KeyedDecodingContainer(JSON.KeyedDecodingContainer<NestedKey>(codingPath: codingPath,
-                                                                                 decoder: decoder,
-                                                                                 object: object))
-        default:
-            throw DecodingError._typeMismatch(at: codingPath,
-                                              expectation: [String: JSON].self,
-                                              reality: value)
+        guard let object = value.object else {
+            throw DecodingError._typeMismatch(at: codingPath, expectation: [String: JSON].self, reality: value)
         }
+        let container = JSON.KeyedDecodingContainer<NestedKey>(codingPath: codingPath, decoder: decoder, object: object)
+        return KeyedDecodingContainer(container)
     }
 
     func nestedUnkeyedContainer(forKey key: Key) throws -> UnkeyedDecodingContainer {
