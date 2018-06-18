@@ -7,7 +7,9 @@
 
 import Foundation
 
-private let booleanType = type(of: NSNumber(value: true))
+extension NSNumber {
+    fileprivate static let boolType = type(of: NSNumber(value: true))
+}
 
 extension JSON {
     public init(_ string: String) { self = .string(string) }
@@ -25,7 +27,7 @@ extension JSON {
     public init(_ number: Double) { self = .number(number as NSNumber) }
 
     public init(_ number: NSNumber) {
-        if type(of: number) == booleanType {
+        if type(of: number) == NSNumber.boolType {
             self.init(number.boolValue)
         } else {
             self = .number(number)
@@ -68,6 +70,7 @@ extension JSON {
         case let array as [JSON]: self.init(array)
         case let rawArray as [Any]: self.init(rawArray)
         case let null as NSNull: self.init(null)
+        case _ as Optional<Any>: self = .null
         default: return nil
         }
     }

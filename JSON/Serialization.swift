@@ -8,10 +8,12 @@
 import Foundation
 
 extension JSON {
-    open class Serialization {
-        open class func json(with data: Data) throws -> JSON {
-            let jsonObject = try JSONSerialization.jsonObject(with: data)
-            return JSON(jsonObject)!
-        }
+    public typealias Serialization = JSONSerialization
+}
+
+extension JSONSerialization {
+    open class func json(with data: Data) throws -> JSON {
+        let jsonObject = try self.jsonObject(with: data)
+        return JSON(jsonObject)!
     }
 }

@@ -106,8 +106,8 @@
 			children = (
 				8C52A75A20D3A1BC00807AF6 /* JSON.swift */,
 				8CD1852F20D744D20043FCFD /* JSON+Initializer.swift */,
-				8CD1852D20D6B3470043FCFD /* JSON+Property.swift */,
 				8C8AD05B20D3FC77003E3232 /* JSON+Literal.swift */,
+				8CD1852D20D6B3470043FCFD /* JSON+Property.swift */,
 				8CD1853120D7498A0043FCFD /* Serialization.swift */,
 				8C8AD05D20D4007C003E3232 /* Decoding */,
 				8C8BCD9220D149AF00DEAD7F /* Info.plist */,
