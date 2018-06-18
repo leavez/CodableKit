@@ -19,6 +19,7 @@
 		8CD1852C20D677D30043FCFD /* Decoder+Unboxing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD1852B20D677D30043FCFD /* Decoder+Unboxing.swift */; };
 		8CD1852E20D6B3470043FCFD /* JSON+Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD1852D20D6B3470043FCFD /* JSON+Property.swift */; };
 		8CD1853020D744D20043FCFD /* JSON+Initializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD1852F20D744D20043FCFD /* JSON+Initializer.swift */; };
+		8CD1853220D7498A0043FCFD /* Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD1853120D7498A0043FCFD /* Serialization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		8CD1852B20D677D30043FCFD /* Decoder+Unboxing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decoder+Unboxing.swift"; sourceTree = "<group>"; };
 		8CD1852D20D6B3470043FCFD /* JSON+Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSON+Property.swift"; sourceTree = "<group>"; };
 		8CD1852F20D744D20043FCFD /* JSON+Initializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSON+Initializer.swift"; sourceTree = "<group>"; };
+		8CD1853120D7498A0043FCFD /* Serialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serialization.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +70,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8C8AD05D20D4007C003E3232 /* Decoder */ = {
+		8C8AD05D20D4007C003E3232 /* Decoding */ = {
 			isa = PBXGroup;
 			children = (
 				8C4CAC6C20D4D65400105757 /* DecodingError.swift */,
@@ -78,7 +80,7 @@
 				8C8AD06220D406FD003E3232 /* UnkeyedDecodingContainer.swift */,
 				8CD1852920D65A330043FCFD /* SingleValueDecodingContainer.swift */,
 			);
-			path = Decoder;
+			path = Decoding;
 			sourceTree = "<group>";
 		};
 		8C8BCD8420D149AE00DEAD7F = {
@@ -106,7 +108,8 @@
 				8CD1852F20D744D20043FCFD /* JSON+Initializer.swift */,
 				8CD1852D20D6B3470043FCFD /* JSON+Property.swift */,
 				8C8AD05B20D3FC77003E3232 /* JSON+Literal.swift */,
-				8C8AD05D20D4007C003E3232 /* Decoder */,
+				8CD1853120D7498A0043FCFD /* Serialization.swift */,
+				8C8AD05D20D4007C003E3232 /* Decoding */,
 				8C8BCD9220D149AF00DEAD7F /* Info.plist */,
 			);
 			path = JSON;
@@ -235,6 +238,7 @@
 				8C8AD06320D406FD003E3232 /* UnkeyedDecodingContainer.swift in Sources */,
 				8C8AD05F20D4009C003E3232 /* Decoder.swift in Sources */,
 				8CD1852C20D677D30043FCFD /* Decoder+Unboxing.swift in Sources */,
+				8CD1853220D7498A0043FCFD /* Serialization.swift in Sources */,
 				8C4CAC6D20D4D65400105757 /* DecodingError.swift in Sources */,
 				8CD1852A20D65A330043FCFD /* SingleValueDecodingContainer.swift in Sources */,
 				8C8AD05C20D3FC77003E3232 /* JSON+Literal.swift in Sources */,

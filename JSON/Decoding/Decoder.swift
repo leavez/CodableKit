@@ -55,17 +55,15 @@ extension JSON._Decoder: Decoder {
     }
 
     func unkeyedContainer() throws -> UnkeyedDecodingContainer {
-        switch topValue {
-        case .array(let array):
-            return JSON.UnkeyedDecodingContainer(codingPath: codingPath, decoder: self, array: array)
-        case .null:
+        guard !topValue.isNull else {
             let description = "Cannot get unkeyed decoding container -- found null value instead."
-            throw DecodingError.valueNotFound(UnkeyedDecodingContainer.self,
-                                              DecodingError.Context(codingPath: codingPath,
-                                                                    debugDescription: description))
-        default:
+            let context = DecodingError.Context(codingPath: codingPath, debugDescription: description)
+            throw DecodingError.valueNotFound(UnkeyedDecodingContainer.self, context)
+        }
+        guard let array = topValue.array else {
             throw DecodingError._typeMismatch(at: codingPath, expectation: [JSON].self, reality: topValue)
         }
+        return JSON.UnkeyedDecodingContainer(codingPath: codingPath, decoder: self, array: array)
     }
 
     func singleValueContainer() throws -> SingleValueDecodingContainer {
