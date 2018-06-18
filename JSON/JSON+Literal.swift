@@ -8,9 +8,9 @@
 import Foundation
 
 extension JSON {
-    public init(stringLiteral value: String) { self = .string(value) }
-    public init(integerLiteral value: Int) { self = .number(NSNumber(value: value)) }
-    public init(floatLiteral value: Double) { self = .number(NSNumber(value: value)) }
+    public init(stringLiteral value: String) { self.init(value) }
+    public init(integerLiteral value: Int) { self.init(value) }
+    public init(floatLiteral value: Double) { self.init(value) }
     public init(dictionaryLiteral elements: (String, JSON)...) { self = .object(Dictionary(uniqueKeysWithValues: elements)) }
     public init(arrayLiteral elements: JSON...) { self = .array(elements) }
     public init(booleanLiteral value: Bool) { self = value ? .true : .false }
