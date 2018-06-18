@@ -17,6 +17,15 @@ extension JSON {
         }
     }
 
+    public var number: NSNumber? {
+        switch self {
+        case .number(let number):
+            return number
+        default:
+            return nil
+        }
+    }
+
     public var object: [String: JSON]? {
         switch self {
         case .object(let object):
@@ -30,15 +39,6 @@ extension JSON {
         switch self {
         case .array(let array):
             return array
-        default:
-            return nil
-        }
-    }
-
-    public var number: NSNumber? {
-        switch self {
-        case .number(let number):
-            return number
         default:
             return nil
         }
