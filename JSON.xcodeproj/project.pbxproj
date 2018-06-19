@@ -15,8 +15,6 @@
 		8C8AD06520D40B6E003E3232 /* KeyedDecodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8AD06420D40B6E003E3232 /* KeyedDecodingContainer.swift */; };
 		8C8BCD9820D149AF00DEAD7F /* JSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BCD8E20D149AE00DEAD7F /* JSON.framework */; };
 		8C8BCD9D20D149AF00DEAD7F /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BCD9C20D149AF00DEAD7F /* JSONTests.swift */; };
-		8CD1852A20D65A330043FCFD /* SingleValueDecodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD1852920D65A330043FCFD /* SingleValueDecodingContainer.swift */; };
-		8CD1852C20D677D30043FCFD /* Decoder+Unboxing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD1852B20D677D30043FCFD /* Decoder+Unboxing.swift */; };
 		8CD1852E20D6B3470043FCFD /* JSON+Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD1852D20D6B3470043FCFD /* JSON+Property.swift */; };
 		8CD1853020D744D20043FCFD /* JSON+Initializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD1852F20D744D20043FCFD /* JSON+Initializer.swift */; };
 		8CD1853220D7498A0043FCFD /* Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD1853120D7498A0043FCFD /* Serialization.swift */; };
@@ -44,8 +42,6 @@
 		8C8BCD9720D149AF00DEAD7F /* JSONTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSONTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C8BCD9C20D149AF00DEAD7F /* JSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
 		8C8BCD9E20D149AF00DEAD7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8CD1852920D65A330043FCFD /* SingleValueDecodingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleValueDecodingContainer.swift; sourceTree = "<group>"; };
-		8CD1852B20D677D30043FCFD /* Decoder+Unboxing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decoder+Unboxing.swift"; sourceTree = "<group>"; };
 		8CD1852D20D6B3470043FCFD /* JSON+Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSON+Property.swift"; sourceTree = "<group>"; };
 		8CD1852F20D744D20043FCFD /* JSON+Initializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSON+Initializer.swift"; sourceTree = "<group>"; };
 		8CD1853120D7498A0043FCFD /* Serialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serialization.swift; sourceTree = "<group>"; };
@@ -75,10 +71,8 @@
 			children = (
 				8C4CAC6C20D4D65400105757 /* DecodingError.swift */,
 				8C8AD05E20D4009C003E3232 /* Decoder.swift */,
-				8CD1852B20D677D30043FCFD /* Decoder+Unboxing.swift */,
 				8C8AD06420D40B6E003E3232 /* KeyedDecodingContainer.swift */,
 				8C8AD06220D406FD003E3232 /* UnkeyedDecodingContainer.swift */,
-				8CD1852920D65A330043FCFD /* SingleValueDecodingContainer.swift */,
 			);
 			path = Decoding;
 			sourceTree = "<group>";
@@ -237,10 +231,8 @@
 				8C52A75B20D3A1BC00807AF6 /* JSON.swift in Sources */,
 				8C8AD06320D406FD003E3232 /* UnkeyedDecodingContainer.swift in Sources */,
 				8C8AD05F20D4009C003E3232 /* Decoder.swift in Sources */,
-				8CD1852C20D677D30043FCFD /* Decoder+Unboxing.swift in Sources */,
 				8CD1853220D7498A0043FCFD /* Serialization.swift in Sources */,
 				8C4CAC6D20D4D65400105757 /* DecodingError.swift in Sources */,
-				8CD1852A20D65A330043FCFD /* SingleValueDecodingContainer.swift in Sources */,
 				8C8AD05C20D3FC77003E3232 /* JSON+Literal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
