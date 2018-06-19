@@ -17,8 +17,7 @@ extension JSON {
         ///   - type: The type of the value to decode from the supplied `JSON` value.
         ///   - value: The `JSON` value to decode.
         open func decode<T: Decodable>(_ type: T.Type, from value: JSON) throws -> T {
-            let decoder = _Decoder(codingPath: [], userInfo: userInfo, value: value)
-            return try T(from: decoder)
+            return try T(from: _Decoder(codingPath: [], userInfo: userInfo, value: value))
         }
     }
 

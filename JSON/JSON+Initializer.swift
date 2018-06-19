@@ -62,6 +62,7 @@ extension JSON {
     }
 
     public init?(_ any: Any) {
+        // FIXME: Should this initializer handle Data?
         switch any {
         case let string as String: self.init(string)
         case let number as NSNumber: self.init(number)
