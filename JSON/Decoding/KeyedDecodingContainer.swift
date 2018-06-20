@@ -166,10 +166,12 @@ extension JSON.KeyedDecodingContainer: KeyedDecodingContainerProtocol {
     }
 
     func superDecoder() throws -> Decoder {
+        // FIXME: https://forums.swift.org/t/writing-encoders-and-decoders-different-question/10232
         fatalError("I don't understand what this method for.")
     }
 
     func superDecoder(forKey key: Key) throws -> Decoder {
+        // FIXME: https://forums.swift.org/t/writing-encoders-and-decoders-different-question/10232
         fatalError("I don't understand what this method for.")
     }
 }
