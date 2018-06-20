@@ -5,6 +5,8 @@
 //  Created by 李孛 on 2018/6/15.
 //
 
+import Foundation
+
 extension JSON {
     /// An object that decodes instances of a data type from `JSON`.
     open class Decoder {
@@ -19,6 +21,11 @@ extension JSON {
         open func decode<T: Decodable>(_ type: T.Type, from value: JSON) throws -> T {
             let decoder = _Decoder(codingPath: [], userInfo: userInfo)
             return try decoder.unbox(value, as: type)
+        }
+
+        open func decode<T: Decodable>(_ type: T.Type, from data: Data) throws -> T {
+            let json = try Serialization.json(with: data)
+            return try decode(type, from: json)
         }
     }
 
