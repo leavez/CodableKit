@@ -14,6 +14,6 @@ extension JSON {
 extension JSONSerialization {
     open class func json(with data: Data) throws -> JSON {
         let jsonObject = try self.jsonObject(with: data)
-        return JSON(jsonObject)! // Must success.
+        return JSON(jsonObject)!
     }
 }

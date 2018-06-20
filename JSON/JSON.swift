@@ -95,7 +95,8 @@ extension NSNumber {
 // MARK: - Literals
 
 extension JSON: ExpressibleByStringLiteral {}
-extension JSON: ExpressibleByIntegerLiteral, ExpressibleByFloatLiteral {}
+extension JSON: ExpressibleByIntegerLiteral {}
+extension JSON: ExpressibleByFloatLiteral {}
 extension JSON: ExpressibleByDictionaryLiteral {}
 extension JSON: ExpressibleByArrayLiteral {}
 extension JSON: ExpressibleByBooleanLiteral {}
@@ -167,6 +168,29 @@ extension JSON {
             return true
         default:
             return false
+        }
+    }
+}
+
+// MARK: - CustomStringConvertible
+
+extension JSON: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .string(let string):
+            return "string(\"\(string)\")"
+        case .number(let number):
+            return "number(\(number))"
+        case .object(let object):
+            return "object(\(object)"
+        case .array(let array):
+            return "array(\(array)"
+        case .true:
+            return "true"
+        case .false:
+            return "false"
+        case .null:
+            return "null"
         }
     }
 }

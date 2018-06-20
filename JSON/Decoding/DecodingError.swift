@@ -8,8 +8,8 @@
 import Foundation
 
 extension DecodingError {
-    static func _typeMismatch(at path: [CodingKey], expectation: Any.Type, reality: Any) -> DecodingError {
-        let description = "Expected to decode \(expectation) but found \(reality) instead."
+    static func _typeMismatch(at path: [CodingKey], expectation: Any.Type, reality: JSON) -> DecodingError {
+        let description = "Expected to decode \(expectation) but found a \(reality) instead."
         return .typeMismatch(expectation, Context(codingPath: path, debugDescription: description))
     }
 }

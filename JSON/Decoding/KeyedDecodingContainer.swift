@@ -159,20 +159,17 @@ extension JSON.KeyedDecodingContainer: KeyedDecodingContainerProtocol {
     func nestedUnkeyedContainer(forKey key: Key) throws -> UnkeyedDecodingContainer {
         let value = try self.value(forKey: key)
         let codingPath = self.codingPath + [key]
-        switch value {
-        case .array(let array):
-            return JSON.UnkeyedDecodingContainer(codingPath: codingPath, decoder: decoder, array: array)
-        default:
+        guard let array = value.array else {
             throw DecodingError._typeMismatch(at: codingPath, expectation: [JSON].self, reality: value)
         }
+        return JSON.UnkeyedDecodingContainer(codingPath: codingPath, decoder: decoder, array: array)
     }
 
     func superDecoder() throws -> Decoder {
-        return decoder
+        fatalError("I don't understand what this method for.")
     }
 
     func superDecoder(forKey key: Key) throws -> Decoder {
-        let value = try self.value(forKey: key)
-        return JSON._Decoder(codingPath: codingPath + [key], userInfo: decoder.userInfo, value: value)
+        fatalError("I don't understand what this method for.")
     }
 }

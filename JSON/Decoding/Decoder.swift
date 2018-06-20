@@ -17,7 +17,8 @@ extension JSON {
         ///   - type: The type of the value to decode from the supplied `JSON` value.
         ///   - value: The `JSON` value to decode.
         open func decode<T: Decodable>(_ type: T.Type, from value: JSON) throws -> T {
-            return try T(from: _Decoder(codingPath: [], userInfo: userInfo, value: value))
+            let decoder = _Decoder(codingPath: [], userInfo: userInfo)
+            return try decoder.unbox(value, as: type)
         }
     }
 
@@ -31,21 +32,16 @@ extension JSON {
             return stroage.last!
         }
 
-        init(codingPath: [CodingKey], userInfo: [CodingUserInfoKey: Any], value: JSON) {
+        init(codingPath: [CodingKey], userInfo: [CodingUserInfoKey: Any]) {
             self.codingPath = codingPath
             self.userInfo = userInfo
-            stroage.append(value)
         }
     }
 }
 
 extension JSON._Decoder: Decoder {
     func container<Key: CodingKey>(keyedBy type: Key.Type) throws -> KeyedDecodingContainer<Key> {
-        guard !topValue.isNull else {
-            let description = "Cannot get keyed decoding container -- found null value instead."
-            let context = DecodingError.Context(codingPath: codingPath, debugDescription: description)
-            throw DecodingError.valueNotFound(KeyedDecodingContainer<Key>.self, context)
-        }
+        try expectNonNull(topValue, for: KeyedDecodingContainer<Key>.self)
         guard let object = topValue.object else {
             throw DecodingError._typeMismatch(at: codingPath, expectation: [String: JSON].self, reality: topValue)
         }
@@ -54,11 +50,7 @@ extension JSON._Decoder: Decoder {
     }
 
     func unkeyedContainer() throws -> UnkeyedDecodingContainer {
-        guard !topValue.isNull else {
-            let description = "Cannot get unkeyed decoding container -- found null value instead."
-            let context = DecodingError.Context(codingPath: codingPath, debugDescription: description)
-            throw DecodingError.valueNotFound(UnkeyedDecodingContainer.self, context)
-        }
+        try expectNonNull(topValue, for: UnkeyedDecodingContainer.self)
         guard let array = topValue.array else {
             throw DecodingError._typeMismatch(at: codingPath, expectation: [JSON].self, reality: topValue)
         }
@@ -75,7 +67,7 @@ extension JSON._Decoder: Decoder {
 extension JSON._Decoder {
     private func expectNonNull<T>(_ value: JSON, for type: T.Type) throws {
         guard !value.isNull else {
-            let description = "Expected \(type) but found null value instead."
+            let description = "Expected \(type) but found null instead."
             let context = DecodingError.Context(codingPath: codingPath, debugDescription: description)
             throw DecodingError.valueNotFound(type, context)
         }
@@ -86,6 +78,9 @@ extension JSON._Decoder {
         guard let number = value.number else {
             throw DecodingError._typeMismatch(at: codingPath, expectation: type, reality: value)
         }
+        // `number as? T` is actually `T(exactly:)`.
+        //
+        // https://github.com/apple/swift/blob/master/stdlib/public/SDK/Foundation/NSNumber.swift
         guard let result = number as? T else {
             let description = "Parsed JSON number <\(number)> does not fit in \(type)."
             let context = DecodingError.Context(codingPath: codingPath, debugDescription: description)
