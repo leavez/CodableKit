@@ -14,7 +14,7 @@ extension JSON {
 }
 
 extension JSON.KeyedDecodingContainer {
-    private func value(forKey key: Key) throws -> JSON {
+    private func value(forKey key: CodingKey) throws -> JSON {
         guard let value = object[key.stringValue] else {
             let description = "No value associated with key \(key) (\"\(key.stringValue)\"."
             let context = DecodingError.Context(codingPath: codingPath, debugDescription: description)
@@ -166,12 +166,17 @@ extension JSON.KeyedDecodingContainer: KeyedDecodingContainerProtocol {
     }
 
     func superDecoder() throws -> Decoder {
-        // FIXME: https://forums.swift.org/t/writing-encoders-and-decoders-different-question/10232
-        fatalError("I don't understand what this method for.")
+        return try _superDecoder(forKey: JSONKey.super)
     }
 
     func superDecoder(forKey key: Key) throws -> Decoder {
-        // FIXME: https://forums.swift.org/t/writing-encoders-and-decoders-different-question/10232
-        fatalError("I don't understand what this method for.")
+        return try _superDecoder(forKey: key)
+    }
+
+    private func _superDecoder(forKey key: CodingKey) throws -> Decoder {
+        let value = try self.value(forKey: key)
+        let decoder = JSON._Decoder(codingPath: codingPath + [key], userInfo: self.decoder.userInfo)
+        decoder.stroage.append(value)
+        return decoder
     }
 }
