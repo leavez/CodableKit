@@ -10,7 +10,7 @@ import Foundation
 /// JSON value.
 ///
 /// [https://json.org](https://json.org)
-public enum JSON {
+public enum JSON: Equatable {
     case string(String)
     case number(NSNumber)
     case object([String: JSON])
