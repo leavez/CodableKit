@@ -37,5 +37,29 @@ class JSONTests: XCTestCase {
         json = JSON(true as NSNumber)
         XCTAssertEqual(json, JSON.true)
         XCTAssertNotEqual(json, JSON.number(1))
+
+        let object = ["key": JSON.true]
+        XCTAssertEqual(JSON(object), .object(object))
+
+        let array: [JSON] = [.true, .false, .null]
+        XCTAssertEqual(JSON(array), .array(array))
+
+        XCTAssertEqual(JSON(true), .true)
+        XCTAssertEqual(JSON(false), .false)
+
+        XCTAssertEqual(JSON(NSNull()), .null)
+
+        let rawObject: [String: Any] = ["key": true]
+        XCTAssertEqual(JSON(rawObject), .object(object))
+        XCTAssertNil(JSON(["key": NSObject()]))
+
+        let rawArray: [Any] = [true, false, Optional<String>.none as Any]
+        XCTAssertEqual(JSON(rawArray), .array(array))
+        XCTAssertNil(JSON([NSObject()]))
+
+        XCTAssertEqual(JSON("string" as Any), .string("string"))
+        XCTAssertEqual(JSON(object as Any), .object(object))
+        XCTAssertEqual(JSON(array as Any), .array(array))
+        XCTAssertEqual(JSON(NSNull() as Any), .null)
     }
 }

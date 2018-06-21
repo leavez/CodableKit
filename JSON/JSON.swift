@@ -82,8 +82,19 @@ extension JSON {
         case let array as [JSON]: self.init(array)
         case let rawArray as [Any]: self.init(rawArray)
         case let null as NSNull: self.init(null)
-        case _ as Optional<Any>: self = .null
-        default: return nil
+        default:
+            let mirror = Mirror(reflecting: any)
+            guard
+                // Check if any is Optional.
+                mirror.displayStyle == .optional,
+                // Check if any is nil.
+                mirror.children.isEmpty
+                else {
+                    // Some nonsense type, fail initialization.
+                    return nil
+            }
+            // any is Optional<Whatever>.none, just treat it as null.
+            self = .null
         }
     }
 }
