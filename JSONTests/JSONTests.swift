@@ -105,4 +105,42 @@ class JSONTests: XCTestCase {
         XCTAssertTrue(json.isNull)
         XCTAssertNil(json.bool)
     }
+
+    func testCustomStringConvertible() {
+        var json: JSON
+
+        json = "string"
+        XCTAssertEqual("\(json)", "string(\"string\")")
+
+        json = 42
+        XCTAssertEqual("\(json)", "number(42)")
+
+        json = ["key": 42]
+        XCTAssertEqual("\(json)", "object([\"key\": number(42)])")
+
+        json = ["string", 42]
+        XCTAssertEqual("\(json)", "array([string(\"string\"), number(42)])")
+
+        json = .true
+        XCTAssertEqual("\(json)", "true")
+
+        json = .false
+        XCTAssertEqual("\(json)", "false")
+
+        json = .null
+        XCTAssertEqual("\(json)", "null")
+    }
+
+    func testSerialization() {
+        let data = """
+            {
+                "string": "string",
+                "number": 42,
+                "array": [1, 2, 3]
+            }
+            """
+            .data(using: .utf8)!
+        let json = try! JSON.Serialization.json(with: data)
+        XCTAssertEqual(json, ["string": "string", "number": 42, "array": [1, 2, 3]])
+    }
 }

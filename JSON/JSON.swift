@@ -193,9 +193,9 @@ extension JSON: CustomStringConvertible {
         case .number(let number):
             return "number(\(number))"
         case .object(let object):
-            return "object(\(object)"
+            return "object(\(object))"
         case .array(let array):
-            return "array(\(array)"
+            return "array(\(array))"
         case .true:
             return "true"
         case .false:
