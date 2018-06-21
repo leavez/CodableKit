@@ -13,6 +13,8 @@ extension JSON {
         /// A dictionary you use to customize the decoding process by providing contextual information.
         open var userInfo: [CodingUserInfoKey: Any] = [:]
 
+        public init() {}
+
         /// Returns a value of the type you specify, decoded from a `JSON` value.
         ///
         /// - Parameters:
