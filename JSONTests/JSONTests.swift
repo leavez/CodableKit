@@ -8,7 +8,7 @@
 import XCTest
 @testable import JSON
 
-class JSONTests: XCTestCase {
+final class JSONTests: XCTestCase {
     func testInitializers() {
         var json: JSON
 

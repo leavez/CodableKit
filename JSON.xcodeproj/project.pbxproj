@@ -15,6 +15,7 @@
 		8C8BCD9820D149AF00DEAD7F /* JSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8BCD8E20D149AE00DEAD7F /* JSON.framework */; };
 		8C8BCD9D20D149AF00DEAD7F /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BCD9C20D149AF00DEAD7F /* JSONTests.swift */; };
 		8C95A87720DA2F3100309B56 /* JSONKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C95A87620DA2F3100309B56 /* JSONKey.swift */; };
+		8CBBF43120DB6D5D003C8B03 /* DecoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBF43020DB6D5D003C8B03 /* DecoderTests.swift */; };
 		8CD1853220D7498A0043FCFD /* Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD1853120D7498A0043FCFD /* Serialization.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		8C8BCD9C20D149AF00DEAD7F /* JSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
 		8C8BCD9E20D149AF00DEAD7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C95A87620DA2F3100309B56 /* JSONKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONKey.swift; sourceTree = "<group>"; };
+		8CBBF43020DB6D5D003C8B03 /* DecoderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderTests.swift; sourceTree = "<group>"; };
 		8CD1853120D7498A0043FCFD /* Serialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serialization.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				8C8BCD9C20D149AF00DEAD7F /* JSONTests.swift */,
+				8CBBF43020DB6D5D003C8B03 /* DecoderTests.swift */,
 				8C8BCD9E20D149AF00DEAD7F /* Info.plist */,
 			);
 			path = JSONTests;
@@ -233,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CBBF43120DB6D5D003C8B03 /* DecoderTests.swift in Sources */,
 				8C8BCD9D20D149AF00DEAD7F /* JSONTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
