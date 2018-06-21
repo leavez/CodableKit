@@ -209,7 +209,7 @@ extension JSON.UnkeyedDecodingContainer: UnkeyedDecodingContainer {
     mutating func superDecoder() throws -> Decoder {
         try expectNotAtEnd(for: Decoder.self)
         let decoder = JSON._Decoder(codingPath: codingPath + [JSONKey(index: currentIndex)],
-                                    userInfo: self.decoder.userInfo)
+                                    options: self.decoder.options)
         decoder.stroage.append(array[currentIndex])
         currentIndex += 1
         return decoder

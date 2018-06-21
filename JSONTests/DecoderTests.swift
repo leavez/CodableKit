@@ -18,8 +18,10 @@ final class DecoderTests: XCTestCase {
         }
     }
 
+    let options = JSON.Decoder().options
+
     func testUnboxing() {
-        let decoder = JSON._Decoder(codingPath: [], userInfo: [:])
+        let decoder = JSON._Decoder(codingPath: [], options: options)
 
         XCTAssertThrowsError(try decoder.unbox(42, as: Bool.self))
         XCTAssertEqual(try! decoder.unbox(true, as: Bool.self), true)
@@ -44,7 +46,7 @@ final class DecoderTests: XCTestCase {
     }
 
     func testSingleValueDecodingContainer() {
-        let decoder = JSON._Decoder(codingPath: [], userInfo: [:])
+        let decoder = JSON._Decoder(codingPath: [], options: options)
 
         decoder.stroage = [nil]
         XCTAssertTrue(decoder.decodeNil())
@@ -74,7 +76,7 @@ final class DecoderTests: XCTestCase {
     }
 
     func testKeyedDecodingContainer() {
-        let decoder = JSON._Decoder(codingPath: [], userInfo: [:])
+        let decoder = JSON._Decoder(codingPath: [], options: options)
 
         enum CodingKeys: String, CodingKey {
             case a

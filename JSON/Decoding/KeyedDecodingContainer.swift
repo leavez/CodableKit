@@ -175,7 +175,7 @@ extension JSON.KeyedDecodingContainer: KeyedDecodingContainerProtocol {
 
     private func _superDecoder(forKey key: CodingKey) throws -> Decoder {
         let value = try self.value(forKey: key)
-        let decoder = JSON._Decoder(codingPath: codingPath + [key], userInfo: self.decoder.userInfo)
+        let decoder = JSON._Decoder(codingPath: codingPath + [key], options: self.decoder.options)
         decoder.stroage.append(value)
         return decoder
     }

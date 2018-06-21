@@ -10,6 +10,23 @@ import Foundation
 extension JSON {
     /// An object that decodes instances of a data type from `JSON`.
     open class Decoder {
+        public enum KeyDecodingStrategy {
+            case useDefaultKey
+            case convertFromSnakeCase
+            case custom((_ codingPath: [CodingKey]) -> CodingKey)
+        }
+
+        open var keyDecodingStrategy: KeyDecodingStrategy = .useDefaultKey
+
+        struct Options {
+            let keyDecodingStrategy: KeyDecodingStrategy
+            let userInfo: [CodingUserInfoKey: Any]
+        }
+
+        var options: Options {
+            return Options(keyDecodingStrategy: keyDecodingStrategy, userInfo: userInfo)
+        }
+
         /// A dictionary you use to customize the decoding process by providing contextual information.
         open var userInfo: [CodingUserInfoKey: Any] = [:]
 
@@ -21,7 +38,7 @@ extension JSON {
         ///   - type: The type of the value to decode from the supplied `JSON` value.
         ///   - value: The `JSON` value to decode.
         open func decode<T: Decodable>(_ type: T.Type, from value: JSON) throws -> T {
-            let decoder = _Decoder(codingPath: [], userInfo: userInfo)
+            let decoder = _Decoder(codingPath: [], options: options)
             return try decoder.unbox(value, as: type)
         }
 
@@ -33,17 +50,21 @@ extension JSON {
 
     final class _Decoder {
         var codingPath: [CodingKey]
-        let userInfo: [CodingUserInfoKey: Any]
         var stroage: [JSON] = []
+        let options: Decoder.Options
+
+        var userInfo: [CodingUserInfoKey: Any] {
+            return options.userInfo
+        }
 
         var topValue: JSON {
             precondition(!stroage.isEmpty)
             return stroage.last!
         }
 
-        init(codingPath: [CodingKey], userInfo: [CodingUserInfoKey: Any]) {
+        init(codingPath: [CodingKey], options: Decoder.Options) {
             self.codingPath = codingPath
-            self.userInfo = userInfo
+            self.options = options
         }
     }
 }
