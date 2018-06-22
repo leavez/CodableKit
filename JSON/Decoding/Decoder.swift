@@ -8,23 +8,17 @@
 import Foundation
 
 extension JSON {
+
+    // MARK: - JSON.Decoder
+
     /// An object that decodes instances of a data type from `JSON`.
     open class Decoder {
-        public enum KeyDecodingStrategy {
-            case useDefaultKey
-            case convertFromSnakeCase
-            case custom((_ codingPath: [CodingKey]) -> CodingKey)
-        }
-
-        open var keyDecodingStrategy: KeyDecodingStrategy = .useDefaultKey
-
         struct Options {
-            let keyDecodingStrategy: KeyDecodingStrategy
             let userInfo: [CodingUserInfoKey: Any]
         }
 
         var options: Options {
-            return Options(keyDecodingStrategy: keyDecodingStrategy, userInfo: userInfo)
+            return Options(userInfo: userInfo)
         }
 
         /// A dictionary you use to customize the decoding process by providing contextual information.
@@ -48,15 +42,17 @@ extension JSON {
         }
     }
 
+    // MARK: - JSON._Decoder
+
     final class _Decoder {
         var codingPath: [CodingKey]
-        var stroage: [JSON] = []
-        let options: Decoder.Options
 
+        let options: Decoder.Options
         var userInfo: [CodingUserInfoKey: Any] {
             return options.userInfo
         }
 
+        var stroage: [JSON] = []
         var topValue: JSON {
             precondition(!stroage.isEmpty)
             return stroage.last!
