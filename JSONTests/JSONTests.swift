@@ -109,4 +109,15 @@ final class JSONTests: XCTestCase {
         XCTAssertEqual("\(JSON.false)", "false")
         XCTAssertEqual("\(JSON.null)", "null")
     }
+
+    func testSerialization() {
+        let data = """
+            {
+                "key": "value"
+            }
+            """
+            .data(using: .utf8)!
+        let json = try! JSON.Serialization.json(with: data)
+        XCTAssertEqual(json, ["key": "value"])
+    }
 }

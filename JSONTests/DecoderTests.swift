@@ -8,4 +8,49 @@
 import XCTest
 @testable import JSON
 
-final class DecoderTests: XCTestCase {}
+final class DecoderTests: XCTestCase {
+    func testUnboxing() {
+        let decoder = JSON._Decoder(codingPath: [], options: JSON.Decoder.Options(userInfo: [:]))
+        XCTAssertThrowsError(try decoder.unbox("string", as: Bool.self))
+        XCTAssertEqual(try! decoder.unbox(true, as: Bool.self), true)
+        XCTAssertThrowsError(try decoder.unbox("string", as: Int.self))
+        XCTAssertThrowsError(try decoder.unbox(128, as: Int8.self))
+        XCTAssertEqual(try! decoder.unbox(42, as: Int16.self), 42)
+        XCTAssertEqual(try! decoder.unbox(42, as: Int32.self), 42)
+        XCTAssertEqual(try! decoder.unbox(42, as: Int64.self), 42)
+        XCTAssertEqual(try! decoder.unbox(42, as: UInt.self), 42)
+        XCTAssertEqual(try! decoder.unbox(42, as: UInt8.self), 42)
+        XCTAssertEqual(try! decoder.unbox(42, as: UInt16.self), 42)
+        XCTAssertEqual(try! decoder.unbox(42, as: UInt32.self), 42)
+        XCTAssertEqual(try! decoder.unbox(42, as: UInt64.self), 42)
+        XCTAssertEqual(try! decoder.unbox(42, as: Float.self), 42)
+        XCTAssertEqual(try! decoder.unbox(42, as: Double.self), 42)
+        XCTAssertThrowsError(try decoder.unbox(42, as: String.self))
+        XCTAssertEqual(try! decoder.unbox("string", as: String.self), "string")
+    }
+
+    func testSingleValueDecodingContainer() {
+        let decoder = JSON._Decoder(codingPath: [], options: JSON.Decoder.Options(userInfo: [:]))
+        decoder.stroage = [nil]
+        XCTAssertTrue(decoder.decodeNil())
+        decoder.stroage = [true]
+        XCTAssertEqual(try! decoder.decode(Bool.self), true)
+        decoder.stroage = [42]
+        XCTAssertEqual(try! decoder.decode(Int.self), 42)
+        XCTAssertEqual(try! decoder.decode(Int8.self), 42)
+        XCTAssertEqual(try! decoder.decode(Int16.self), 42)
+        XCTAssertEqual(try! decoder.decode(Int32.self), 42)
+        XCTAssertEqual(try! decoder.decode(Int64.self), 42)
+        XCTAssertEqual(try! decoder.decode(UInt.self), 42)
+        XCTAssertEqual(try! decoder.decode(UInt8.self), 42)
+        XCTAssertEqual(try! decoder.decode(UInt16.self), 42)
+        XCTAssertEqual(try! decoder.decode(UInt32.self), 42)
+        XCTAssertEqual(try! decoder.decode(UInt64.self), 42)
+        XCTAssertEqual(try! decoder.decode(Float.self), 42)
+        XCTAssertEqual(try! decoder.decode(Double.self), 42)
+        decoder.stroage = ["string"]
+        XCTAssertEqual(try! decoder.decode(String.self), "string")
+        struct Model: Decodable {}
+        XCTAssertNotNil(try? decoder.decode(Model.self))
+    }
+}
