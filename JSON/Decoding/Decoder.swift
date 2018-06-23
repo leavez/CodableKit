@@ -15,8 +15,8 @@ extension JSON {
     open class Decoder {
         public struct StringDecodingStrategies: OptionSet {
             public static let convertFromNumber = StringDecodingStrategies(rawValue: 1 << 0)
-            public static let convertFromTrue   = StringDecodingStrategies(rawValue: 1 << 1)
-            public static let convertFromFalse  = StringDecodingStrategies(rawValue: 1 << 2)
+            public static let convertFromTrue = StringDecodingStrategies(rawValue: 1 << 1)
+            public static let convertFromFalse = StringDecodingStrategies(rawValue: 1 << 2)
 
             public let rawValue: Int
             public init(rawValue: Int) { self.rawValue = rawValue }
@@ -24,8 +24,8 @@ extension JSON {
 
         public struct NumberDecodingStrategies: OptionSet {
             public static let convertFromString = NumberDecodingStrategies(rawValue: 1 << 0)
-            public static let convertFromTrue   = NumberDecodingStrategies(rawValue: 1 << 1)
-            public static let convertFromFalse  = NumberDecodingStrategies(rawValue: 1 << 2)
+            public static let convertFromTrue = NumberDecodingStrategies(rawValue: 1 << 1)
+            public static let convertFromFalse = NumberDecodingStrategies(rawValue: 1 << 2)
 
             public let rawValue: Int
             public init(rawValue: Int) { self.rawValue = rawValue }
