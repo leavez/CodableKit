@@ -17,6 +17,7 @@
 		8C95A87720DA2F3100309B56 /* JSONKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C95A87620DA2F3100309B56 /* JSONKey.swift */; };
 		8C9D037520DE338F006F4EE4 /* StringDecodingStrategiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D037420DE338F006F4EE4 /* StringDecodingStrategiesTests.swift */; };
 		8C9D037820DE39AD006F4EE4 /* NumberDecodingStrategiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D037720DE39AD006F4EE4 /* NumberDecodingStrategiesTests.swift */; };
+		8C9D037A20DE4FC4006F4EE4 /* BoolDecodingStrategiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D037920DE4FC4006F4EE4 /* BoolDecodingStrategiesTests.swift */; };
 		8CBBF43120DB6D5D003C8B03 /* DecoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBF43020DB6D5D003C8B03 /* DecoderTests.swift */; };
 		8CD1853220D7498A0043FCFD /* Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD1853120D7498A0043FCFD /* Serialization.swift */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,7 @@
 		8C95A87620DA2F3100309B56 /* JSONKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONKey.swift; sourceTree = "<group>"; };
 		8C9D037420DE338F006F4EE4 /* StringDecodingStrategiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringDecodingStrategiesTests.swift; sourceTree = "<group>"; };
 		8C9D037720DE39AD006F4EE4 /* NumberDecodingStrategiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberDecodingStrategiesTests.swift; sourceTree = "<group>"; };
+		8C9D037920DE4FC4006F4EE4 /* BoolDecodingStrategiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolDecodingStrategiesTests.swift; sourceTree = "<group>"; };
 		8CBBF43020DB6D5D003C8B03 /* DecoderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderTests.swift; sourceTree = "<group>"; };
 		8CD1853120D7498A0043FCFD /* Serialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serialization.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,6 +127,7 @@
 				8CBBF43020DB6D5D003C8B03 /* DecoderTests.swift */,
 				8C9D037420DE338F006F4EE4 /* StringDecodingStrategiesTests.swift */,
 				8C9D037720DE39AD006F4EE4 /* NumberDecodingStrategiesTests.swift */,
+				8C9D037920DE4FC4006F4EE4 /* BoolDecodingStrategiesTests.swift */,
 			);
 			path = DecoderTests;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				8CBBF43120DB6D5D003C8B03 /* DecoderTests.swift in Sources */,
 				8C9D037820DE39AD006F4EE4 /* NumberDecodingStrategiesTests.swift in Sources */,
 				8C8BCD9D20D149AF00DEAD7F /* JSONTests.swift in Sources */,
+				8C9D037A20DE4FC4006F4EE4 /* BoolDecodingStrategiesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

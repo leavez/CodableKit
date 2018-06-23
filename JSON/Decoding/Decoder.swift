@@ -31,18 +31,32 @@ extension JSON {
             public init(rawValue: Int) { self.rawValue = rawValue }
         }
 
+        public struct BoolDecodingStrategies: OptionSet {
+            public static let convertFromString = BoolDecodingStrategies(rawValue: 1 << 0)
+            public static let convertFromNumber = BoolDecodingStrategies(rawValue: 1 << 1)
+
+            public var trueConvertibleStrings: Set<String> = ["true"]
+            public var falseConvertibleStrings: Set<String> = ["false"]
+
+            public let rawValue: Int
+            public init(rawValue: Int) { self.rawValue = rawValue }
+        }
+
         struct Options {
             let stringDecodingStrategies: StringDecodingStrategies
             let numberDecodingStrategies: NumberDecodingStrategies
+            let boolDecodingStrategies: BoolDecodingStrategies
             let userInfo: [CodingUserInfoKey: Any]
         }
 
         open var stringDecodingStrategies: StringDecodingStrategies = []
         open var numberDecodingStrategies: NumberDecodingStrategies = []
+        open var boolDecodingStrategies: BoolDecodingStrategies = []
 
         var options: Options {
             return Options(stringDecodingStrategies: stringDecodingStrategies,
                            numberDecodingStrategies: numberDecodingStrategies,
+                           boolDecodingStrategies: boolDecodingStrategies,
                            userInfo: userInfo)
         }
 
@@ -161,10 +175,22 @@ extension JSON._Decoder {
 extension JSON._Decoder {
     func unbox(_ value: JSON, as type: Bool.Type) throws -> Bool {
         try expectNonNull(value, for: type)
-        guard let result = value.bool else {
+        switch (value, options.boolDecodingStrategies) {
+        case let (.string(string), strategies)
+            where strategies.contains(.convertFromString) && strategies.trueConvertibleStrings.contains(string):
+            return true
+        case let (.string(string), strategies)
+            where strategies.contains(.convertFromString) && strategies.falseConvertibleStrings.contains(string):
+            return false
+        case let (.number(number), strategies) where strategies.contains(.convertFromNumber):
+            return number != 0
+        case (.true, _):
+            return true
+        case (.false, _):
+            return false
+        default:
             throw DecodingError._typeMismatch(at: codingPath, expectation: type, reality: value)
         }
-        return result
     }
 
     func unbox(_ value: JSON, as type: Int.Type) throws -> Int { return try unbox(value, asNumberFitIn: type) }
