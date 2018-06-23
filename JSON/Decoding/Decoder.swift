@@ -33,11 +33,6 @@ extension JSON {
             urlDecodingStrategy = options.urlDecodingStrategy
         }
 
-        open func decode<T: Decodable>(_ type: T.Type, from data: Data) throws -> T {
-            let json = try Serialization.json(with: data)
-            return try decode(type, from: json)
-        }
-
         /// Returns a value of the type you specify, decoded from a `JSON` value.
         ///
         /// - Parameters:
@@ -46,6 +41,27 @@ extension JSON {
         open func decode<T: Decodable>(_ type: T.Type, from value: JSON) throws -> T {
             let decoder = _Decoder(codingPath: [], options: options)
             return try decoder.unbox(value, as: type)
+        }
+
+        open func decode<T: Decodable>(_ type: T.Type, from data: Data) throws -> T {
+            let json = try Serialization.json(with: data)
+            return try decode(type, from: json)
+        }
+
+        open func decode<T: Decodable>(_ type: T.Type, from value: Any) throws -> T {
+            switch value {
+            case let json as JSON:
+                return try decode(type, from: json)
+            case let data as Data:
+                return try decode(type, from: data)
+            default:
+                guard let json = JSON(value) else {
+                    let description = "The given value was not valid JSON."
+                    let context = DecodingError.Context(codingPath: [], debugDescription: description)
+                    throw DecodingError.dataCorrupted(context)
+                }
+                return try decode(type, from: json)
+            }
         }
     }
 }
