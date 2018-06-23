@@ -41,9 +41,8 @@ extension JSON.UnkeyedDecodingContainer: UnkeyedDecodingContainer {
         if array[currentIndex].isNull {
             currentIndex += 1
             return true
-        } else {
-            return false
         }
+        return false
     }
 
     mutating func decode(_ type: Bool.Type) throws -> Bool {
