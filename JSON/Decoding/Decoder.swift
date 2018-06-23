@@ -13,12 +13,37 @@ extension JSON {
 
     /// An object that decodes instances of a data type from `JSON`.
     open class Decoder {
+        public struct StringDecodingStrategies: OptionSet {
+            public static let convertFromNumber = StringDecodingStrategies(rawValue: 1 << 0)
+            public static let convertFromTrue   = StringDecodingStrategies(rawValue: 1 << 1)
+            public static let convertFromFalse  = StringDecodingStrategies(rawValue: 1 << 2)
+
+            public let rawValue: Int
+            public init(rawValue: Int) { self.rawValue = rawValue }
+        }
+
+        public struct NumberDecodingStrategies: OptionSet {
+            public static let convertFromString = NumberDecodingStrategies(rawValue: 1 << 0)
+            public static let convertFromTrue   = NumberDecodingStrategies(rawValue: 1 << 1)
+            public static let convertFromFalse  = NumberDecodingStrategies(rawValue: 1 << 2)
+
+            public let rawValue: Int
+            public init(rawValue: Int) { self.rawValue = rawValue }
+        }
+
         struct Options {
+            let stringDecodingStrategies: StringDecodingStrategies
+            let numberDecodingStrategies: NumberDecodingStrategies
             let userInfo: [CodingUserInfoKey: Any]
         }
 
+        open var stringDecodingStrategies: StringDecodingStrategies = []
+        open var numberDecodingStrategies: NumberDecodingStrategies = []
+
         var options: Options {
-            return Options(userInfo: userInfo)
+            return Options(stringDecodingStrategies: stringDecodingStrategies,
+                           numberDecodingStrategies: numberDecodingStrategies,
+                           userInfo: userInfo)
         }
 
         /// A dictionary you use to customize the decoding process by providing contextual information.
@@ -65,6 +90,8 @@ extension JSON {
     }
 }
 
+// MARK: Swift.Decoder
+
 extension JSON._Decoder: Decoder {
     func container<Key: CodingKey>(keyedBy type: Key.Type) throws -> KeyedDecodingContainer<Key> {
         try expectNonNull(topValue, for: KeyedDecodingContainer<Key>.self)
@@ -88,7 +115,7 @@ extension JSON._Decoder: Decoder {
     }
 }
 
-// MARK: - Unboxing
+// MARK: Unboxing
 
 extension JSON._Decoder {
     private func expectNonNull<T>(_ value: JSON, for type: T.Type) throws {
@@ -99,11 +126,7 @@ extension JSON._Decoder {
         }
     }
 
-    private func unbox<T: Numeric>(_ value: JSON, asNumberFitIn type: T.Type) throws -> T {
-        try expectNonNull(value, for: type)
-        guard let number = value.number else {
-            throw DecodingError._typeMismatch(at: codingPath, expectation: type, reality: value)
-        }
+    private func unbox<T: Numeric>(_ number: NSNumber, as type: T.Type) throws -> T {
         // `number as? T` is actually `T(exactly:)`.
         //
         // https://github.com/apple/swift/blob/master/stdlib/public/SDK/Foundation/NSNumber.swift
@@ -113,6 +136,25 @@ extension JSON._Decoder {
             throw DecodingError.dataCorrupted(context)
         }
         return result
+    }
+
+    private func unbox<T: Numeric>(_ value: JSON, asNumberFitIn type: T.Type) throws -> T {
+        try expectNonNull(value, for: type)
+        switch (value, options.numberDecodingStrategies) {
+        case (.string(let string), let strategies) where strategies.contains(.convertFromString):
+            guard let number = NumberFormatter().number(from: string) else {
+                throw DecodingError._typeMismatch(at: codingPath, expectation: type, reality: value)
+            }
+            return try unbox(number, as: type)
+        case (.number(let number), _):
+            return try unbox(number, as: type)
+        case (.true, let strategies) where strategies.contains(.convertFromTrue):
+            return 1
+        case (.false, let strategies) where strategies.contains(.convertFromFalse):
+            return 0
+        default:
+            throw DecodingError._typeMismatch(at: codingPath, expectation: type, reality: value)
+        }
     }
 }
 
@@ -140,10 +182,18 @@ extension JSON._Decoder {
 
     func unbox(_ value: JSON, as type: String.Type) throws -> String {
         try expectNonNull(value, for: type)
-        guard let result = value.string else {
+        switch (value, options.stringDecodingStrategies) {
+        case (.string(let string), _):
+            return string
+        case (.number(let number), let strategies) where strategies.contains(.convertFromNumber):
+            return number.stringValue
+        case (.true, let strategies) where strategies.contains(.convertFromTrue):
+            return "true"
+        case (.false, let strategies) where strategies.contains(.convertFromFalse):
+            return "false"
+        default:
             throw DecodingError._typeMismatch(at: codingPath, expectation: type, reality: value)
         }
-        return result
     }
 
     func unbox<T: Decodable>(_ value: JSON, as type: T.Type) throws -> T {

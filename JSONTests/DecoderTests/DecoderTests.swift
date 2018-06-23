@@ -9,8 +9,10 @@ import XCTest
 @testable import JSON
 
 final class DecoderTests: XCTestCase {
+    let options = JSON.Decoder().options
+
     func testUnboxing() {
-        let decoder = JSON._Decoder(codingPath: [], options: JSON.Decoder.Options(userInfo: [:]))
+        let decoder = JSON._Decoder(codingPath: [], options: options)
         XCTAssertThrowsError(try decoder.unbox("string", as: Bool.self))
         XCTAssertEqual(try! decoder.unbox(true, as: Bool.self), true)
         XCTAssertThrowsError(try decoder.unbox("string", as: Int.self))
@@ -32,7 +34,7 @@ final class DecoderTests: XCTestCase {
     struct Model: Decodable {}
 
     func testSingleValueDecodingContainer() {
-        let decoder = JSON._Decoder(codingPath: [], options: JSON.Decoder.Options(userInfo: [:]))
+        let decoder = JSON._Decoder(codingPath: [], options: options)
         decoder.stroage = [nil]
         XCTAssertTrue(decoder.decodeNil())
         decoder.stroage = [true]
@@ -60,7 +62,7 @@ final class DecoderTests: XCTestCase {
     }
 
     func testKeyedDecodingContainer() {
-        let decoder = JSON._Decoder(codingPath: [], options: JSON.Decoder.Options(userInfo: [:]))
+        let decoder = JSON._Decoder(codingPath: [], options: options)
         do {
             decoder.stroage = [["key": "string"]]
             let container = try! decoder.container(keyedBy: CodingKeys.self)
@@ -129,7 +131,7 @@ final class DecoderTests: XCTestCase {
     }
 
     func testUnkeyedDecodingContainer() {
-        let decoder = JSON._Decoder(codingPath: [], options: JSON.Decoder.Options(userInfo: [:]))
+        let decoder = JSON._Decoder(codingPath: [], options: options)
         do {
             decoder.stroage = [[]]
             var container = try! decoder.unkeyedContainer()
