@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8C4CAC6D20D4D65400105757 /* DecodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4CAC6C20D4D65400105757 /* DecodingError.swift */; };
 		8C52A75B20D3A1BC00807AF6 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C52A75A20D3A1BC00807AF6 /* JSON.swift */; };
+		8C6A4B9520DE5AA400C497E7 /* URLDecodingStrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6A4B9420DE5AA400C497E7 /* URLDecodingStrategyTests.swift */; };
 		8C8AD05F20D4009C003E3232 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8AD05E20D4009C003E3232 /* Decoder.swift */; };
 		8C8AD06320D406FD003E3232 /* UnkeyedDecodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8AD06220D406FD003E3232 /* UnkeyedDecodingContainer.swift */; };
 		8C8AD06520D40B6E003E3232 /* KeyedDecodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8AD06420D40B6E003E3232 /* KeyedDecodingContainer.swift */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		8C4CAC6C20D4D65400105757 /* DecodingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodingError.swift; sourceTree = "<group>"; };
 		8C52A75A20D3A1BC00807AF6 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		8C6A4B9420DE5AA400C497E7 /* URLDecodingStrategyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLDecodingStrategyTests.swift; sourceTree = "<group>"; };
 		8C8AD05E20D4009C003E3232 /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
 		8C8AD06220D406FD003E3232 /* UnkeyedDecodingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnkeyedDecodingContainer.swift; sourceTree = "<group>"; };
 		8C8AD06420D40B6E003E3232 /* KeyedDecodingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedDecodingContainer.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				8C9D037420DE338F006F4EE4 /* StringDecodingStrategiesTests.swift */,
 				8C9D037720DE39AD006F4EE4 /* NumberDecodingStrategiesTests.swift */,
 				8C9D037920DE4FC4006F4EE4 /* BoolDecodingStrategiesTests.swift */,
+				8C6A4B9420DE5AA400C497E7 /* URLDecodingStrategyTests.swift */,
 			);
 			path = DecoderTests;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C6A4B9520DE5AA400C497E7 /* URLDecodingStrategyTests.swift in Sources */,
 				8C9D037520DE338F006F4EE4 /* StringDecodingStrategiesTests.swift in Sources */,
 				8CBBF43120DB6D5D003C8B03 /* DecoderTests.swift in Sources */,
 				8C9D037820DE39AD006F4EE4 /* NumberDecodingStrategiesTests.swift in Sources */,

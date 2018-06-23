@@ -42,21 +42,29 @@ extension JSON {
             public init(rawValue: Int) { self.rawValue = rawValue }
         }
 
+        public enum URLDecodingStrategy {
+            case deferredToURL
+            case convertFromString(treatInvalidURLStringAsNull: Bool)
+        }
+
         struct Options {
             let stringDecodingStrategies: StringDecodingStrategies
             let numberDecodingStrategies: NumberDecodingStrategies
             let boolDecodingStrategies: BoolDecodingStrategies
+            let urlDecodingStrategy: URLDecodingStrategy
             let userInfo: [CodingUserInfoKey: Any]
         }
 
         open var stringDecodingStrategies: StringDecodingStrategies = []
         open var numberDecodingStrategies: NumberDecodingStrategies = []
         open var boolDecodingStrategies: BoolDecodingStrategies = []
+        open var urlDecodingStrategy: URLDecodingStrategy = .deferredToURL
 
         var options: Options {
             return Options(stringDecodingStrategies: stringDecodingStrategies,
                            numberDecodingStrategies: numberDecodingStrategies,
                            boolDecodingStrategies: boolDecodingStrategies,
+                           urlDecodingStrategy: urlDecodingStrategy,
                            userInfo: userInfo)
         }
 
@@ -222,8 +230,35 @@ extension JSON._Decoder {
         }
     }
 
-    func unbox<T: Decodable>(_ value: JSON, as type: T.Type) throws -> T {
+    func unbox(_ value: JSON, as type: URL.Type) throws -> URL {
         try expectNonNull(value, for: type)
+        let string = try unbox(value, as: String.self)
+        guard let url = URL(string: string) else {
+            let context = DecodingError.Context(codingPath: codingPath, debugDescription: "Invalid URL string.")
+            throw DecodingError.dataCorrupted(context)
+        }
+        return url
+    }
+
+    func unbox(_ value: JSON, as type: URL?.Type) throws -> URL? {
+        if value.isNull {
+            return nil
+        }
+        let string = try unbox(value, as: String.self)
+        if let url = URL(string: string) {
+            return url
+        }
+        return nil
+    }
+
+    func unbox<T: Decodable>(_ value: JSON, as type: T.Type) throws -> T {
+        if case .convertFromString = options.urlDecodingStrategy, type is URL.Type || type is NSURL.Type {
+            return try unbox(value, as: URL.self) as! T
+        }
+        if case let .convertFromString(treatInvalidURLStringAsNull) = options.urlDecodingStrategy,
+            treatInvalidURLStringAsNull, type is URL?.Type || type is NSURL?.Type {
+            return try unbox(value, as: URL?.self) as! T
+        }
         stroage.append(value)
         defer { stroage.removeLast() }
         return try T(from: self)
