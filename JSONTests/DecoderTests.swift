@@ -29,6 +29,8 @@ final class DecoderTests: XCTestCase {
         XCTAssertEqual(try! decoder.unbox("string", as: String.self), "string")
     }
 
+    struct Model: Decodable {}
+
     func testSingleValueDecodingContainer() {
         let decoder = JSON._Decoder(codingPath: [], options: JSON.Decoder.Options(userInfo: [:]))
         decoder.stroage = [nil]
@@ -50,7 +52,78 @@ final class DecoderTests: XCTestCase {
         XCTAssertEqual(try! decoder.decode(Double.self), 42)
         decoder.stroage = ["string"]
         XCTAssertEqual(try! decoder.decode(String.self), "string")
-        struct Model: Decodable {}
         XCTAssertNotNil(try? decoder.decode(Model.self))
+    }
+
+    func testKeyedDecodingContainer() {
+        enum CodingKeys: String, CodingKey {
+            case key
+        }
+        let decoder = JSON._Decoder(codingPath: [], options: JSON.Decoder.Options(userInfo: [:]))
+        do {
+            decoder.stroage = [["key": "value"]]
+            let container = try! decoder.container(keyedBy: CodingKeys.self)
+            XCTAssertEqual(container.allKeys, [.key])
+            XCTAssertTrue(container.contains(.key))
+        }
+        do {
+            decoder.stroage = [[:]]
+            let container = try! decoder.container(keyedBy: CodingKeys.self)
+            XCTAssertThrowsError(try container.decodeNil(forKey: .key))
+        }
+        do {
+            decoder.stroage = [["key": nil]]
+            let container = try! decoder.container(keyedBy: CodingKeys.self)
+            XCTAssertTrue(try! container.decodeNil(forKey: .key))
+        }
+        do {
+            decoder.stroage = [["key": true]]
+            let container = try! decoder.container(keyedBy: CodingKeys.self)
+            XCTAssertTrue(try! container.decode(Bool.self, forKey: .key))
+        }
+        do {
+            decoder.stroage = [["key": 42]]
+            let container = try! decoder.container(keyedBy: CodingKeys.self)
+            XCTAssertEqual(try! container.decode(Int.self, forKey: .key), 42)
+            XCTAssertEqual(try! container.decode(Int8.self, forKey: .key), 42)
+            XCTAssertEqual(try! container.decode(Int16.self, forKey: .key), 42)
+            XCTAssertEqual(try! container.decode(Int32.self, forKey: .key), 42)
+            XCTAssertEqual(try! container.decode(Int64.self, forKey: .key), 42)
+            XCTAssertEqual(try! container.decode(UInt.self, forKey: .key), 42)
+            XCTAssertEqual(try! container.decode(UInt8.self, forKey: .key), 42)
+            XCTAssertEqual(try! container.decode(UInt16.self, forKey: .key), 42)
+            XCTAssertEqual(try! container.decode(UInt32.self, forKey: .key), 42)
+            XCTAssertEqual(try! container.decode(UInt64.self, forKey: .key), 42)
+            XCTAssertEqual(try! container.decode(Float.self, forKey: .key), 42)
+            XCTAssertEqual(try! container.decode(Double.self, forKey: .key), 42)
+        }
+        do {
+            decoder.stroage = [["key": "string"]]
+            let container = try! decoder.container(keyedBy: CodingKeys.self)
+            XCTAssertEqual(try! container.decode(String.self, forKey: .key), "string")
+            XCTAssertNotNil(try? container.decode(Model.self, forKey: .key))
+            XCTAssertThrowsError(try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .key))
+        }
+        do {
+            decoder.stroage = [["key": ["key": "value"]]]
+            let container = try! decoder.container(keyedBy: CodingKeys.self)
+            let nestedContainer = try! container.nestedContainer(keyedBy: CodingKeys.self, forKey: .key)
+            XCTAssertEqual(nestedContainer.codingPath as! [CodingKeys], [.key])
+            XCTAssertThrowsError(try container.nestedUnkeyedContainer(forKey: .key))
+        }
+        do {
+            decoder.stroage = [["key": [42]]]
+            let container = try! decoder.container(keyedBy: CodingKeys.self)
+            let nestedUnkeyedContainer = try! container.nestedUnkeyedContainer(forKey: .key)
+            XCTAssertEqual(nestedUnkeyedContainer.codingPath as! [CodingKeys], [.key])
+            XCTAssertEqual(nestedUnkeyedContainer.count, 1)
+        }
+        do {
+            decoder.stroage = [["key": ["key": "value"]]]
+            let container = try! decoder.container(keyedBy: CodingKeys.self)
+            XCTAssertThrowsError(try container.superDecoder())
+            let superDecoder = try! container.superDecoder(forKey: .key)
+            XCTAssertEqual(superDecoder.codingPath as! [CodingKeys], [.key])
+        }
     }
 }
