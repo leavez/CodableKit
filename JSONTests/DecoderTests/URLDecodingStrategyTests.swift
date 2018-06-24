@@ -9,17 +9,44 @@ import XCTest
 @testable import JSON
 
 final class URLDecodingStrategyTests: XCTestCase {
-    func testConvertFromString() {
+    func testDeferredToURL() {
         let options: JSON.Decoder.Options = {
             let decoder = JSON.Decoder()
-            decoder.urlDecodingStrategy = .convertFromString(treatInvalidURLStringAsNull: true)
+            decoder.urlDecodingStrategy = .deferredToURL
             return decoder.options
         }()
         let decoder = JSON._Decoder(codingPath: [], options: options)
-        let urlString = "https://json.org"
-        decoder.stroage = [JSON(urlString)]
-        XCTAssertEqual(try! decoder.decode(URL.self), URL(string: urlString))
-        decoder.stroage = [""]
-        XCTAssertEqual(try! decoder.decode(URL?.self), nil)
+        decoder.stroage = ["https://json.org"]
+        XCTAssertThrowsError(try decoder.decode(URL.self))
+        XCTAssertThrowsError(try decoder.decode(URL?.self))
+    }
+
+    func testConvertFromString() {
+        do {
+            let options: JSON.Decoder.Options = {
+                let decoder = JSON.Decoder()
+                decoder.urlDecodingStrategy = .convertFromString(treatInvalidURLStringAsNull: false)
+                return decoder.options
+            }()
+            let decoder = JSON._Decoder(codingPath: [], options: options)
+            decoder.stroage = [""]
+            XCTAssertThrowsError(try decoder.decode(URL.self))
+            decoder.stroage = ["https://json.org"]
+            XCTAssertEqual((try! decoder.decode(URL.self)).absoluteString, "https://json.org")
+        }
+        do {
+            let options: JSON.Decoder.Options = {
+                let decoder = JSON.Decoder()
+                decoder.urlDecodingStrategy = .convertFromString(treatInvalidURLStringAsNull: true)
+                return decoder.options
+            }()
+            let decoder = JSON._Decoder(codingPath: [], options: options)
+            decoder.stroage = [nil]
+            XCTAssertEqual(try! decoder.decode(URL?.self), nil)
+            decoder.stroage = ["https://json.org"]
+            XCTAssertEqual((try! decoder.decode(URL?.self))?.absoluteString, "https://json.org")
+            decoder.stroage = [""]
+            XCTAssertEqual(try! decoder.decode(URL?.self), nil)
+        }
     }
 }

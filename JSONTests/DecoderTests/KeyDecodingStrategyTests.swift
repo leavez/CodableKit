@@ -13,13 +13,12 @@ final class KeyDecodingStrategyTests: XCTestCase {
         let options: JSON.Decoder.Options = {
             let decoder = JSON.Decoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
-            decoder.urlDecodingStrategy = .convertFromString(treatInvalidURLStringAsNull: true)
             return decoder.options
         }()
         let decoder = JSON._Decoder(codingPath: [], options: options)
-        decoder.stroage = [["json_org_url": "https://json.org"]]
-        enum CodingKeys: String, CodingKey { case jsonOrgURL }
+        decoder.stroage = [["answer_id": "42"]]
+        enum CodingKeys: String, CodingKey { case answerID }
         let container = try! decoder.container(keyedBy: CodingKeys.self)
-        XCTAssertEqual((try! container.decode(URL.self, forKey: .jsonOrgURL)).absoluteString, "https://json.org")
+        XCTAssertEqual(try! container.decode(String.self, forKey: .answerID), "42")
     }
 }

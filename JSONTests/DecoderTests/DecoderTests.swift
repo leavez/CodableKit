@@ -15,6 +15,7 @@ final class DecoderTests: XCTestCase {
         let decoder = JSON._Decoder(codingPath: [], options: options)
         XCTAssertThrowsError(try decoder.unbox("string", as: Bool.self))
         XCTAssertEqual(try! decoder.unbox(true, as: Bool.self), true)
+        XCTAssertEqual(try! decoder.unbox(false, as: Bool.self), false)
         XCTAssertThrowsError(try decoder.unbox("string", as: Int.self))
         XCTAssertThrowsError(try decoder.unbox(128, as: Int8.self))
         XCTAssertEqual(try! decoder.unbox(42, as: Int16.self), 42)
@@ -164,5 +165,30 @@ final class DecoderTests: XCTestCase {
             XCTAssertNotNil(try? container.nestedContainer(keyedBy: CodingKeys.self))
             XCTAssertNoThrow(try container.superDecoder())
         }
+    }
+
+    func test_Decoder() {
+        let decoder = JSON._Decoder(codingPath: [], options: options)
+        XCTAssertEqual(decoder.userInfo.count, 0)
+        decoder.stroage = ["string"]
+        XCTAssertThrowsError(try decoder.unkeyedContainer())
+    }
+
+    func testDecoder() {
+        struct Model: Decodable {
+            let string: String
+            let number: Int
+        }
+        let data = """
+            {
+                "string": "string",
+                "number": 42
+            }
+            """
+            .data(using: .utf8)!
+        let decoder = JSON.Decoder()
+        let model = try! decoder.decode(Model.self, from: data)
+        XCTAssertEqual(model.string, "string")
+        XCTAssertEqual(model.number, 42)
     }
 }
