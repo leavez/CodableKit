@@ -173,7 +173,7 @@ extension JSON.KeyedDecodingContainer: KeyedDecodingContainerProtocol {
     }
 
     func superDecoder() throws -> Decoder {
-        return try _superDecoder(forKey: JSONKey.super)
+        return try _superDecoder(forKey: AnyCodingKey.super)
     }
 
     func superDecoder(forKey key: Key) throws -> Decoder {

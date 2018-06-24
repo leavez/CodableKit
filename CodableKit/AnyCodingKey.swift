@@ -1,11 +1,11 @@
 //
-//  JSONKey.swift
+//  AnyCodingKey.swift
 //  JSON
 //
 //  Created by 李孛 on 2018/6/20.
 //
 
-struct JSONKey: CodingKey {
+struct AnyCodingKey: CodingKey {
     let stringValue: String
     let intValue: Int?
 
@@ -24,5 +24,5 @@ struct JSONKey: CodingKey {
         self.intValue = index
     }
 
-    static let `super` = JSONKey(stringValue: "super")!
+    static let `super` = AnyCodingKey(stringValue: "super")!
 }
