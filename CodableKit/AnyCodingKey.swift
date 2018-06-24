@@ -6,6 +6,8 @@
 //
 
 struct AnyCodingKey: CodingKey {
+    static let `super` = AnyCodingKey(stringValue: "super")!
+
     let stringValue: String
     let intValue: Int?
 
@@ -23,6 +25,4 @@ struct AnyCodingKey: CodingKey {
         self.stringValue = "Index \(index)"
         self.intValue = index
     }
-
-    static let `super` = AnyCodingKey(stringValue: "super")!
 }
