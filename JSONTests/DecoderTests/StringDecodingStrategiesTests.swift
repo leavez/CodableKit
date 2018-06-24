@@ -19,23 +19,14 @@ final class StringDecodingStrategiesTests: XCTestCase {
         XCTAssertEqual(try! decoder.unbox(42, as: String.self), "42")
     }
 
-    func testConvertFromTrue() {
+    func testConvertFromBoolean() {
         let options: JSON.Decoder.Options = {
             let decoder = JSON.Decoder()
-            decoder.stringDecodingStrategies = [.convertFromTrue]
+            decoder.stringDecodingStrategies = [.convertFromBoolean]
             return decoder.options
         }()
         let decoder = JSON._Decoder(codingPath: [], options: options)
         XCTAssertEqual(try! decoder.unbox(true, as: String.self), "true")
-    }
-
-    func testConvertFromFalse() {
-        let options: JSON.Decoder.Options = {
-            let decoder = JSON.Decoder()
-            decoder.stringDecodingStrategies = [.convertFromFalse]
-            return decoder.options
-        }()
-        let decoder = JSON._Decoder(codingPath: [], options: options)
         XCTAssertEqual(try! decoder.unbox(false, as: String.self), "false")
     }
 }

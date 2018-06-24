@@ -8,94 +8,90 @@
 import Foundation
 
 extension JSON {
-    /// An object that decodes instances of a data type from `JSON`.
+    /// `JSON.Decoder` facilitates the decoding of JSON into semantic `Decodable` types.
     open class Decoder {
+        /// The strategy to use for decoding keys.
         open var keyDecodingStrategy: KeyDecodingStrategy
+
+        /// The strategy to use in decoding strings.
         open var stringDecodingStrategies: StringDecodingStrategies
+
+        /// The strategy to use in decoding numbers.
         open var numberDecodingStrategies: NumberDecodingStrategies
-        open var boolDecodingStrategies: BoolDecodingStrategies
+
+        /// The strategy to use in decoding booleans.
+        open var booleanDecodingStrategies: BooleanDecodingStrategies
+
+        /// The strategy to use in decoding URLs.
         open var urlDecodingStrategy: URLDecodingStrategy
 
-        /// A dictionary you use to customize the decoding process by providing contextual information.
+        /// Contextual user-provided information for use during decoding.
         open var userInfo: [CodingUserInfoKey: Any] = [:]
 
+        /// The options set on the top-level decoder.
         var options: Options {
             return Options(keyDecodingStrategy: keyDecodingStrategy,
                            stringDecodingStrategies: stringDecodingStrategies,
                            numberDecodingStrategies: numberDecodingStrategies,
-                           boolDecodingStrategies: boolDecodingStrategies,
+                           booleanDecodingStrategies: booleanDecodingStrategies,
                            urlDecodingStrategy: urlDecodingStrategy,
                            userInfo: userInfo)
         }
 
+        /// Initializes `self` with default strategies.
         public init(options: Options = .default) {
             keyDecodingStrategy = options.keyDecodingStrategy
             stringDecodingStrategies = options.stringDecodingStrategies
             numberDecodingStrategies = options.numberDecodingStrategies
-            boolDecodingStrategies = options.boolDecodingStrategies
+            booleanDecodingStrategies = options.booleanDecodingStrategies
             urlDecodingStrategy = options.urlDecodingStrategy
         }
 
-        /// Returns a value of the type you specify, decoded from a `JSON` value.
-        ///
-        /// - Parameters:
-        ///   - type: The type of the value to decode from the supplied `JSON` value.
-        ///   - value: The `JSON` value to decode.
         open func decode<T: Decodable>(_ type: T.Type, from value: JSON) throws -> T {
             let decoder = _Decoder(codingPath: [], options: options)
             return try decoder.unbox(value, as: type)
         }
 
         open func decode<T: Decodable>(_ type: T.Type, from data: Data) throws -> T {
-            let json = try Serialization.json(with: data)
-            return try decode(type, from: json)
-        }
-
-        open func decode<T: Decodable>(_ type: T.Type, from value: Any) throws -> T {
-            switch value {
-            case let json as JSON:
-                return try decode(type, from: json)
-            case let data as Data:
-                return try decode(type, from: data)
-            default:
-                guard let json = JSON(value) else {
-                    let description = "The given value was not valid JSON."
-                    let context = DecodingError.Context(codingPath: [], debugDescription: description)
-                    throw DecodingError.dataCorrupted(context)
-                }
-                return try decode(type, from: json)
-            }
+            let value = try Serialization.json(with: data)
+            return try decode(type, from: value)
         }
     }
 }
 
 extension JSON.Decoder {
+    /// The strategy to use for automatically changing the value of keys before decoding.
     public enum KeyDecodingStrategy {
+        /// Use the keys specified by each type.
         case useDefaultKeys
+
+        /// Convert from "snake_case_keys" to "camelCaseKeys" before attempting to match a key with the one specified by
+        /// each type.
         case convertFromSnakeCase
     }
 
+    /// The strategy to use for decoding `String` values.
     public struct StringDecodingStrategies: OptionSet {
         public static let convertFromNumber = StringDecodingStrategies(rawValue: 1 << 0)
-        public static let convertFromTrue = StringDecodingStrategies(rawValue: 1 << 1)
-        public static let convertFromFalse = StringDecodingStrategies(rawValue: 1 << 2)
+        public static let convertFromBoolean = StringDecodingStrategies(rawValue: 1 << 1)
 
         public let rawValue: Int
         public init(rawValue: Int) { self.rawValue = rawValue }
     }
 
+    /// The strategy to use for decoding number (`Int`, `UInt`, `Double`...) values.
     public struct NumberDecodingStrategies: OptionSet {
         public static let convertFromString = NumberDecodingStrategies(rawValue: 1 << 0)
-        public static let convertFromTrue = NumberDecodingStrategies(rawValue: 1 << 1)
-        public static let convertFromFalse = NumberDecodingStrategies(rawValue: 1 << 2)
+        public static let convertFromBoolean = NumberDecodingStrategies(rawValue: 1 << 1)
 
         public let rawValue: Int
         public init(rawValue: Int) { self.rawValue = rawValue }
     }
 
-    public struct BoolDecodingStrategies: OptionSet {
-        public static let convertFromString = BoolDecodingStrategies(rawValue: 1 << 0)
-        public static let convertFromNumber = BoolDecodingStrategies(rawValue: 1 << 1)
+    /// The strategy to use for decoding `Bool` values.
+    public struct BooleanDecodingStrategies: OptionSet {
+        public static let convertFromString = BooleanDecodingStrategies(rawValue: 1 << 0)
+        public static let convertFromNumber = BooleanDecodingStrategies(rawValue: 1 << 1)
 
         public var trueConvertibleStrings: Set<String> = ["true"]
         public var falseConvertibleStrings: Set<String> = ["false"]
@@ -104,24 +100,27 @@ extension JSON.Decoder {
         public init(rawValue: Int) { self.rawValue = rawValue }
     }
 
+    /// The strategy to use for decoding `URL` values.
     public enum URLDecodingStrategy {
         case deferredToURL
         case convertFromString(treatInvalidURLStringAsNull: Bool)
     }
 
+    /// Options set on the top-level encoder to pass down the decoding hierarchy.
     public struct Options {
         public static var `default` = Options(keyDecodingStrategy: .useDefaultKeys,
                                               stringDecodingStrategies: [],
                                               numberDecodingStrategies: [],
-                                              boolDecodingStrategies: [],
+                                              booleanDecodingStrategies: [],
                                               urlDecodingStrategy: .deferredToURL,
                                               userInfo: [:])
 
         public var keyDecodingStrategy: KeyDecodingStrategy
         public var stringDecodingStrategies: StringDecodingStrategies
         public var numberDecodingStrategies: NumberDecodingStrategies
-        public var boolDecodingStrategies: BoolDecodingStrategies
+        public var booleanDecodingStrategies: BooleanDecodingStrategies
         public var urlDecodingStrategy: URLDecodingStrategy
+
         let userInfo: [CodingUserInfoKey: Any]
     }
 }

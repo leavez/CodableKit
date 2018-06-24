@@ -1,5 +1,5 @@
 //
-//  BoolDecodingStrategiesTests.swift
+//  BooleanDecodingStrategiesTests.swift
 //  JSONTests
 //
 //  Created by 李孛 on 2018/6/23.
@@ -8,11 +8,11 @@
 import XCTest
 @testable import JSON
 
-final class BoolDecodingStrategiesTests: XCTestCase {
+final class BooleanDecodingStrategiesTests: XCTestCase {
     func testConvertFromString() {
         let options: JSON.Decoder.Options = {
             let decoder = JSON.Decoder()
-            decoder.boolDecodingStrategies = [.convertFromString]
+            decoder.booleanDecodingStrategies = [.convertFromString]
             return decoder.options
         }()
         let decoder = JSON._Decoder(codingPath: [], options: options)
@@ -23,7 +23,7 @@ final class BoolDecodingStrategiesTests: XCTestCase {
     func testConvertFromNumber() {
         let options: JSON.Decoder.Options = {
             let decoder = JSON.Decoder()
-            decoder.boolDecodingStrategies = [.convertFromNumber]
+            decoder.booleanDecodingStrategies = [.convertFromNumber]
             return decoder.options
         }()
         let decoder = JSON._Decoder(codingPath: [], options: options)

@@ -85,9 +85,9 @@ extension JSON._Decoder {
             return try unbox(number, as: type)
         case (.number(let number), _):
             return try unbox(number, as: type)
-        case (.true, let strategies) where strategies.contains(.convertFromTrue):
+        case (.true, let strategies) where strategies.contains(.convertFromBoolean):
             return 1
-        case (.false, let strategies) where strategies.contains(.convertFromFalse):
+        case (.false, let strategies) where strategies.contains(.convertFromBoolean):
             return 0
         default:
             throw DecodingError._typeMismatch(at: codingPath, expectation: type, reality: value)
@@ -98,7 +98,7 @@ extension JSON._Decoder {
 extension JSON._Decoder {
     func unbox(_ value: JSON, as type: Bool.Type) throws -> Bool {
         try expectNonNull(value, for: type)
-        switch (value, options.boolDecodingStrategies) {
+        switch (value, options.booleanDecodingStrategies) {
         case let (.string(string), strategies)
             where strategies.contains(.convertFromString) && strategies.trueConvertibleStrings.contains(string):
             return true
@@ -136,9 +136,9 @@ extension JSON._Decoder {
             return string
         case (.number(let number), let strategies) where strategies.contains(.convertFromNumber):
             return number.stringValue
-        case (.true, let strategies) where strategies.contains(.convertFromTrue):
+        case (.true, let strategies) where strategies.contains(.convertFromBoolean):
             return "true"
-        case (.false, let strategies) where strategies.contains(.convertFromFalse):
+        case (.false, let strategies) where strategies.contains(.convertFromBoolean):
             return "false"
         default:
             throw DecodingError._typeMismatch(at: codingPath, expectation: type, reality: value)

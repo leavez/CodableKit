@@ -23,20 +23,11 @@ final class NumberDecodingStrategiesTests: XCTestCase {
     func testConvertFromTrue() {
         let options: JSON.Decoder.Options = {
             let decoder = JSON.Decoder()
-            decoder.numberDecodingStrategies = [.convertFromTrue]
+            decoder.numberDecodingStrategies = [.convertFromBoolean]
             return decoder.options
         }()
         let decoder = JSON._Decoder(codingPath: [], options: options)
         XCTAssertEqual(try! decoder.unbox(true, as: Int.self), 1)
-    }
-
-    func testConvertFromFalse() {
-        let options: JSON.Decoder.Options = {
-            let decoder = JSON.Decoder()
-            decoder.numberDecodingStrategies = [.convertFromFalse]
-            return decoder.options
-        }()
-        let decoder = JSON._Decoder(codingPath: [], options: options)
         XCTAssertEqual(try! decoder.unbox(false, as: Int.self), 0)
     }
 }
