@@ -15,8 +15,15 @@ extension JSON {
 
 extension JSON.KeyedDecodingContainer {
     private func value(forKey key: CodingKey) throws -> JSON {
-        guard let value = object[key.stringValue] else {
-            let description = "No value associated with key \(key) (\"\(key.stringValue)\"."
+        let stringKey: String
+        switch decoder.options.keyDecodingStrategy {
+        case .useDefaultKeys:
+            stringKey = key.stringValue
+        case .convertFromSnakeCase:
+            stringKey = key.stringValue.snakeCased()
+        }
+        guard let value = object[stringKey] else {
+            let description = "No value associated with key \(key) (\"\(stringKey)\"."
             let context = DecodingError.Context(codingPath: codingPath, debugDescription: description)
             throw DecodingError.keyNotFound(key, context)
         }

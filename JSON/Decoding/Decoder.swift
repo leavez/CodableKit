@@ -10,6 +10,7 @@ import Foundation
 extension JSON {
     /// An object that decodes instances of a data type from `JSON`.
     open class Decoder {
+        open var keyDecodingStrategy: KeyDecodingStrategy
         open var stringDecodingStrategies: StringDecodingStrategies
         open var numberDecodingStrategies: NumberDecodingStrategies
         open var boolDecodingStrategies: BoolDecodingStrategies
@@ -19,7 +20,8 @@ extension JSON {
         open var userInfo: [CodingUserInfoKey: Any] = [:]
 
         var options: Options {
-            return Options(stringDecodingStrategies: stringDecodingStrategies,
+            return Options(keyDecodingStrategy: keyDecodingStrategy,
+                           stringDecodingStrategies: stringDecodingStrategies,
                            numberDecodingStrategies: numberDecodingStrategies,
                            boolDecodingStrategies: boolDecodingStrategies,
                            urlDecodingStrategy: urlDecodingStrategy,
@@ -27,6 +29,7 @@ extension JSON {
         }
 
         public init(options: Options = .default) {
+            keyDecodingStrategy = options.keyDecodingStrategy
             stringDecodingStrategies = options.stringDecodingStrategies
             numberDecodingStrategies = options.numberDecodingStrategies
             boolDecodingStrategies = options.boolDecodingStrategies
@@ -67,6 +70,11 @@ extension JSON {
 }
 
 extension JSON.Decoder {
+    public enum KeyDecodingStrategy {
+        case useDefaultKeys
+        case convertFromSnakeCase
+    }
+
     public struct StringDecodingStrategies: OptionSet {
         public static let convertFromNumber = StringDecodingStrategies(rawValue: 1 << 0)
         public static let convertFromTrue = StringDecodingStrategies(rawValue: 1 << 1)
@@ -102,12 +110,14 @@ extension JSON.Decoder {
     }
 
     public struct Options {
-        public static var `default` = Options(stringDecodingStrategies: [],
+        public static var `default` = Options(keyDecodingStrategy: .useDefaultKeys,
+                                              stringDecodingStrategies: [],
                                               numberDecodingStrategies: [],
                                               boolDecodingStrategies: [],
                                               urlDecodingStrategy: .deferredToURL,
                                               userInfo: [:])
 
+        public var keyDecodingStrategy: KeyDecodingStrategy
         public var stringDecodingStrategies: StringDecodingStrategies
         public var numberDecodingStrategies: NumberDecodingStrategies
         public var boolDecodingStrategies: BoolDecodingStrategies

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C08E66F20DF406E003A8134 /* String+SnakeCased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C08E66E20DF406E003A8134 /* String+SnakeCased.swift */; };
+		8C08E67120DF463C003A8134 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C08E67020DF463C003A8134 /* Tests.swift */; };
+		8C08E67320DF4D86003A8134 /* KeyDecodingStrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C08E67220DF4D86003A8134 /* KeyDecodingStrategyTests.swift */; };
 		8C4CAC6D20D4D65400105757 /* DecodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4CAC6C20D4D65400105757 /* DecodingError.swift */; };
 		8C52A75B20D3A1BC00807AF6 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C52A75A20D3A1BC00807AF6 /* JSON.swift */; };
 		8C6A4B9520DE5AA400C497E7 /* URLDecodingStrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6A4B9420DE5AA400C497E7 /* URLDecodingStrategyTests.swift */; };
@@ -35,6 +38,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8C08E66E20DF406E003A8134 /* String+SnakeCased.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+SnakeCased.swift"; sourceTree = "<group>"; };
+		8C08E67020DF463C003A8134 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		8C08E67220DF4D86003A8134 /* KeyDecodingStrategyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyDecodingStrategyTests.swift; sourceTree = "<group>"; };
 		8C4CAC6C20D4D65400105757 /* DecodingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodingError.swift; sourceTree = "<group>"; };
 		8C52A75A20D3A1BC00807AF6 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		8C6A4B9420DE5AA400C497E7 /* URLDecodingStrategyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLDecodingStrategyTests.swift; sourceTree = "<group>"; };
@@ -90,6 +96,7 @@
 		8C8BCD8420D149AE00DEAD7F = {
 			isa = PBXGroup;
 			children = (
+				8C08E66E20DF406E003A8134 /* String+SnakeCased.swift */,
 				8C8BCD9020D149AF00DEAD7F /* JSON */,
 				8C8BCD9B20D149AF00DEAD7F /* JSONTests */,
 				8C8BCD8F20D149AE00DEAD7F /* Products */,
@@ -119,6 +126,7 @@
 		8C8BCD9B20D149AF00DEAD7F /* JSONTests */ = {
 			isa = PBXGroup;
 			children = (
+				8C08E67020DF463C003A8134 /* Tests.swift */,
 				8C8BCD9C20D149AF00DEAD7F /* JSONTests.swift */,
 				8C9D037620DE398F006F4EE4 /* DecoderTests */,
 				8C8BCD9E20D149AF00DEAD7F /* Info.plist */,
@@ -130,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				8CBBF43020DB6D5D003C8B03 /* DecoderTests.swift */,
+				8C08E67220DF4D86003A8134 /* KeyDecodingStrategyTests.swift */,
 				8C9D037420DE338F006F4EE4 /* StringDecodingStrategiesTests.swift */,
 				8C9D037720DE39AD006F4EE4 /* NumberDecodingStrategiesTests.swift */,
 				8C9D037920DE4FC4006F4EE4 /* BoolDecodingStrategiesTests.swift */,
@@ -248,6 +257,7 @@
 				8C95A87720DA2F3100309B56 /* JSONKey.swift in Sources */,
 				8C8AD06520D40B6E003E3232 /* KeyedDecodingContainer.swift in Sources */,
 				8C52A75B20D3A1BC00807AF6 /* JSON.swift in Sources */,
+				8C08E66F20DF406E003A8134 /* String+SnakeCased.swift in Sources */,
 				8C8AD06320D406FD003E3232 /* UnkeyedDecodingContainer.swift in Sources */,
 				8C8AD05F20D4009C003E3232 /* Decoder.swift in Sources */,
 				8CD1853220D7498A0043FCFD /* Serialization.swift in Sources */,
@@ -260,10 +270,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C08E67120DF463C003A8134 /* Tests.swift in Sources */,
 				8C6A4B9520DE5AA400C497E7 /* URLDecodingStrategyTests.swift in Sources */,
 				8C9D037520DE338F006F4EE4 /* StringDecodingStrategiesTests.swift in Sources */,
 				8CBBF43120DB6D5D003C8B03 /* DecoderTests.swift in Sources */,
 				8C9D037820DE39AD006F4EE4 /* NumberDecodingStrategiesTests.swift in Sources */,
+				8C08E67320DF4D86003A8134 /* KeyDecodingStrategyTests.swift in Sources */,
 				8C8BCD9D20D149AF00DEAD7F /* JSONTests.swift in Sources */,
 				8C9D037A20DE4FC4006F4EE4 /* BoolDecodingStrategiesTests.swift in Sources */,
 			);
