@@ -112,10 +112,8 @@
 		8C8BCD8420D149AE00DEAD7F = {
 			isa = PBXGroup;
 			children = (
-				8C042EA620DF5F24006ECEEF /* CodableKit */,
-				8C8BCD9020D149AF00DEAD7F /* JSON */,
-				8C042EA720DF60A2006ECEEF /* CodableKitTests */,
-				8C8BCD9B20D149AF00DEAD7F /* JSONTests */,
+				8CC51FBF20E0DC0C00235B2A /* Sources */,
+				8CC51FC020E0DD2C00235B2A /* Tests */,
 				8C8BCD8F20D149AE00DEAD7F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -135,7 +133,6 @@
 				8C52A75A20D3A1BC00807AF6 /* JSON.swift */,
 				8CD1853120D7498A0043FCFD /* Serialization.swift */,
 				8C8AD05D20D4007C003E3232 /* Decoding */,
-				8C8BCD9220D149AF00DEAD7F /* Info.plist */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -145,7 +142,6 @@
 			children = (
 				8C8BCD9C20D149AF00DEAD7F /* JSONTests.swift */,
 				8C9D037620DE398F006F4EE4 /* DecoderTests */,
-				8C8BCD9E20D149AF00DEAD7F /* Info.plist */,
 			);
 			path = JSONTests;
 			sourceTree = "<group>";
@@ -161,6 +157,26 @@
 				8C6A4B9420DE5AA400C497E7 /* URLDecodingStrategyTests.swift */,
 			);
 			path = DecoderTests;
+			sourceTree = "<group>";
+		};
+		8CC51FBF20E0DC0C00235B2A /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				8C042EA620DF5F24006ECEEF /* CodableKit */,
+				8C8BCD9020D149AF00DEAD7F /* JSON */,
+				8C8BCD9220D149AF00DEAD7F /* Info.plist */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		8CC51FC020E0DD2C00235B2A /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				8C042EA720DF60A2006ECEEF /* CodableKitTests */,
+				8C8BCD9B20D149AF00DEAD7F /* JSONTests */,
+				8C8BCD9E20D149AF00DEAD7F /* Info.plist */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -438,7 +454,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = JSON/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -465,7 +481,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = JSON/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -486,7 +502,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = JSONTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -504,7 +520,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = JSONTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
