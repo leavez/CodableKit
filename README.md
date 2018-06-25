@@ -2,6 +2,8 @@
 
 ## Decoding
 
+`JSON.Decoder` is a replacement for `JSONDecoder`, it provide some awesome features to boost the `Decodable` protocol.
+
 ```swift
 struct Model: Codable {
     let string: String
@@ -29,3 +31,7 @@ let json = JSON(jsonObject)!
 
 let model = try! JSON.Decoder().decode(Model.self, from: json)
 ```
+
+### Type Casting
+
+Use `JSON.Decoder`'s `stringDecodingStrategies`, `numberDecodingStrategies`, and `booleanDecodingStrategies` to configure type casting behavior.
