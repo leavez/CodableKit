@@ -180,7 +180,9 @@ extension JSON._Decoder {
                 break
             case .convertFromString(let treatInvalidURLStringAsNull):
                 if treatInvalidURLStringAsNull {
+                    #if swift(>=4.1.50)
                     return try unbox(value, as: URL?.self) as! T
+                    #endif
                 }
             }
         }

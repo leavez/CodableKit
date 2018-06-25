@@ -34,6 +34,7 @@ final class URLDecodingStrategyTests: XCTestCase {
             decoder.stroage = ["https://json.org"]
             XCTAssertEqual((try! decoder.decode(URL.self)).absoluteString, "https://json.org")
         }
+        #if swift(>=4.1.50)
         do {
             let options: JSON.Decoder.Options = {
                 let decoder = JSON.Decoder()
@@ -48,5 +49,6 @@ final class URLDecodingStrategyTests: XCTestCase {
             decoder.stroage = [""]
             XCTAssertEqual(try! decoder.decode(URL?.self), nil)
         }
+        #endif
     }
 }
