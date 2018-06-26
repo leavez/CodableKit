@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import JSON
+@testable import CodableKit
 
 final class DecoderTests: XCTestCase {
     let options = JSON.Decoder().options

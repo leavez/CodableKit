@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import JSON
+@testable import CodableKit
 
 final class KeyDecodingStrategyTests: XCTestCase {
     func testConvertFromSnakeCase() {
