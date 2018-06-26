@@ -25,6 +25,7 @@
 		8C4179A820E2844800FB5AA1 /* BooleanDecodingStrategiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C41799F20E2844800FB5AA1 /* BooleanDecodingStrategiesTests.swift */; };
 		8C4179A920E2844800FB5AA1 /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4179A020E2844800FB5AA1 /* JSONTests.swift */; };
 		8C4179AA20E2844800FB5AA1 /* CodableKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4179A220E2844800FB5AA1 /* CodableKitTests.swift */; };
+		8CA0745120E28C1100E6656E /* KeyedDecodingContainerProtocol+Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA0745020E28C1100E6656E /* KeyedDecodingContainerProtocol+Subscript.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		8C41799F20E2844800FB5AA1 /* BooleanDecodingStrategiesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooleanDecodingStrategiesTests.swift; sourceTree = "<group>"; };
 		8C4179A020E2844800FB5AA1 /* JSONTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
 		8C4179A220E2844800FB5AA1 /* CodableKitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableKitTests.swift; sourceTree = "<group>"; };
+		8CA0745020E28C1100E6656E /* KeyedDecodingContainerProtocol+Subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainerProtocol+Subscript.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				8C41798C20E283FA00FB5AA1 /* AnyCodingKey.swift */,
+				8CA0745020E28C1100E6656E /* KeyedDecodingContainerProtocol+Subscript.swift */,
 				8C41798D20E283FA00FB5AA1 /* String+SnakeCased.swift */,
 			);
 			path = CodableKit;
@@ -142,6 +145,7 @@
 		8C41799720E2844800FB5AA1 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				8C4179A120E2844800FB5AA1 /* CodableKitTests */,
 				8C41799820E2844800FB5AA1 /* JSONTests */,
 				8C41797720E283A400FB5AA1 /* Info.plist */,
 			);
@@ -151,7 +155,6 @@
 		8C41799820E2844800FB5AA1 /* JSONTests */ = {
 			isa = PBXGroup;
 			children = (
-				8C4179A120E2844800FB5AA1 /* CodableKitTests */,
 				8C41799920E2844800FB5AA1 /* DecoderTests */,
 				8C4179A020E2844800FB5AA1 /* JSONTests.swift */,
 			);
@@ -236,7 +239,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 1000;
-				ORGANIZATIONNAME = CodableKit;
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					8C41796620E283A400FB5AA1 = {
 						CreatedOnToolsVersion = 10.0;
@@ -295,6 +298,7 @@
 				8C41799120E283FA00FB5AA1 /* _Decoder.swift in Sources */,
 				8C41798E20E283FA00FB5AA1 /* JSON.swift in Sources */,
 				8C41799220E283FA00FB5AA1 /* DecodingError.swift in Sources */,
+				8CA0745120E28C1100E6656E /* KeyedDecodingContainerProtocol+Subscript.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

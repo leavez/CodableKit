@@ -12,12 +12,12 @@ final class CodableKitTests: XCTestCase {
     func testAnyCodingKey() {
         XCTAssertEqual(AnyCodingKey.super.stringValue, "super")
         do {
-            let key = AnyCodingKey(stringValue: "key")!
+            let key = AnyCodingKey(stringValue: "key")
             XCTAssertEqual(key.stringValue, "key")
             XCTAssertEqual(key.intValue, nil)
         }
         do {
-            let key = AnyCodingKey(intValue: 42)!
+            let key = AnyCodingKey(intValue: 42)
             XCTAssertEqual(key.stringValue, "42")
             XCTAssertEqual(key.intValue, 42)
         }
@@ -26,6 +26,17 @@ final class CodableKitTests: XCTestCase {
             XCTAssertEqual(key.stringValue, "Index 0")
             XCTAssertEqual(key.intValue, 0)
         }
+
+        struct Model: Decodable {
+            let name: String?
+            init(from decoder: Decoder) throws {
+                let container = try decoder.container()
+                name = container["name"]
+            }
+        }
+
+        let model = try! JSON.Decoder().decode(Model.self, from: ["name": "Bei Li"])
+        XCTAssertEqual(model.name, "Bei Li")
     }
 
     func testSnakeCasedString() {
