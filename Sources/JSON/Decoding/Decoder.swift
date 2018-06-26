@@ -22,6 +22,9 @@ extension JSON {
         /// The strategy to use in decoding booleans.
         open var booleanDecodingStrategies: BooleanDecodingStrategies
 
+        /// The strategy to use in decoding dates.
+        open var dateDecodingStrategy: DateDecodingStrategy
+
         /// The strategy to use in decoding URLs.
         open var urlDecodingStrategy: URLDecodingStrategy
 
@@ -34,6 +37,7 @@ extension JSON {
                            stringDecodingStrategies: stringDecodingStrategies,
                            numberDecodingStrategies: numberDecodingStrategies,
                            booleanDecodingStrategies: booleanDecodingStrategies,
+                           dateDecodingStrategy: dateDecodingStrategy,
                            urlDecodingStrategy: urlDecodingStrategy,
                            userInfo: userInfo)
         }
@@ -44,6 +48,7 @@ extension JSON {
             stringDecodingStrategies = options.stringDecodingStrategies
             numberDecodingStrategies = options.numberDecodingStrategies
             booleanDecodingStrategies = options.booleanDecodingStrategies
+            dateDecodingStrategy = options.dateDecodingStrategy
             urlDecodingStrategy = options.urlDecodingStrategy
         }
 
@@ -100,8 +105,21 @@ extension JSON.Decoder {
         public init(rawValue: Int) { self.rawValue = rawValue }
     }
 
+    /// The strategy to use for decoding `Date` values.
+    public enum DateDecodingStrategy {
+        /// Defer to `Date` for decoding.
+        case deferredToDate
+
+        /// Decode the `Date` as a UNIX timestamp from a JSON number.
+        case secondsSince1970
+
+        /// Decode the `Date` as UNIX millisecond timestamp from a JSON number.
+        case millisecondsSince1970
+    }
+
     /// The strategy to use for decoding `URL` values.
     public enum URLDecodingStrategy {
+        /// Defer to `URL` for decoding.
         case deferredToURL
         case convertFromString(treatInvalidURLStringAsNull: Bool)
     }
@@ -112,6 +130,7 @@ extension JSON.Decoder {
                                               stringDecodingStrategies: [],
                                               numberDecodingStrategies: [],
                                               booleanDecodingStrategies: [],
+                                              dateDecodingStrategy: .deferredToDate,
                                               urlDecodingStrategy: .deferredToURL,
                                               userInfo: [:])
 
@@ -119,6 +138,7 @@ extension JSON.Decoder {
         public var stringDecodingStrategies: StringDecodingStrategies
         public var numberDecodingStrategies: NumberDecodingStrategies
         public var booleanDecodingStrategies: BooleanDecodingStrategies
+        public var dateDecodingStrategy: DateDecodingStrategy
         public var urlDecodingStrategy: URLDecodingStrategy
 
         let userInfo: [CodingUserInfoKey: Any]

@@ -116,17 +116,17 @@ extension JSON._Decoder {
         }
     }
 
-    func unbox(_ value: JSON, as type: Int.Type)    throws -> Int    { return try unbox(value, asNumberFitIn: type) }
-    func unbox(_ value: JSON, as type: Int8.Type)   throws -> Int8   { return try unbox(value, asNumberFitIn: type) }
-    func unbox(_ value: JSON, as type: Int16.Type)  throws -> Int16  { return try unbox(value, asNumberFitIn: type) }
-    func unbox(_ value: JSON, as type: Int32.Type)  throws -> Int32  { return try unbox(value, asNumberFitIn: type) }
-    func unbox(_ value: JSON, as type: Int64.Type)  throws -> Int64  { return try unbox(value, asNumberFitIn: type) }
-    func unbox(_ value: JSON, as type: UInt.Type)   throws -> UInt   { return try unbox(value, asNumberFitIn: type) }
-    func unbox(_ value: JSON, as type: UInt8.Type)  throws -> UInt8  { return try unbox(value, asNumberFitIn: type) }
+    func unbox(_ value: JSON, as type: Int.Type) throws -> Int { return try unbox(value, asNumberFitIn: type) }
+    func unbox(_ value: JSON, as type: Int8.Type) throws -> Int8 { return try unbox(value, asNumberFitIn: type) }
+    func unbox(_ value: JSON, as type: Int16.Type) throws -> Int16 { return try unbox(value, asNumberFitIn: type) }
+    func unbox(_ value: JSON, as type: Int32.Type) throws -> Int32 { return try unbox(value, asNumberFitIn: type) }
+    func unbox(_ value: JSON, as type: Int64.Type) throws -> Int64 { return try unbox(value, asNumberFitIn: type) }
+    func unbox(_ value: JSON, as type: UInt.Type) throws -> UInt { return try unbox(value, asNumberFitIn: type) }
+    func unbox(_ value: JSON, as type: UInt8.Type) throws -> UInt8 { return try unbox(value, asNumberFitIn: type) }
     func unbox(_ value: JSON, as type: UInt16.Type) throws -> UInt16 { return try unbox(value, asNumberFitIn: type) }
     func unbox(_ value: JSON, as type: UInt32.Type) throws -> UInt32 { return try unbox(value, asNumberFitIn: type) }
     func unbox(_ value: JSON, as type: UInt64.Type) throws -> UInt64 { return try unbox(value, asNumberFitIn: type) }
-    func unbox(_ value: JSON, as type: Float.Type)  throws -> Float  { return try unbox(value, asNumberFitIn: type) }
+    func unbox(_ value: JSON, as type: Float.Type) throws -> Float { return try unbox(value, asNumberFitIn: type) }
     func unbox(_ value: JSON, as type: Double.Type) throws -> Double { return try unbox(value, asNumberFitIn: type) }
 
     func unbox(_ value: JSON, as type: String.Type) throws -> String {
@@ -145,14 +145,37 @@ extension JSON._Decoder {
         }
     }
 
+    func unbox(_ value: JSON, as type: Date.Type) throws -> Date {
+        try expectNonNull(value, for: type)
+        switch options.dateDecodingStrategy {
+        case .deferredToDate:
+            stroage.append(value)
+            defer { stroage.removeLast() }
+            return try Date(from: self)
+        case .secondsSince1970:
+            let timeInterval = try unbox(value, as: TimeInterval.self)
+            return Date(timeIntervalSince1970: timeInterval)
+        case .millisecondsSince1970:
+            let timeInterval = try unbox(value, as: TimeInterval.self)
+            return Date(timeIntervalSince1970: timeInterval / 1000)
+        }
+    }
+
     func unbox(_ value: JSON, as type: URL.Type) throws -> URL {
         try expectNonNull(value, for: type)
-        let string = try unbox(value, as: String.self)
-        guard let url = URL(string: string) else {
-            let context = DecodingError.Context(codingPath: codingPath, debugDescription: "Invalid URL string.")
-            throw DecodingError.dataCorrupted(context)
+        switch options.urlDecodingStrategy {
+        case .deferredToURL:
+            stroage.append(value)
+            defer { stroage.removeLast() }
+            return try URL(from: self)
+        case .convertFromString:
+            let string = try unbox(value, as: String.self)
+            guard let url = URL(string: string) else {
+                let context = DecodingError.Context(codingPath: codingPath, debugDescription: "Invalid URL string.")
+                throw DecodingError.dataCorrupted(context)
+            }
+            return url
         }
-        return url
     }
 
     func unbox(_ value: JSON, as type: URL?.Type) throws -> URL? {
@@ -167,13 +190,10 @@ extension JSON._Decoder {
     }
 
     func unbox<T: Decodable>(_ value: JSON, as type: T.Type) throws -> T {
-        if type is URL.Type || type is NSURL.Type {
-            switch options.urlDecodingStrategy {
-            case .deferredToURL:
-                break
-            case .convertFromString:
-                return try unbox(value, as: URL.self) as! T
-            }
+        if type is Date.Type || type is NSDate.Type {
+            return try unbox(value, as: Date.self) as! T
+        } else if type is URL.Type || type is NSURL.Type {
+            return try unbox(value, as: URL.self) as! T
         } else if type is URL?.Type || type is NSURL?.Type {
             switch options.urlDecodingStrategy {
             case .deferredToURL:
@@ -196,18 +216,18 @@ extension JSON._Decoder {
 
 extension JSON._Decoder: SingleValueDecodingContainer {
     func decodeNil() -> Bool { return topValue.isNull }
-    func decode(_ type: Bool.Type)   throws -> Bool   { return try unbox(topValue, as: type) }
-    func decode(_ type: Int.Type)    throws -> Int    { return try unbox(topValue, as: type) }
-    func decode(_ type: Int8.Type)   throws -> Int8   { return try unbox(topValue, as: type) }
-    func decode(_ type: Int16.Type)  throws -> Int16  { return try unbox(topValue, as: type) }
-    func decode(_ type: Int32.Type)  throws -> Int32  { return try unbox(topValue, as: type) }
-    func decode(_ type: Int64.Type)  throws -> Int64  { return try unbox(topValue, as: type) }
-    func decode(_ type: UInt.Type)   throws -> UInt   { return try unbox(topValue, as: type) }
-    func decode(_ type: UInt8.Type)  throws -> UInt8  { return try unbox(topValue, as: type) }
+    func decode(_ type: Bool.Type) throws -> Bool { return try unbox(topValue, as: type) }
+    func decode(_ type: Int.Type) throws -> Int { return try unbox(topValue, as: type) }
+    func decode(_ type: Int8.Type) throws -> Int8 { return try unbox(topValue, as: type) }
+    func decode(_ type: Int16.Type) throws -> Int16 { return try unbox(topValue, as: type) }
+    func decode(_ type: Int32.Type) throws -> Int32 { return try unbox(topValue, as: type) }
+    func decode(_ type: Int64.Type) throws -> Int64 { return try unbox(topValue, as: type) }
+    func decode(_ type: UInt.Type) throws -> UInt { return try unbox(topValue, as: type) }
+    func decode(_ type: UInt8.Type) throws -> UInt8 { return try unbox(topValue, as: type) }
     func decode(_ type: UInt16.Type) throws -> UInt16 { return try unbox(topValue, as: type) }
     func decode(_ type: UInt32.Type) throws -> UInt32 { return try unbox(topValue, as: type) }
     func decode(_ type: UInt64.Type) throws -> UInt64 { return try unbox(topValue, as: type) }
-    func decode(_ type: Float.Type)  throws -> Float  { return try unbox(topValue, as: type) }
+    func decode(_ type: Float.Type) throws -> Float { return try unbox(topValue, as: type) }
     func decode(_ type: Double.Type) throws -> Double { return try unbox(topValue, as: type) }
     func decode(_ type: String.Type) throws -> String { return try unbox(topValue, as: type) }
     func decode<T: Decodable>(_ type: T.Type) throws -> T { return try unbox(topValue, as: type) }
