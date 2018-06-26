@@ -73,8 +73,8 @@
 		8C27F51620E2954500FCB40A /* CodableKit */ = {
 			isa = PBXGroup;
 			children = (
-				8C27F53020E2965800FCB40A /* AnyCodingKey.swift */,
 				8C27F52E20E2961300FCB40A /* KeyedDecodingContainerProtocol.swift */,
+				8C27F53020E2965800FCB40A /* AnyCodingKey.swift */,
 				8C27F51820E2954500FCB40A /* Info.plist */,
 			);
 			path = CodableKit;
@@ -361,7 +361,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -386,7 +386,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.libei.CodableKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
