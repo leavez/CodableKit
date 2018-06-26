@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		8C27F51E20E2954500FCB40A /* CodableKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C27F51420E2954500FCB40A /* CodableKit.framework */; };
 		8C27F52320E2954500FCB40A /* CodableKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C27F52220E2954500FCB40A /* CodableKitTests.swift */; };
-		8C27F52520E2954500FCB40A /* CodableKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C27F51720E2954500FCB40A /* CodableKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8C27F52F20E2961300FCB40A /* KeyedDecodingContainerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C27F52E20E2961300FCB40A /* KeyedDecodingContainerProtocol.swift */; };
+		8C27F53120E2965800FCB40A /* AnyCodingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C27F53020E2965800FCB40A /* AnyCodingKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,11 +25,12 @@
 
 /* Begin PBXFileReference section */
 		8C27F51420E2954500FCB40A /* CodableKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CodableKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8C27F51720E2954500FCB40A /* CodableKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CodableKit.h; sourceTree = "<group>"; };
 		8C27F51820E2954500FCB40A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C27F51D20E2954500FCB40A /* CodableKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CodableKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C27F52220E2954500FCB40A /* CodableKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableKitTests.swift; sourceTree = "<group>"; };
 		8C27F52420E2954500FCB40A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C27F52E20E2961300FCB40A /* KeyedDecodingContainerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyedDecodingContainerProtocol.swift; sourceTree = "<group>"; };
+		8C27F53020E2965800FCB40A /* AnyCodingKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyCodingKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +73,8 @@
 		8C27F51620E2954500FCB40A /* CodableKit */ = {
 			isa = PBXGroup;
 			children = (
-				8C27F51720E2954500FCB40A /* CodableKit.h */,
+				8C27F53020E2965800FCB40A /* AnyCodingKey.swift */,
+				8C27F52E20E2961300FCB40A /* KeyedDecodingContainerProtocol.swift */,
 				8C27F51820E2954500FCB40A /* Info.plist */,
 			);
 			path = CodableKit;
@@ -93,7 +96,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C27F52520E2954500FCB40A /* CodableKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +149,7 @@
 				TargetAttributes = {
 					8C27F51320E2954500FCB40A = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 					};
 					8C27F51C20E2954500FCB40A = {
 						CreatedOnToolsVersion = 10.0;
@@ -193,6 +196,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C27F53120E2965800FCB40A /* AnyCodingKey.swift in Sources */,
+				8C27F52F20E2961300FCB40A /* KeyedDecodingContainerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +343,7 @@
 		8C27F52920E2954500FCB40A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -354,6 +360,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.libei.CodableKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -362,6 +369,7 @@
 		8C27F52A20E2954500FCB40A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -386,6 +394,7 @@
 		8C27F52C20E2954500FCB40A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CodableKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -403,6 +412,7 @@
 		8C27F52D20E2954500FCB40A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CodableKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

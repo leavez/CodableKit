@@ -32,23 +32,3 @@ extension AnyCodingKey: ExpressibleByStringLiteral {
         self.init(stringValue: value)
     }
 }
-
-extension Decoder {
-    public func container() throws -> KeyedDecodingContainer<AnyCodingKey> {
-        return try container(keyedBy: AnyCodingKey.self)
-    }
-}
-
-extension KeyedDecodingContainerProtocol where Key == AnyCodingKey {
-    public func decode<T: Decodable>(_ key: Key) throws -> T {
-        return try decode(T.self, forKey: key)
-    }
-
-    public func decodeIfPresent<T: Decodable>(_ key: Key) throws -> T? {
-        return try decodeIfPresent(T.self, forKey: key)
-    }
-
-    public func nestedContainer(_ key: Key) throws -> KeyedDecodingContainer<AnyCodingKey> {
-        return try nestedContainer(keyedBy: AnyCodingKey.self, forKey: key)
-    }
-}
