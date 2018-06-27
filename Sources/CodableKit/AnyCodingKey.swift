@@ -44,3 +44,9 @@ extension KeyedDecodingContainerProtocol {
         return try nestedContainer(keyedBy: AnyCodingKey.self, forKey: key)
     }
 }
+
+extension UnkeyedDecodingContainer {
+    public mutating func nestedContainer() throws -> KeyedDecodingContainer<AnyCodingKey> {
+        return try nestedContainer(keyedBy: AnyCodingKey.self)
+    }
+}
