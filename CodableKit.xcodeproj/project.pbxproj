@@ -150,8 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				8CFBA80F20E2A64D00C89BAD /* JSONTests.swift */,
-				8CF180EF20E34AAE00C16041 /* BooleanDecodingStrategiesTests.swift */,
 				8CF180EC20E34AAE00C16041 /* DecoderTests.swift */,
+				8CF180EF20E34AAE00C16041 /* BooleanDecodingStrategiesTests.swift */,
 				8CF180F020E34AAE00C16041 /* KeyDecodingStrategyTests.swift */,
 				8CF180ED20E34AAE00C16041 /* NumberDecodingStrategiesTests.swift */,
 				8CF180F120E34AAE00C16041 /* StringDecodingStrategiesTests.swift */,
