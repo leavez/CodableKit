@@ -57,6 +57,14 @@ extension JSON {
             return try decoder.unbox(value, as: type)
         }
 
+        open func decode<T: Decodable>(_ type: T.Type, from value: [String: JSON]) throws -> T {
+            return try decode(type, from: JSON(value))
+        }
+
+        open func decode<T: Decodable>(_ type: T.Type, from value: [JSON]) throws -> T {
+            return try decode(type, from: JSON(value))
+        }
+
         open func decode<T: Decodable>(_ type: T.Type, from data: Data) throws -> T {
             let value = try Serialization.json(with: data)
             return try decode(type, from: value)

@@ -96,6 +96,13 @@ extension JSON {
             self = .null
         }
     }
+
+    public init?(_ any: Any?) {
+        guard let any = any else {
+            return nil
+        }
+        self.init(any)
+    }
 }
 
 // MARK: - Literals
@@ -139,12 +146,30 @@ extension JSON {
         }
     }
 
+    public var isObject: Bool {
+        switch self {
+        case .object:
+            return true
+        default:
+            return false
+        }
+    }
+
     public var object: [String: JSON]? {
         switch self {
         case .object(let object):
             return object
         default:
             return nil
+        }
+    }
+
+    public var isArray: Bool {
+        switch self {
+        case .array:
+            return true
+        default:
+            return false
         }
     }
 
@@ -174,6 +199,28 @@ extension JSON {
             return true
         default:
             return false
+        }
+    }
+}
+
+// MARK: - Subscript
+
+extension JSON {
+    public subscript(key: String) -> JSON? {
+        switch self {
+        case .object(let object):
+            return object[key]
+        default:
+            return nil
+        }
+    }
+
+    public subscript(index: Int) -> JSON? {
+        switch self {
+        case .array(let array):
+            return array[index]
+        default:
+            return nil
         }
     }
 }
