@@ -42,4 +42,6 @@ init(from decoder: Decoder) throws {
 }
 ```
 
+### JSON
+
 ## Integration
