@@ -33,6 +33,8 @@ extension AnyCodingKey: ExpressibleByStringLiteral {
     }
 }
 
+// MARK: - Decoding
+
 extension Decoder {
     public func container() throws -> KeyedDecodingContainer<AnyCodingKey> {
         return try container(keyedBy: AnyCodingKey.self)
@@ -48,5 +50,25 @@ extension KeyedDecodingContainerProtocol {
 extension UnkeyedDecodingContainer {
     public mutating func nestedContainer() throws -> KeyedDecodingContainer<AnyCodingKey> {
         return try nestedContainer(keyedBy: AnyCodingKey.self)
+    }
+}
+
+// MARK: - Encoding
+
+extension Encoder {
+    public func container() -> KeyedEncodingContainer<AnyCodingKey> {
+        return container(keyedBy: AnyCodingKey.self)
+    }
+}
+
+extension KeyedEncodingContainerProtocol {
+    public mutating func nestedContainer(forKey key: Key) -> KeyedEncodingContainer<AnyCodingKey> {
+        return nestedContainer(keyedBy: AnyCodingKey.self, forKey: key)
+    }
+}
+
+extension UnkeyedEncodingContainer {
+    public mutating func nestedContainer() -> KeyedEncodingContainer<AnyCodingKey> {
+        return nestedContainer(keyedBy: AnyCodingKey.self)
     }
 }
