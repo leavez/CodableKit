@@ -1,5 +1,7 @@
 # CodableKit
 
+[![Build Status](https://travis-ci.org/kylinroc/CodableKit.svg?branch=master)](https://travis-ci.org/kylinroc/CodableKit)
+
 ## Usage
 
 ### Shorthands
