@@ -1,7 +1,8 @@
 # CodableKit
 
 [![Build Status](https://travis-ci.org/kylinroc/CodableKit.svg?branch=master)](https://travis-ci.org/kylinroc/CodableKit)
-[![Code Coverage](https://codecov.io/gh/kylinroc/CodableKit/branch/master/graph/badge.svg)](https://codecov.io/gh/kylinroc/CodableKit)
+[![codecov](https://codecov.io/gh/kylinroc/CodableKit/branch/master/graph/badge.svg)](https://codecov.io/gh/kylinroc/CodableKit)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 ## Usage
 
@@ -47,4 +48,10 @@ init(from decoder: Decoder) throws {
 
 ### JSON
 
-## Integration
+## Installation
+
+### Carthage
+
+```
+github "kylinroc/CodableKit" ~> 1.0
+```
