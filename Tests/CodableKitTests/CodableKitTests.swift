@@ -29,15 +29,12 @@ final class CodableKitTests: XCTestCase {
                 case camelCasedProperty
             }
         }
-
         let string = """
             {"camel_cased_property":"CodableKit"}
             """
-
         let data = string.data(using: .utf8)!
         let model = try! JSONDecoder().decode(Model.self, from: data)
         XCTAssertEqual(model.camelCasedProperty, "CodableKit")
-
         do {
             let data = try! JSONEncoder().encode(model)
             XCTAssertEqual(String(data: data, encoding: .utf8), string)
@@ -70,25 +67,21 @@ final class CodableKitTests: XCTestCase {
             XCTAssertEqual(key.stringValue, "key")
             XCTAssertNil(key.intValue)
         }
-
         do {
             let key = AnyCodingKey(intValue: 0)
             XCTAssertEqual(key.stringValue, "0")
             XCTAssertEqual(key.intValue, 0)
         }
-
         do {
             let key = AnyCodingKey(index: 0)
             XCTAssertEqual(key.stringValue, "Index 0")
             XCTAssertEqual(key.intValue, 0)
         }
-
         do {
             let key: AnyCodingKey = "key"
             XCTAssertEqual(key.stringValue, "key")
             XCTAssertNil(key.intValue)
         }
-
         struct Model: Codable {
             init(from decoder: Decoder) throws {
                 let container = try decoder.container()
@@ -104,7 +97,6 @@ final class CodableKitTests: XCTestCase {
                 _ = nestedUnkeyedContainer.nestedContainer()
             }
         }
-
         let data = """
             {
                 "nested_container": {},
@@ -112,7 +104,6 @@ final class CodableKitTests: XCTestCase {
             }
             """
             .data(using: .utf8)!
-
         let model = try! JSONDecoder().decode(Model.self, from: data)
         _ = try! JSONEncoder().encode(model)
     }

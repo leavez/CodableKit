@@ -41,7 +41,7 @@
 
 /* Begin PBXFileReference section */
 		8C08778220E731C700E5BF06 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		8C08778320E731FA00E5BF06 /* 读我档案.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "读我档案.md"; sourceTree = "<group>"; };
+		8C08778320E731FA00E5BF06 /* 读我.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "读我.md"; sourceTree = "<group>"; };
 		8C27F51420E2954500FCB40A /* CodableKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CodableKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C27F51820E2954500FCB40A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C27F51D20E2954500FCB40A /* CodableKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CodableKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,7 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				8C08778220E731C700E5BF06 /* README.md */,
-				8C08778320E731FA00E5BF06 /* 读我档案.md */,
+				8C08778320E731FA00E5BF06 /* 读我.md */,
 			);
 			name = README;
 			sourceTree = "<group>";
