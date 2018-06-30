@@ -139,16 +139,24 @@
 			path = Tests/CodableKitTests;
 			sourceTree = "<group>";
 		};
-		8CFBA80B20E2A53500C89BAD /* JSON */ = {
+		8CF52D8920E7F6A9007E7FDF /* Decoding */ = {
 			isa = PBXGroup;
 			children = (
-				8CFBA80C20E2A54B00C89BAD /* JSON.swift */,
-				8CF180E420E34A0000C16041 /* Serialization.swift */,
 				8CF180E020E3499100C16041 /* DecodingError.swift */,
 				8CF180E220E349C300C16041 /* Decoder.swift */,
 				8CF180E620E34A6900C16041 /* _Decoder.swift */,
 				8CF180E920E34A8700C16041 /* KeyedDecodingContainer.swift */,
 				8CF180E820E34A8700C16041 /* UnkeyedDecodingContainer.swift */,
+			);
+			path = Decoding;
+			sourceTree = "<group>";
+		};
+		8CFBA80B20E2A53500C89BAD /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				8CFBA80C20E2A54B00C89BAD /* JSON.swift */,
+				8CF180E420E34A0000C16041 /* Serialization.swift */,
+				8CF52D8920E7F6A9007E7FDF /* Decoding */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -158,10 +166,10 @@
 			children = (
 				8CFBA80F20E2A64D00C89BAD /* JSONTests.swift */,
 				8CF180EC20E34AAE00C16041 /* DecoderTests.swift */,
-				8CF180EF20E34AAE00C16041 /* BooleanDecodingStrategiesTests.swift */,
 				8CF180F020E34AAE00C16041 /* KeyDecodingStrategyTests.swift */,
-				8CF180ED20E34AAE00C16041 /* NumberDecodingStrategiesTests.swift */,
 				8CF180F120E34AAE00C16041 /* StringDecodingStrategiesTests.swift */,
+				8CF180ED20E34AAE00C16041 /* NumberDecodingStrategiesTests.swift */,
+				8CF180EF20E34AAE00C16041 /* BooleanDecodingStrategiesTests.swift */,
 				8CF180EE20E34AAE00C16041 /* URLDecodingStrategyTests.swift */,
 			);
 			path = JSON;

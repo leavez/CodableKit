@@ -42,6 +42,7 @@ final class JSONTests: XCTestCase {
         XCTAssertEqual(JSON(array as Any), .array(array))
         XCTAssertEqual(JSON(NSNull() as Any), .null)
         XCTAssertEqual(JSON(Optional<Any>.none as Any), .null)
+        XCTAssertNil(JSON(nil as Any?))
     }
 
     func testLiterals() {
@@ -96,6 +97,23 @@ final class JSONTests: XCTestCase {
         }
     }
 
+    func testSubscripts() {
+        do {
+            let json: JSON = ["key": "value"]
+            XCTAssertTrue(json.isObject)
+            XCTAssertEqual(json["key"], "value")
+            XCTAssertFalse(json.isArray)
+            XCTAssertNil(json[0])
+        }
+        do {
+            let json: JSON = [42]
+            XCTAssertTrue(json.isArray)
+            XCTAssertEqual(json[0], 42)
+            XCTAssertFalse(json.isObject)
+            XCTAssertNil(json["key"])
+        }
+    }
+
     func testCustomStringConvertible() {
         let string = "string"
         let number = 42
@@ -108,5 +126,17 @@ final class JSONTests: XCTestCase {
         XCTAssertEqual("\(JSON.true)", "true")
         XCTAssertEqual("\(JSON.false)", "false")
         XCTAssertEqual("\(JSON.null)", "null")
+    }
+
+    func testSerialization() {
+        let data = """
+            {
+                "string": "string",
+                "number": 42
+            }
+            """
+            .data(using: .utf8)!
+        let json = try! JSON.Serialization.json(with: data)
+        XCTAssertEqual(json, ["string": "string", "number": 42])
     }
 }

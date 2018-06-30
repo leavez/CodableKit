@@ -179,16 +179,30 @@ final class DecoderTests: XCTestCase {
             let string: String
             let number: Int
         }
-        let data = """
-            {
-                "string": "string",
-                "number": 42
-            }
-            """
-            .data(using: .utf8)!
         let decoder = JSON.Decoder()
-        let model = try! decoder.decode(Model.self, from: data)
-        XCTAssertEqual(model.string, "string")
-        XCTAssertEqual(model.number, 42)
+        do {
+            let json: [String: JSON] = ["string": "string", "number": 42]
+            let model = try! decoder.decode(Model.self, from: json)
+            XCTAssertEqual(model.string, "string")
+            XCTAssertEqual(model.number, 42)
+        }
+        do {
+            let json: [JSON] = [["string": "string", "number": 42]]
+            let model = (try! decoder.decode([Model].self, from: json))[0]
+            XCTAssertEqual(model.string, "string")
+            XCTAssertEqual(model.number, 42)
+        }
+        do {
+            let data = """
+                {
+                    "string": "string",
+                    "number": 42
+                }
+                """
+                .data(using: .utf8)!
+            let model = try! decoder.decode(Model.self, from: data)
+            XCTAssertEqual(model.string, "string")
+            XCTAssertEqual(model.number, 42)
+        }
     }
 }
