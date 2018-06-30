@@ -11,6 +11,7 @@
 		8C27F52320E2954500FCB40A /* CodableKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C27F52220E2954500FCB40A /* CodableKitTests.swift */; };
 		8C27F52F20E2961300FCB40A /* KeyedDecodingContainerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C27F52E20E2961300FCB40A /* KeyedDecodingContainerProtocol.swift */; };
 		8C27F53120E2965800FCB40A /* AnyCodingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C27F53020E2965800FCB40A /* AnyCodingKey.swift */; };
+		8C81847220E725A100FD8A3A /* SnakeCasedCodingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81847120E725A100FD8A3A /* SnakeCasedCodingKey.swift */; };
 		8CF180E120E3499100C16041 /* DecodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF180E020E3499100C16041 /* DecodingError.swift */; };
 		8CF180E320E349C300C16041 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF180E220E349C300C16041 /* Decoder.swift */; };
 		8CF180E520E34A0000C16041 /* Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF180E420E34A0000C16041 /* Serialization.swift */; };
@@ -46,6 +47,7 @@
 		8C27F52420E2954500FCB40A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C27F52E20E2961300FCB40A /* KeyedDecodingContainerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyedDecodingContainerProtocol.swift; sourceTree = "<group>"; };
 		8C27F53020E2965800FCB40A /* AnyCodingKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyCodingKey.swift; sourceTree = "<group>"; };
+		8C81847120E725A100FD8A3A /* SnakeCasedCodingKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeCasedCodingKey.swift; sourceTree = "<group>"; };
 		8CF180E020E3499100C16041 /* DecodingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecodingError.swift; sourceTree = "<group>"; };
 		8CF180E220E349C300C16041 /* Decoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
 		8CF180E420E34A0000C16041 /* Serialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serialization.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				8C27F53020E2965800FCB40A /* AnyCodingKey.swift */,
+				8C81847120E725A100FD8A3A /* SnakeCasedCodingKey.swift */,
 				8CFBA80A20E2A50100C89BAD /* Extensions */,
 				8CFBA80B20E2A53500C89BAD /* JSON */,
 				8C27F51820E2954500FCB40A /* Info.plist */,
@@ -268,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CF180EA20E34A8700C16041 /* UnkeyedDecodingContainer.swift in Sources */,
+				8C81847220E725A100FD8A3A /* SnakeCasedCodingKey.swift in Sources */,
 				8C27F53120E2965800FCB40A /* AnyCodingKey.swift in Sources */,
 				8C27F52F20E2961300FCB40A /* KeyedDecodingContainerProtocol.swift in Sources */,
 				8CF180E520E34A0000C16041 /* Serialization.swift in Sources */,
