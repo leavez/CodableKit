@@ -55,3 +55,19 @@ init(from decoder: Decoder) throws {
 ```
 github "kylinroc/CodableKit" ~> 1.0
 ```
+
+### Swift Package Manager
+
+```swift
+import PackageDescription
+
+let package = Package(
+    name: "Example",
+    dependencies: [
+        .package(url: "https://github.com/kylinroc/CodableKit.git", from: "1.0.0"),
+    ],
+    targets: [
+        .target(name: "Example", dependencies: ["CodableKit"]),
+    ]
+)
+```
