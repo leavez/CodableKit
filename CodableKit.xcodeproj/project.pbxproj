@@ -117,9 +117,10 @@
 		8C27F51620E2954500FCB40A /* CodableKit */ = {
 			isa = PBXGroup;
 			children = (
-				8C27F53020E2965800FCB40A /* AnyCodingKey.swift */,
+				8CFBA80820E2A43700C89BAD /* String.swift */,
 				8C81847120E725A100FD8A3A /* SnakeCasedCodingKey.swift */,
-				8CFBA80A20E2A50100C89BAD /* Extensions */,
+				8C27F52E20E2961300FCB40A /* KeyedDecodingContainerProtocol.swift */,
+				8C27F53020E2965800FCB40A /* AnyCodingKey.swift */,
 				8CFBA80B20E2A53500C89BAD /* JSON */,
 				8C27F51820E2954500FCB40A /* Info.plist */,
 			);
@@ -136,15 +137,6 @@
 			);
 			name = CodableKitTests;
 			path = Tests/CodableKitTests;
-			sourceTree = "<group>";
-		};
-		8CFBA80A20E2A50100C89BAD /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				8C27F52E20E2961300FCB40A /* KeyedDecodingContainerProtocol.swift */,
-				8CFBA80820E2A43700C89BAD /* String.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		8CFBA80B20E2A53500C89BAD /* JSON */ = {
