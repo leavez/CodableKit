@@ -30,6 +30,7 @@ final class DecoderTests: XCTestCase {
         XCTAssertEqual(try! decoder.unbox(42, as: Double.self), 42)
         XCTAssertThrowsError(try decoder.unbox(42, as: String.self))
         XCTAssertEqual(try! decoder.unbox("string", as: String.self), "string")
+        XCTAssertThrowsError(try decoder.unbox(nil, as: Bool.self))
     }
 
     struct Model: Decodable {}
