@@ -134,13 +134,15 @@ extension JSON.Decoder {
 
     /// Options set on the top-level encoder to pass down the decoding hierarchy.
     public struct Options {
-        public static var `default` = Options(keyDecodingStrategy: .useDefaultKeys,
-                                              stringDecodingStrategies: [],
-                                              numberDecodingStrategies: [],
-                                              booleanDecodingStrategies: [],
-                                              dateDecodingStrategy: .deferredToDate,
-                                              urlDecodingStrategy: .deferredToURL,
-                                              userInfo: [:])
+        public static var `default` = Options(
+            keyDecodingStrategy: .useDefaultKeys,
+            stringDecodingStrategies: [],
+            numberDecodingStrategies: [],
+            booleanDecodingStrategies: [],
+            dateDecodingStrategy: .deferredToDate,
+            urlDecodingStrategy: .convertFromString(treatInvalidURLStringAsNull: false),
+            userInfo: [:]
+        )
 
         public var keyDecodingStrategy: KeyDecodingStrategy
         public var stringDecodingStrategies: StringDecodingStrategies

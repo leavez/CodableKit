@@ -20,7 +20,7 @@ final class NumberDecodingStrategiesTests: XCTestCase {
         XCTAssertEqual(try! decoder.unbox("42", as: Int.self), 42)
     }
 
-    func testConvertFromTrue() {
+    func testConvertFromBoolean() {
         let options: JSON.Decoder.Options = {
             let decoder = JSON.Decoder()
             decoder.numberDecodingStrategies = [.convertFromBoolean]

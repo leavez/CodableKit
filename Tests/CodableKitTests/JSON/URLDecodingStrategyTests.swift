@@ -31,8 +31,11 @@ final class URLDecodingStrategyTests: XCTestCase {
             let decoder = JSON._Decoder(codingPath: [], options: options)
             decoder.stroage = [""]
             XCTAssertThrowsError(try decoder.decode(URL.self))
+            XCTAssertThrowsError(try decoder.decode(URL?.self))
             decoder.stroage = ["https://json.org"]
             XCTAssertEqual((try! decoder.decode(URL.self)).absoluteString, "https://json.org")
+            decoder.stroage = [nil]
+            XCTAssertNil(try! decoder.decode(URL?.self))
         }
         #if swift(>=4.1.50)
         do {

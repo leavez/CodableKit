@@ -78,16 +78,16 @@ extension JSON._Decoder {
     private func unbox<T: Numeric>(_ value: JSON, asNumberFitIn type: T.Type) throws -> T {
         try expectNonNull(value, for: type)
         switch (value, options.numberDecodingStrategies) {
-        case (.string(let string), let strategies) where strategies.contains(.convertFromString):
+        case let (.string(string), strategies) where strategies.contains(.convertFromString):
             guard let number = NumberFormatter().number(from: string) else {
                 throw DecodingError._typeMismatch(at: codingPath, expectation: type, reality: value)
             }
             return try unbox(number, as: type)
-        case (.number(let number), _):
+        case let (.number(number), _):
             return try unbox(number, as: type)
-        case (.true, let strategies) where strategies.contains(.convertFromBoolean):
+        case let (.true, strategies) where strategies.contains(.convertFromBoolean):
             return 1
-        case (.false, let strategies) where strategies.contains(.convertFromBoolean):
+        case let (.false, strategies) where strategies.contains(.convertFromBoolean):
             return 0
         default:
             throw DecodingError._typeMismatch(at: codingPath, expectation: type, reality: value)
@@ -179,32 +179,32 @@ extension JSON._Decoder {
     }
 
     func unbox(_ value: JSON, as type: URL?.Type) throws -> URL? {
-        if value.isNull {
-            return nil
+        switch options.urlDecodingStrategy {
+        case .convertFromString(let treatInvalidURLStringAsNull):
+            if treatInvalidURLStringAsNull {
+                if value.isNull {
+                    return nil
+                }
+                return URL(string: try unbox(value, as: String.self))
+            }
+            fallthrough
+        case .deferredToURL:
+            stroage.append(value)
+            defer { stroage.removeLast() }
+            return try URL?(from: self)
         }
-        let string = try unbox(value, as: String.self)
-        if let url = URL(string: string) {
-            return url
-        }
-        return nil
     }
 
     func unbox<T: Decodable>(_ value: JSON, as type: T.Type) throws -> T {
-        if type is Date.Type || type is NSDate.Type {
+        // Can't use switch in here.
+        if type is Date.Type { // NSDate is not Decodable.
             return try unbox(value, as: Date.self) as! T
         } else if type is URL.Type || type is NSURL.Type {
             return try unbox(value, as: URL.self) as! T
         } else if type is URL?.Type || type is NSURL?.Type {
-            switch options.urlDecodingStrategy {
-            case .deferredToURL:
-                break
-            case .convertFromString(let treatInvalidURLStringAsNull):
-                if treatInvalidURLStringAsNull {
-                    #if swift(>=4.1.50)
-                    return try unbox(value, as: URL?.self) as! T
-                    #endif
-                }
-            }
+            #if swift(>=4.1.50)
+            return try unbox(value, as: URL?.self) as! T
+            #endif
         }
         stroage.append(value)
         defer { stroage.removeLast() }

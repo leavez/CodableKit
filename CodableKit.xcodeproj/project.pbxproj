@@ -24,6 +24,7 @@
 		8CF180F520E34AAE00C16041 /* BooleanDecodingStrategiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF180EF20E34AAE00C16041 /* BooleanDecodingStrategiesTests.swift */; };
 		8CF180F620E34AAE00C16041 /* KeyDecodingStrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF180F020E34AAE00C16041 /* KeyDecodingStrategyTests.swift */; };
 		8CF180F720E34AAE00C16041 /* StringDecodingStrategiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF180F120E34AAE00C16041 /* StringDecodingStrategiesTests.swift */; };
+		8CF52D8C20E7FF94007E7FDF /* DateDecodingStrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF52D8A20E7FF81007E7FDF /* DateDecodingStrategyTests.swift */; };
 		8CFBA80920E2A43700C89BAD /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFBA80820E2A43700C89BAD /* String.swift */; };
 		8CFBA80D20E2A54B00C89BAD /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFBA80C20E2A54B00C89BAD /* JSON.swift */; };
 		8CFBA81020E2A64D00C89BAD /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFBA80F20E2A64D00C89BAD /* JSONTests.swift */; };
@@ -62,6 +63,7 @@
 		8CF180EF20E34AAE00C16041 /* BooleanDecodingStrategiesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooleanDecodingStrategiesTests.swift; sourceTree = "<group>"; };
 		8CF180F020E34AAE00C16041 /* KeyDecodingStrategyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyDecodingStrategyTests.swift; sourceTree = "<group>"; };
 		8CF180F120E34AAE00C16041 /* StringDecodingStrategiesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringDecodingStrategiesTests.swift; sourceTree = "<group>"; };
+		8CF52D8A20E7FF81007E7FDF /* DateDecodingStrategyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDecodingStrategyTests.swift; sourceTree = "<group>"; };
 		8CFBA80820E2A43700C89BAD /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		8CFBA80C20E2A54B00C89BAD /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		8CFBA80F20E2A64D00C89BAD /* JSONTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				8CF180F120E34AAE00C16041 /* StringDecodingStrategiesTests.swift */,
 				8CF180ED20E34AAE00C16041 /* NumberDecodingStrategiesTests.swift */,
 				8CF180EF20E34AAE00C16041 /* BooleanDecodingStrategiesTests.swift */,
+				8CF52D8A20E7FF81007E7FDF /* DateDecodingStrategyTests.swift */,
 				8CF180EE20E34AAE00C16041 /* URLDecodingStrategyTests.swift */,
 			);
 			path = JSON;
@@ -302,6 +305,7 @@
 			files = (
 				8CF180F720E34AAE00C16041 /* StringDecodingStrategiesTests.swift in Sources */,
 				8CF180F520E34AAE00C16041 /* BooleanDecodingStrategiesTests.swift in Sources */,
+				8CF52D8C20E7FF94007E7FDF /* DateDecodingStrategyTests.swift in Sources */,
 				8CF180F420E34AAE00C16041 /* URLDecodingStrategyTests.swift in Sources */,
 				8C27F52320E2954500FCB40A /* CodableKitTests.swift in Sources */,
 				8CF180F220E34AAE00C16041 /* DecoderTests.swift in Sources */,
