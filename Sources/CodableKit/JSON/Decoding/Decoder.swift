@@ -129,7 +129,7 @@ extension JSON.Decoder {
     public enum URLDecodingStrategy {
         /// Defer to `URL` for decoding.
         case deferredToURL
-        case convertFromString(treatInvalidURLStringAsNull: Bool)
+        case convertFromString
     }
 
     /// Options set on the top-level encoder to pass down the decoding hierarchy.
@@ -140,7 +140,7 @@ extension JSON.Decoder {
             numberDecodingStrategies: [],
             booleanDecodingStrategies: [],
             dateDecodingStrategy: .deferredToDate,
-            urlDecodingStrategy: .convertFromString(treatInvalidURLStringAsNull: false),
+            urlDecodingStrategy: .convertFromString,
             userInfo: [:]
         )
 

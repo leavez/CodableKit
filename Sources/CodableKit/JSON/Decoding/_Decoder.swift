@@ -178,33 +178,12 @@ extension JSON._Decoder {
         }
     }
 
-    func unbox(_ value: JSON, as type: URL?.Type) throws -> URL? {
-        switch options.urlDecodingStrategy {
-        case .convertFromString(let treatInvalidURLStringAsNull):
-            if treatInvalidURLStringAsNull {
-                if value.isNull {
-                    return nil
-                }
-                return URL(string: try unbox(value, as: String.self))
-            }
-            fallthrough
-        case .deferredToURL:
-            stroage.append(value)
-            defer { stroage.removeLast() }
-            return try URL?(from: self)
-        }
-    }
-
     func unbox<T: Decodable>(_ value: JSON, as type: T.Type) throws -> T {
         // Can't use switch in here.
         if type is Date.Type { // NSDate is not Decodable.
             return try unbox(value, as: Date.self) as! T
         } else if type is URL.Type || type is NSURL.Type {
             return try unbox(value, as: URL.self) as! T
-        } else if type is URL?.Type || type is NSURL?.Type {
-            #if swift(>=4.1.50)
-            return try unbox(value, as: URL?.self) as! T
-            #endif
         }
         stroage.append(value)
         defer { stroage.removeLast() }
