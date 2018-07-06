@@ -14,14 +14,17 @@ extension JSON {
 }
 
 extension JSON.KeyedDecodingContainer {
-    private func value(forKey key: CodingKey) throws -> JSON {
-        let stringKey: String
+    private func stringValue(forKey key: CodingKey) -> String {
         switch decoder.options.keyDecodingStrategy {
         case .useDefaultKeys:
-            stringKey = key.stringValue
+            return key.stringValue
         case .convertFromSnakeCase:
-            stringKey = key.stringValue.snakeCased()
+            return key.stringValue.snakeCased()
         }
+    }
+
+    private func value(forKey key: CodingKey) throws -> JSON {
+        let stringKey = stringValue(forKey: key)
         guard let value = object[stringKey] else {
             let description = "No value associated with key \(key) (\"\(stringKey)\"."
             let context = DecodingError.Context(codingPath: codingPath, debugDescription: description)
@@ -37,7 +40,7 @@ extension JSON.KeyedDecodingContainer: KeyedDecodingContainerProtocol {
     }
 
     func contains(_ key: Key) -> Bool {
-        return object.keys.contains(key.stringValue)
+        return object.keys.contains(stringValue(forKey: key))
     }
 
     func decodeNil(forKey key: Key) throws -> Bool {
