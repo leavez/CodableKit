@@ -10,6 +10,7 @@
 		41B96CB621AD524700944696 /* AnyCodingKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B96CB521AD524700944696 /* AnyCodingKeyTests.swift */; };
 		41B96CB821AD527C00944696 /* AnyCodingKey_Keypath_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B96CB721AD527C00944696 /* AnyCodingKey_Keypath_Tests.swift */; };
 		41B96CBC21AD529F00944696 /* AnyCodingKey+Keypath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B96CBB21AD529F00944696 /* AnyCodingKey+Keypath.swift */; };
+		41B96CBE21AD687D00944696 /* KeyedDecodingContainerProtocol+DynamicLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B96CBD21AD687D00944696 /* KeyedDecodingContainerProtocol+DynamicLookup.swift */; };
 		8C27F51E20E2954500FCB40A /* CodableKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C27F51420E2954500FCB40A /* CodableKit.framework */; };
 		8C27F52320E2954500FCB40A /* CodableKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C27F52220E2954500FCB40A /* CodableKitTests.swift */; };
 		8C27F52F20E2961300FCB40A /* KeyedDecodingContainerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C27F52E20E2961300FCB40A /* KeyedDecodingContainerProtocol.swift */; };
@@ -47,6 +48,7 @@
 		41B96CB521AD524700944696 /* AnyCodingKeyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyCodingKeyTests.swift; sourceTree = "<group>"; };
 		41B96CB721AD527C00944696 /* AnyCodingKey_Keypath_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyCodingKey_Keypath_Tests.swift; sourceTree = "<group>"; };
 		41B96CBB21AD529F00944696 /* AnyCodingKey+Keypath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AnyCodingKey+Keypath.swift"; sourceTree = "<group>"; };
+		41B96CBD21AD687D00944696 /* KeyedDecodingContainerProtocol+DynamicLookup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainerProtocol+DynamicLookup.swift"; sourceTree = "<group>"; };
 		8C08778220E731C700E5BF06 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8C27F51420E2954500FCB40A /* CodableKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CodableKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C27F51820E2954500FCB40A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				8CFBA80820E2A43700C89BAD /* String.swift */,
 				8C81847120E725A100FD8A3A /* SnakeCasedCodingKey.swift */,
 				8C27F52E20E2961300FCB40A /* KeyedDecodingContainerProtocol.swift */,
+				41B96CBD21AD687D00944696 /* KeyedDecodingContainerProtocol+DynamicLookup.swift */,
 				8C27F53020E2965800FCB40A /* AnyCodingKey.swift */,
 				41B96CBB21AD529F00944696 /* AnyCodingKey+Keypath.swift */,
 				8CFBA80B20E2A53500C89BAD /* JSON */,
@@ -299,6 +302,7 @@
 				8C27F52F20E2961300FCB40A /* KeyedDecodingContainerProtocol.swift in Sources */,
 				8CF180E520E34A0000C16041 /* Serialization.swift in Sources */,
 				8CFBA80920E2A43700C89BAD /* String.swift in Sources */,
+				41B96CBE21AD687D00944696 /* KeyedDecodingContainerProtocol+DynamicLookup.swift in Sources */,
 				8CFBA80D20E2A54B00C89BAD /* JSON.swift in Sources */,
 				8CF180E320E349C300C16041 /* Decoder.swift in Sources */,
 				8CF180EB20E34A8700C16041 /* KeyedDecodingContainer.swift in Sources */,
