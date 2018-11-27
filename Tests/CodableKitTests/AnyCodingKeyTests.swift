@@ -47,7 +47,7 @@ class AnyCodingKeyTests: XCTestCase {
 
     func test_decoding() {
         
-        // test plain keys
+        // test plain types
         do {
             struct Model: Decodable {
                 let a: Int
@@ -81,6 +81,32 @@ class AnyCodingKeyTests: XCTestCase {
                 XCTAssertEqual(m.c, true)
                 XCTAssertEqual(m.d, 1.23)
                 XCTAssertEqual(m.e, nil)
+            } catch let e {
+                XCTFail("\(e)")
+            }
+        }
+        
+        // test nested types
+        do {
+            struct Inner: Decodable {
+                let a: Int
+            }
+            struct Model: Decodable {
+                let inner: Inner
+                
+                init(from decoder: Decoder) throws {
+                    let container = try decoder.container()
+                    inner = try container.decode(Inner.self, forKey: "inner")
+                }
+            }
+            let data = """
+            {
+                "inner": {"a": 1}
+            }
+            """.data(using: .utf8)!
+            do {
+                let m = try JSONDecoder().decode(Model.self, from: data)
+                XCTAssertEqual(m.inner.a, 1)
             } catch let e {
                 XCTFail("\(e)")
             }
@@ -152,6 +178,28 @@ class AnyCodingKeyTests: XCTestCase {
                 XCTAssertEqual(dict["c"] as? Bool, true)
                 XCTAssertEqual(dict["d"] as? Double, 1.23)
                 XCTAssertEqual(dict["e"] as? Double, nil)
+            } catch let e {
+                XCTFail("\(e)")
+            }
+        }
+        
+        // test nested types
+        do {
+            struct Inner: Encodable {
+                let a: Int
+            }
+            struct Model: Encodable {
+                let inner: Inner
+                
+                func encode(to encoder: Encoder) throws {
+                    var container = encoder.container()
+                    try container.encode(inner, forKey: "Inner")
+                }
+            }
+            do {
+                let data = try JSONEncoder().encode(Model(inner: Inner(a: 1)))
+                let dict = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! NSDictionary
+                XCTAssertEqual(dict, ["Inner": ["a": 1 ]])
             } catch let e {
                 XCTFail("\(e)")
             }
