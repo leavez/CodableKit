@@ -46,8 +46,6 @@ init(from decoder: Decoder) throws {
 }
 ```
 
-### JSON
-
 ## Installation
 
 ### Carthage
