@@ -33,6 +33,9 @@ extension AnyCodingKey: ExpressibleByStringLiteral {
     }
 }
 
+extension AnyCodingKey: Equatable {}
+
+
 // MARK: - Decoding
 
 extension Decoder {
