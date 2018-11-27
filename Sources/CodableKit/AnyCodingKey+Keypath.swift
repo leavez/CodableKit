@@ -9,6 +9,15 @@ import Foundation
 
 extension KeyedDecodingContainerProtocol where Key == AnyCodingKey {
     
+    /// Decodes a value of the given type for the given key, without specific type.
+    ///
+    /// Keypath is supported: e.g. `value1 = try container.decode("b0.b1.value")`
+    ///
+    /// - Parameters:
+    ///   - key: the keyPath
+    ///   - useKeyPath: If the key contain "dot" naturaly, set this to ture to treat as one whole key.
+    /// - Throws: same to decode<T>(_ type:forKey:)
+    ///
     public func decode<T: Decodable>(_ key: Key, useKeyPath: Bool = true) throws -> T {
         let paths = key.keyPaths()
         if useKeyPath == false || paths.count <= 1 {
@@ -24,6 +33,15 @@ extension KeyedDecodingContainerProtocol where Key == AnyCodingKey {
 
 extension KeyedEncodingContainerProtocol where Key == AnyCodingKey {
     
+    /// Encodes the given value for the given keyPath
+    ///
+    ///  e.g. `try container.encode(value1, forKeyPath: "b0.b1.value")`
+    ///
+    /// - Parameters:
+    ///   - value: the value to encode
+    ///   - keyPath: The keypath to associate the value with.
+    /// - Throws: same as encode<T>(_ value:forKey:)
+    ///
     public mutating func encode<T: Encodable>(_ value: T, forKeyPath keyPath: Self.Key) throws {
     
         let paths = keyPath.keyPaths()
