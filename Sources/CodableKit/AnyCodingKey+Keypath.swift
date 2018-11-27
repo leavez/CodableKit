@@ -31,33 +31,6 @@ extension KeyedDecodingContainerProtocol where Key == AnyCodingKey {
     }
 }
 
-extension KeyedEncodingContainerProtocol where Key == AnyCodingKey {
-    
-    /// Encodes the given value for the given keyPath
-    ///
-    ///  e.g. `try container.encode(value1, forKeyPath: "b0.b1.value")`
-    ///
-    /// - Parameters:
-    ///   - value: the value to encode
-    ///   - keyPath: The keypath to associate the value with.
-    /// - Throws: same as encode<T>(_ value:forKey:)
-    ///
-    public mutating func encode<T: Encodable>(_ value: T, forKeyPath keyPath: Self.Key) throws {
-    
-        let paths = keyPath.keyPaths()
-        if paths.count <= 1 {
-            try self.encode(value, forKey: keyPath)
-            return
-        }
-        
-        let pathKeys = Array(paths[0..<paths.count-1])
-        let nameKey = paths.last!
-        var container = self.nestedContainer(for: pathKeys)
-        try container.encode(value, forKey: nameKey)
-    }
-}
-
-
 extension KeyedDecodingContainerProtocol where Key == AnyCodingKey {
     
     public func nestedContainer(forKey key: Key, useKeyPath: Bool = true) throws -> KeyedDecodingContainer<AnyCodingKey> {
