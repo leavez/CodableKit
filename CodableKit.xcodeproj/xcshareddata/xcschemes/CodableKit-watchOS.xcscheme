@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8C6FA41A21AE95A100CF2394"
-               BuildableName = "CodableKit_watchOS.framework"
+               BuildableName = "CodableKit.framework"
                BlueprintName = "CodableKit-watchOS"
                ReferencedContainer = "container:CodableKit.xcodeproj">
             </BuildableReference>
@@ -26,6 +26,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      codeCoverageEnabled = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -46,7 +47,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8C6FA41A21AE95A100CF2394"
-            BuildableName = "CodableKit_watchOS.framework"
+            BuildableName = "CodableKit.framework"
             BlueprintName = "CodableKit-watchOS"
             ReferencedContainer = "container:CodableKit.xcodeproj">
          </BuildableReference>
@@ -64,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8C6FA41A21AE95A100CF2394"
-            BuildableName = "CodableKit_watchOS.framework"
+            BuildableName = "CodableKit.framework"
             BlueprintName = "CodableKit-watchOS"
             ReferencedContainer = "container:CodableKit.xcodeproj">
          </BuildableReference>
