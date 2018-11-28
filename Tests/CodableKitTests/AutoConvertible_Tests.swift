@@ -27,7 +27,7 @@ class AutoConvertible_Tests: XCTestCase {
             let a: Int
             let b: String
             init(from decoder: Decoder) throws {
-                let c = try decoder.container().makeCompatible
+                let c = try decoder.container().compatible()
                 try a = c.decode("a")
                 try b = c.decode("b")
             }
@@ -43,7 +43,7 @@ class AutoConvertible_Tests: XCTestCase {
         struct Model: Decodable {
             let a: Int
             init(from decoder: Decoder) throws {
-                let c = try decoder.container().makeCompatible
+                let c = try decoder.container().compatible()
                 try a = c.decode("a")
             }
         }
@@ -106,7 +106,7 @@ class AutoConvertible_Tests: XCTestCase {
             let a: Int
             let b: String
             init(from decoder: Decoder) throws {
-                var c = try decoder.container().nestedUnkeyedContainer(forKey: "a").makeCompatible
+                var c = try decoder.container().nestedUnkeyedContainer(forKey: "a").compatible()
                 try a = c.decode(Int.self)
                 try b = c.decode(String.self)
             }
@@ -122,7 +122,7 @@ class AutoConvertible_Tests: XCTestCase {
         struct Model: Decodable {
             let a: Int
             init(from decoder: Decoder) throws {
-                var c = try decoder.container().nestedUnkeyedContainer(forKey: "a").makeCompatible
+                var c = try decoder.container().nestedUnkeyedContainer(forKey: "a").compatible()
                 try a = c.decode(Int.self)
             }
         }

@@ -29,7 +29,7 @@ class AutoConvertible_TypeConvertion_Test: XCTestCase {
             let uInt64: UInt64
             
             required init(from decoder: Decoder) throws {
-                let map = try decoder.container().makeCompatible
+                let map = try decoder.container().compatible()
                 int = try map.decode("int")
                 int8 = try map.decode("short")
                 int16 = try map.decode("int")
@@ -128,7 +128,7 @@ class AutoConvertible_TypeConvertion_Test: XCTestCase {
             #endif
             
             required init(from decoder: Decoder) throws {
-                let map = try decoder.container().makeCompatible
+                let map = try decoder.container().compatible()
                 double = try map.decode("double")
                 float = try map.decode("double")
                 #if canImport(CoreGraphics)
@@ -163,7 +163,7 @@ class AutoConvertible_TypeConvertion_Test: XCTestCase {
         struct BoolModel: Decodable {
             let bool: Bool
             init(from decoder: Decoder) throws {
-                let map = try decoder.container().makeCompatible
+                let map = try decoder.container().compatible()
                 bool = try map.decode("bool")
             }
         }
@@ -197,7 +197,7 @@ class AutoConvertible_TypeConvertion_Test: XCTestCase {
         struct StringModel: Decodable {
             let value: String
             init(from decoder: Decoder) throws {
-                let map = try decoder.container().makeCompatible
+                let map = try decoder.container().compatible()
                 value = try map.decode("value")
             }
         }
@@ -223,7 +223,7 @@ class AutoConvertible_TypeConvertion_Test: XCTestCase {
         struct DateModel: Decodable {
             let value: Date
             init(from decoder: Decoder) throws {
-                let map = try decoder.container().makeCompatible
+                let map = try decoder.container().compatible()
                 value = try map.decode("value")
             }
         }

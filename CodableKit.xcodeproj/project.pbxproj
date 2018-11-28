@@ -11,16 +11,16 @@
 		418787FD21AE9F0500D0F3CB /* Container+Compatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418B0D2B21AE701F002C5E14 /* Container+Compatible.swift */; };
 		418787FE21AE9F0600D0F3CB /* Container+Compatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418B0D2B21AE701F002C5E14 /* Container+Compatible.swift */; };
 		418787FF21AE9F0700D0F3CB /* Container+Compatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418B0D2B21AE701F002C5E14 /* Container+Compatible.swift */; };
-		4187880021AE9F0C00D0F3CB /* AutoConvertibleDecodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418B0D2721AE593A002C5E14 /* AutoConvertibleDecodingContainer.swift */; };
+		4187880021AE9F0C00D0F3CB /* CompatibeDecodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418B0D2721AE593A002C5E14 /* CompatibeDecodingContainer.swift */; };
 		4187880121AE9F0C00D0F3CB /* CompatibleTypeConvertion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418B0D2921AE5974002C5E14 /* CompatibleTypeConvertion.swift */; };
 		4187880221AE9F0C00D0F3CB /* BasicTypes+CompatiableTypeConvertion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418B0D3121AE8127002C5E14 /* BasicTypes+CompatiableTypeConvertion.swift */; };
-		4187880321AE9F0D00D0F3CB /* AutoConvertibleDecodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418B0D2721AE593A002C5E14 /* AutoConvertibleDecodingContainer.swift */; };
+		4187880321AE9F0D00D0F3CB /* CompatibeDecodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418B0D2721AE593A002C5E14 /* CompatibeDecodingContainer.swift */; };
 		4187880421AE9F0D00D0F3CB /* CompatibleTypeConvertion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418B0D2921AE5974002C5E14 /* CompatibleTypeConvertion.swift */; };
 		4187880521AE9F0D00D0F3CB /* BasicTypes+CompatiableTypeConvertion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418B0D3121AE8127002C5E14 /* BasicTypes+CompatiableTypeConvertion.swift */; };
-		4187880621AE9F0E00D0F3CB /* AutoConvertibleDecodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418B0D2721AE593A002C5E14 /* AutoConvertibleDecodingContainer.swift */; };
+		4187880621AE9F0E00D0F3CB /* CompatibeDecodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418B0D2721AE593A002C5E14 /* CompatibeDecodingContainer.swift */; };
 		4187880721AE9F0E00D0F3CB /* CompatibleTypeConvertion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418B0D2921AE5974002C5E14 /* CompatibleTypeConvertion.swift */; };
 		4187880821AE9F0E00D0F3CB /* BasicTypes+CompatiableTypeConvertion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418B0D3121AE8127002C5E14 /* BasicTypes+CompatiableTypeConvertion.swift */; };
-		4187880921AE9F0F00D0F3CB /* AutoConvertibleDecodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418B0D2721AE593A002C5E14 /* AutoConvertibleDecodingContainer.swift */; };
+		4187880921AE9F0F00D0F3CB /* CompatibeDecodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418B0D2721AE593A002C5E14 /* CompatibeDecodingContainer.swift */; };
 		4187880A21AE9F0F00D0F3CB /* CompatibleTypeConvertion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418B0D2921AE5974002C5E14 /* CompatibleTypeConvertion.swift */; };
 		4187880B21AE9F0F00D0F3CB /* BasicTypes+CompatiableTypeConvertion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418B0D3121AE8127002C5E14 /* BasicTypes+CompatiableTypeConvertion.swift */; };
 		4187880C21AE9F1600D0F3CB /* AutoConvertible_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418B0D3521AE8735002C5E14 /* AutoConvertible_Tests.swift */; };
@@ -140,8 +140,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		418B0D2421AE4925002C5E14 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
-		418B0D2721AE593A002C5E14 /* AutoConvertibleDecodingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoConvertibleDecodingContainer.swift; sourceTree = "<group>"; };
+		418B0D2721AE593A002C5E14 /* CompatibeDecodingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibeDecodingContainer.swift; sourceTree = "<group>"; };
 		418B0D2921AE5974002C5E14 /* CompatibleTypeConvertion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibleTypeConvertion.swift; sourceTree = "<group>"; };
 		418B0D2B21AE701F002C5E14 /* Container+Compatible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+Compatible.swift"; sourceTree = "<group>"; };
 		418B0D3121AE8127002C5E14 /* BasicTypes+CompatiableTypeConvertion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BasicTypes+CompatiableTypeConvertion.swift"; sourceTree = "<group>"; };
@@ -241,7 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				418B0D2B21AE701F002C5E14 /* Container+Compatible.swift */,
-				418B0D2721AE593A002C5E14 /* AutoConvertibleDecodingContainer.swift */,
+				418B0D2721AE593A002C5E14 /* CompatibeDecodingContainer.swift */,
 				418B0D2921AE5974002C5E14 /* CompatibleTypeConvertion.swift */,
 				418B0D3121AE8127002C5E14 /* BasicTypes+CompatiableTypeConvertion.swift */,
 			);
@@ -280,7 +279,6 @@
 				8C27F52E20E2961300FCB40A /* KeyedDecodingContainerProtocol.swift */,
 				8C27F53020E2965800FCB40A /* AnyCodingKey.swift */,
 				41B96CBB21AD529F00944696 /* AnyCodingKey+Keypath.swift */,
-				418B0D2421AE4925002C5E14 /* File.swift */,
 				8CFBA80B20E2A53500C89BAD /* JSON */,
 				8C27F51820E2954500FCB40A /* Info.plist */,
 			);
@@ -627,7 +625,7 @@
 				8C3EECC021AE921F00793FF4 /* DecodingError.swift in Sources */,
 				8C3EECBC21AE921500793FF4 /* AnyCodingKey.swift in Sources */,
 				8C3EECBA21AE921500793FF4 /* SnakeCasedCodingKey.swift in Sources */,
-				4187880321AE9F0D00D0F3CB /* AutoConvertibleDecodingContainer.swift in Sources */,
+				4187880321AE9F0D00D0F3CB /* CompatibeDecodingContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,7 +668,7 @@
 				8C3EEC7121AE909700793FF4 /* DecodingError.swift in Sources */,
 				8C3EEC6D21AE908F00793FF4 /* AnyCodingKey.swift in Sources */,
 				8C3EEC6B21AE908F00793FF4 /* SnakeCasedCodingKey.swift in Sources */,
-				4187880021AE9F0C00D0F3CB /* AutoConvertibleDecodingContainer.swift in Sources */,
+				4187880021AE9F0C00D0F3CB /* CompatibeDecodingContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -713,7 +711,7 @@
 				8C6FA3F921AE94DE00CF2394 /* DecodingError.swift in Sources */,
 				8C6FA3F521AE94D200CF2394 /* AnyCodingKey.swift in Sources */,
 				8C6FA3F321AE94D200CF2394 /* SnakeCasedCodingKey.swift in Sources */,
-				4187880621AE9F0E00D0F3CB /* AutoConvertibleDecodingContainer.swift in Sources */,
+				4187880621AE9F0E00D0F3CB /* CompatibeDecodingContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -756,7 +754,7 @@
 				8CE4DBF721AE978A00D9E6BB /* DecodingError.swift in Sources */,
 				8CE4DBF321AE977E00D9E6BB /* AnyCodingKey.swift in Sources */,
 				8CE4DBF121AE977E00D9E6BB /* SnakeCasedCodingKey.swift in Sources */,
-				4187880921AE9F0F00D0F3CB /* AutoConvertibleDecodingContainer.swift in Sources */,
+				4187880921AE9F0F00D0F3CB /* CompatibeDecodingContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
