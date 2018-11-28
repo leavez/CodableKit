@@ -118,6 +118,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		418B0D2421AE4925002C5E14 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		418B0D2721AE593A002C5E14 /* AutoConvertibleDecodingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoConvertibleDecodingContainer.swift; sourceTree = "<group>"; };
+		418B0D2921AE5974002C5E14 /* CompatibleTypeConvertion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibleTypeConvertion.swift; sourceTree = "<group>"; };
+		418B0D2B21AE701F002C5E14 /* Container+Compatible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+Compatible.swift"; sourceTree = "<group>"; };
 		41B96CB521AD524700944696 /* AnyCodingKeyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyCodingKeyTests.swift; sourceTree = "<group>"; };
 		41B96CB721AD527C00944696 /* AnyCodingKey_Keypath_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyCodingKey_Keypath_Tests.swift; sourceTree = "<group>"; };
 		41B96CBB21AD529F00944696 /* AnyCodingKey+Keypath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AnyCodingKey+Keypath.swift"; sourceTree = "<group>"; };
@@ -208,6 +212,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		418B0D2621AE5905002C5E14 /* AutoConvertible */ = {
+			isa = PBXGroup;
+			children = (
+				418B0D2B21AE701F002C5E14 /* Container+Compatible.swift */,
+				418B0D2721AE593A002C5E14 /* AutoConvertibleDecodingContainer.swift */,
+				418B0D2921AE5974002C5E14 /* CompatibleTypeConvertion.swift */,
+			);
+			path = AutoConvertible;
+			sourceTree = "<group>";
+		};
+		8C08778420E7320600E5BF06 /* README */ = {
+			isa = PBXGroup;
+			children = (
+				8C08778220E731C700E5BF06 /* README.md */,
+			);
+			name = README;
+			sourceTree = "<group>";
+		};
 		8C27F50A20E2954500FCB40A = {
 			isa = PBXGroup;
 			children = (
@@ -234,11 +256,13 @@
 		8C27F51620E2954500FCB40A /* CodableKit */ = {
 			isa = PBXGroup;
 			children = (
+				418B0D2621AE5905002C5E14 /* AutoConvertible */,
 				8CFBA80820E2A43700C89BAD /* String.swift */,
 				8C81847120E725A100FD8A3A /* SnakeCasedCodingKey.swift */,
 				8C27F52E20E2961300FCB40A /* KeyedDecodingContainerProtocol.swift */,
 				8C27F53020E2965800FCB40A /* AnyCodingKey.swift */,
 				41B96CBB21AD529F00944696 /* AnyCodingKey+Keypath.swift */,
+				418B0D2421AE4925002C5E14 /* File.swift */,
 				8CFBA80B20E2A53500C89BAD /* JSON */,
 				8C27F51820E2954500FCB40A /* Info.plist */,
 			);
