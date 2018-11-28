@@ -2,7 +2,6 @@
 
 [![Build Status](https://travis-ci.org/kylinroc/CodableKit.svg?branch=master)](https://travis-ci.org/kylinroc/CodableKit)
 [![codecov](https://codecov.io/gh/kylinroc/CodableKit/branch/master/graph/badge.svg)](https://codecov.io/gh/kylinroc/CodableKit)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 ## Usage
 
@@ -48,12 +47,6 @@ init(from decoder: Decoder) throws {
 
 ## Installation
 
-### Carthage
-
-```
-github "kylinroc/CodableKit" ~> 1.0
-```
-
 ### Swift Package Manager
 
 ```swift
@@ -62,7 +55,7 @@ import PackageDescription
 let package = Package(
     name: "Example",
     dependencies: [
-        .package(url: "https://github.com/kylinroc/CodableKit.git", from: "1.0.0"),
+        .package(url: "https://github.com/kylinroc/CodableKit.git", from: "0.3.0"),
     ],
     targets: [
         .target(name: "Example", dependencies: ["CodableKit"]),
