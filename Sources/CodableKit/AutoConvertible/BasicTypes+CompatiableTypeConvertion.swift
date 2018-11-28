@@ -122,3 +122,31 @@ extension String: CompatibleTypeConvertion {
         return nil
     }
 }
+
+
+
+// MARK:- Date
+
+extension Date: CompatibleTypeConvertion {
+    
+    static func convert(with decode: _DecodeMethod) -> Date? {
+        // The data provided may not compatible with the dateStrategy in Decoder.
+        // Then we try to use another 2 methods to decode the date, if we can save it.
+        if let v = try? decode.decode(Double.self) {
+            return Date(timeIntervalSince1970: v)
+        }
+        if let v = try? decode.decode(String.self),
+            let date = RFC3339DateFormatter.date(from: v) {
+            return date
+        }
+        return nil
+    }
+}
+
+private let RFC3339DateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+    return formatter
+}()
+

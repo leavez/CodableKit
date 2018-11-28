@@ -15,7 +15,7 @@ import Foundation
 ///   // JSON: {"a": "123"}
 ///   Model{ let a: Int
 ///        init(from decoder:Decoder) throws {
-///            let container = decoder.container(keyedBy:CodingKey.self).makeAutoConvertable
+///            let container = decoder.container(keyedBy:CodingKey.self).makeCompatible
 ///            a = try container.decode(.a) // it will auto transform "123"(string) to 123(int)
 ///        }
 ///   }```

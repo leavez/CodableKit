@@ -218,6 +218,27 @@ class AutoConvertible_TypeConvertion_Test: XCTestCase {
         XCTAssertThrowsError(try generateStringModel(JSONObject: ["value": [:]]).value)
     }
     
+    
+    func testDate() {
+        struct DateModel: Decodable {
+            let value: Date
+            init(from decoder: Decoder) throws {
+                let map = try decoder.container().makeCompatible
+                value = try map.decode("value")
+            }
+        }
+        func generateDateModel(JSONObject: Any, strategy: JSONDecoder.DateDecodingStrategy = .deferredToDate) throws -> DateModel {
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = strategy
+            return try decoder.decode(DateModel.self, from: jsonData(object: JSONObject))
+        }
+        // test the convertion if strategy is fail
+        XCTAssertEqual(try? generateDateModel(JSONObject: ["value": "2018-06-03T13:11:50+08:00"]).value, Date(timeIntervalSince1970: 1528002710))
+        XCTAssertEqual(try? generateDateModel(JSONObject: ["value": 1528002710], strategy: .formatted(DateFormatter())).value, Date(timeIntervalSince1970: 1528002710))
+        XCTAssertEqual(try? generateDateModel(JSONObject: ["value": 1528002710.123456], strategy: .formatted(DateFormatter())).value, Date(timeIntervalSince1970: 1528002710.123456))
+        XCTAssertThrowsError(try generateDateModel(JSONObject: ["value": "123123123"]))
+    }
+    
 }
 
 
