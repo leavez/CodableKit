@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1000"
+   LastUpgradeVersion = "1010"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8C27F51320E2954500FCB40A"
+               BlueprintIdentifier = "8C51019B21AE8FC0009593AA"
                BuildableName = "CodableKit.framework"
-               BlueprintName = "CodableKit"
+               BlueprintName = "CodableKit-iOS"
                ReferencedContainer = "container:CodableKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,16 +26,15 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      codeCoverageEnabled = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8C27F51C20E2954500FCB40A"
-               BuildableName = "CodableKitTests.xctest"
-               BlueprintName = "CodableKitTests"
+               BlueprintIdentifier = "8C5101A321AE8FC0009593AA"
+               BuildableName = "CodableKit-iOSTests.xctest"
+               BlueprintName = "CodableKit-iOSTests"
                ReferencedContainer = "container:CodableKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -43,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8C27F51320E2954500FCB40A"
+            BlueprintIdentifier = "8C51019B21AE8FC0009593AA"
             BuildableName = "CodableKit.framework"
-            BlueprintName = "CodableKit"
+            BlueprintName = "CodableKit-iOS"
             ReferencedContainer = "container:CodableKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8C27F51320E2954500FCB40A"
+            BlueprintIdentifier = "8C51019B21AE8FC0009593AA"
             BuildableName = "CodableKit.framework"
-            BlueprintName = "CodableKit"
+            BlueprintName = "CodableKit-iOS"
             ReferencedContainer = "container:CodableKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -83,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8C27F51320E2954500FCB40A"
+            BlueprintIdentifier = "8C51019B21AE8FC0009593AA"
             BuildableName = "CodableKit.framework"
-            BlueprintName = "CodableKit"
+            BlueprintName = "CodableKit-iOS"
             ReferencedContainer = "container:CodableKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
