@@ -79,6 +79,18 @@
 		8C6FA40621AE94E800CF2394 /* BooleanDecodingStrategiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF180EF20E34AAE00C16041 /* BooleanDecodingStrategiesTests.swift */; };
 		8C6FA40721AE94E800CF2394 /* DateDecodingStrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF52D8A20E7FF81007E7FDF /* DateDecodingStrategyTests.swift */; };
 		8C6FA40821AE94E800CF2394 /* URLDecodingStrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF180EE20E34AAE00C16041 /* URLDecodingStrategyTests.swift */; };
+		8CE4DBF021AE977E00D9E6BB /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFBA80820E2A43700C89BAD /* String.swift */; };
+		8CE4DBF121AE977E00D9E6BB /* SnakeCasedCodingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81847120E725A100FD8A3A /* SnakeCasedCodingKey.swift */; };
+		8CE4DBF221AE977E00D9E6BB /* KeyedDecodingContainerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C27F52E20E2961300FCB40A /* KeyedDecodingContainerProtocol.swift */; };
+		8CE4DBF321AE977E00D9E6BB /* AnyCodingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C27F53020E2965800FCB40A /* AnyCodingKey.swift */; };
+		8CE4DBF421AE977E00D9E6BB /* AnyCodingKey+Keypath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B96CBB21AD529F00944696 /* AnyCodingKey+Keypath.swift */; };
+		8CE4DBF521AE978300D9E6BB /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFBA80C20E2A54B00C89BAD /* JSON.swift */; };
+		8CE4DBF621AE978300D9E6BB /* Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF180E420E34A0000C16041 /* Serialization.swift */; };
+		8CE4DBF721AE978A00D9E6BB /* DecodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF180E020E3499100C16041 /* DecodingError.swift */; };
+		8CE4DBF821AE978A00D9E6BB /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF180E220E349C300C16041 /* Decoder.swift */; };
+		8CE4DBF921AE978A00D9E6BB /* _Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF180E620E34A6900C16041 /* _Decoder.swift */; };
+		8CE4DBFA21AE978A00D9E6BB /* KeyedDecodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF180E920E34A8700C16041 /* KeyedDecodingContainer.swift */; };
+		8CE4DBFB21AE978A00D9E6BB /* UnkeyedDecodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF180E820E34A8700C16041 /* UnkeyedDecodingContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +132,7 @@
 		8C5101A421AE8FC0009593AA /* CodableKit-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CodableKit-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C6FA3DB21AE93C900CF2394 /* CodableKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CodableKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C6FA3E321AE93C900CF2394 /* CodableKit-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CodableKit-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C6FA41B21AE95A100CF2394 /* CodableKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CodableKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C81847120E725A100FD8A3A /* SnakeCasedCodingKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeCasedCodingKey.swift; sourceTree = "<group>"; };
 		8CF180E020E3499100C16041 /* DecodingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecodingError.swift; sourceTree = "<group>"; };
 		8CF180E220E349C300C16041 /* Decoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
@@ -185,6 +198,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8C6FA41821AE95A100CF2394 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -206,6 +226,7 @@
 				8C3EECAA21AE91C000793FF4 /* CodableKit-macOSTests.xctest */,
 				8C6FA3DB21AE93C900CF2394 /* CodableKit.framework */,
 				8C6FA3E321AE93C900CF2394 /* CodableKit-tvOSTests.xctest */,
+				8C6FA41B21AE95A100CF2394 /* CodableKit.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -293,6 +314,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8C6FA3D621AE93C900CF2394 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C6FA41621AE95A100CF2394 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -410,6 +438,24 @@
 			productReference = 8C6FA3E321AE93C900CF2394 /* CodableKit-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		8C6FA41A21AE95A100CF2394 /* CodableKit-watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C6FA42021AE95A100CF2394 /* Build configuration list for PBXNativeTarget "CodableKit-watchOS" */;
+			buildPhases = (
+				8C6FA41621AE95A100CF2394 /* Headers */,
+				8C6FA41721AE95A100CF2394 /* Sources */,
+				8C6FA41821AE95A100CF2394 /* Frameworks */,
+				8C6FA41921AE95A100CF2394 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CodableKit-watchOS";
+			productName = "CodableKit-watchOS";
+			productReference = 8C6FA41B21AE95A100CF2394 /* CodableKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -437,6 +483,9 @@
 					8C6FA3E221AE93C900CF2394 = {
 						CreatedOnToolsVersion = 10.1;
 					};
+					8C6FA41A21AE95A100CF2394 = {
+						CreatedOnToolsVersion = 10.1;
+					};
 				};
 			};
 			buildConfigurationList = 8C27F50E20E2954500FCB40A /* Build configuration list for PBXProject "CodableKit" */;
@@ -457,6 +506,7 @@
 				8C3EECA921AE91C000793FF4 /* CodableKit-macOSTests */,
 				8C6FA3DA21AE93C900CF2394 /* CodableKit-tvOS */,
 				8C6FA3E221AE93C900CF2394 /* CodableKit-tvOSTests */,
+				8C6FA41A21AE95A100CF2394 /* CodableKit-watchOS */,
 			);
 		};
 /* End PBXProject section */
@@ -498,6 +548,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8C6FA3E121AE93C900CF2394 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C6FA41921AE95A100CF2394 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -615,6 +672,25 @@
 				8C6FA40421AE94E800CF2394 /* StringDecodingStrategiesTests.swift in Sources */,
 				8C6FA40221AE94E800CF2394 /* DecoderTests.swift in Sources */,
 				8C6FA40121AE94E800CF2394 /* JSONTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C6FA41721AE95A100CF2394 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CE4DBF021AE977E00D9E6BB /* String.swift in Sources */,
+				8CE4DBF221AE977E00D9E6BB /* KeyedDecodingContainerProtocol.swift in Sources */,
+				8CE4DBF921AE978A00D9E6BB /* _Decoder.swift in Sources */,
+				8CE4DBF621AE978300D9E6BB /* Serialization.swift in Sources */,
+				8CE4DBF421AE977E00D9E6BB /* AnyCodingKey+Keypath.swift in Sources */,
+				8CE4DBFA21AE978A00D9E6BB /* KeyedDecodingContainer.swift in Sources */,
+				8CE4DBFB21AE978A00D9E6BB /* UnkeyedDecodingContainer.swift in Sources */,
+				8CE4DBF821AE978A00D9E6BB /* Decoder.swift in Sources */,
+				8CE4DBF521AE978300D9E6BB /* JSON.swift in Sources */,
+				8CE4DBF721AE978A00D9E6BB /* DecodingError.swift in Sources */,
+				8CE4DBF321AE977E00D9E6BB /* AnyCodingKey.swift in Sources */,
+				8CE4DBF121AE977E00D9E6BB /* SnakeCasedCodingKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1047,6 +1123,62 @@
 			};
 			name = Release;
 		};
+		8C6FA42121AE95A100CF2394 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/CodableKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "me.libei.CodableKit-watchOS";
+				PRODUCT_NAME = CodableKit;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Debug;
+		};
+		8C6FA42221AE95A100CF2394 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/CodableKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "me.libei.CodableKit-watchOS";
+				PRODUCT_NAME = CodableKit;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1109,6 +1241,15 @@
 			buildConfigurations = (
 				8C6FA3EE21AE93C900CF2394 /* Debug */,
 				8C6FA3EF21AE93C900CF2394 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C6FA42021AE95A100CF2394 /* Build configuration list for PBXNativeTarget "CodableKit-watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C6FA42121AE95A100CF2394 /* Debug */,
+				8C6FA42221AE95A100CF2394 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
