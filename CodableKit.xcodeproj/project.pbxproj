@@ -236,7 +236,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		418B0D2621AE5905002C5E14 /* AutoConvertible */ = {
+		418B0D2621AE5905002C5E14 /* AutoConversion */ = {
 			isa = PBXGroup;
 			children = (
 				418B0D2B21AE701F002C5E14 /* Container+Compatible.swift */,
@@ -244,7 +244,7 @@
 				418B0D2921AE5974002C5E14 /* CompatibleTypeConvertion.swift */,
 				418B0D3121AE8127002C5E14 /* BasicTypes+CompatiableTypeConvertion.swift */,
 			);
-			path = AutoConvertible;
+			path = AutoConversion;
 			sourceTree = "<group>";
 		};
 		8C27F50A20E2954500FCB40A = {
@@ -273,7 +273,7 @@
 		8C27F51620E2954500FCB40A /* CodableKit */ = {
 			isa = PBXGroup;
 			children = (
-				418B0D2621AE5905002C5E14 /* AutoConvertible */,
+				418B0D2621AE5905002C5E14 /* AutoConversion */,
 				8CFBA80820E2A43700C89BAD /* String.swift */,
 				8C81847120E725A100FD8A3A /* SnakeCasedCodingKey.swift */,
 				8C27F52E20E2961300FCB40A /* KeyedDecodingContainerProtocol.swift */,
