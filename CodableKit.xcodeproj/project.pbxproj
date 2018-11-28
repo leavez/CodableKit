@@ -123,6 +123,8 @@
 		418B0D2921AE5974002C5E14 /* CompatibleTypeConvertion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibleTypeConvertion.swift; sourceTree = "<group>"; };
 		418B0D2B21AE701F002C5E14 /* Container+Compatible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+Compatible.swift"; sourceTree = "<group>"; };
 		418B0D3121AE8127002C5E14 /* BasicTypes+CompatiableTypeConvertion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BasicTypes+CompatiableTypeConvertion.swift"; sourceTree = "<group>"; };
+		418B0D3521AE8735002C5E14 /* AutoConvertible_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoConvertible_Tests.swift; sourceTree = "<group>"; };
+		418B0D3721AE8F6D002C5E14 /* AutoConvertible_TypeConvertion_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoConvertible_TypeConvertion_Test.swift; sourceTree = "<group>"; };
 		41B96CB521AD524700944696 /* AnyCodingKeyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyCodingKeyTests.swift; sourceTree = "<group>"; };
 		41B96CB721AD527C00944696 /* AnyCodingKey_Keypath_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyCodingKey_Keypath_Tests.swift; sourceTree = "<group>"; };
 		41B96CBB21AD529F00944696 /* AnyCodingKey+Keypath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AnyCodingKey+Keypath.swift"; sourceTree = "<group>"; };
@@ -278,6 +280,8 @@
 				8C27F52220E2954500FCB40A /* CodableKitTests.swift */,
 				41B96CB521AD524700944696 /* AnyCodingKeyTests.swift */,
 				41B96CB721AD527C00944696 /* AnyCodingKey_Keypath_Tests.swift */,
+				418B0D3521AE8735002C5E14 /* AutoConvertible_Tests.swift */,
+				418B0D3721AE8F6D002C5E14 /* AutoConvertible_TypeConvertion_Test.swift */,
 				8CFBA80E20E2A64000C89BAD /* JSON */,
 				8C27F52420E2954500FCB40A /* Info.plist */,
 			);

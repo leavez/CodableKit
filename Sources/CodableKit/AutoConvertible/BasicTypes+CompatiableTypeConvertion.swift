@@ -23,9 +23,18 @@ extension UInt64: CompatibleTypeConvertion {}
 extension CompatibleTypeConvertion where Self: FixedWidthInteger {
     
     static func convert(with decode: _DecodeMethod) -> Self? {
-        if let s = try? decode.decode(String.self),
-            let v = Self.init(s) {
-            return v
+        if let s = try? decode.decode(String.self) {
+            if let v = Self.init(s) {
+                return v
+            }
+            if Double.init(s) != nil {
+                // use convertion to double directly will lose precision, 
+                // so we trim the content after "." manually
+                if let index = s.index(of: ".") {
+                    let sub = s[..<index]
+                    return Self.init(sub)
+                }
+            }
         }
         return nil
     }
