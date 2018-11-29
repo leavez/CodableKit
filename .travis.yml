@@ -1,6 +1,11 @@
 language: swift
 osx_image: xcode10.1
 
+addons:
+  homebrew:
+    packages:
+      - swiftlint
+
 before_script:
   - swift package generate-xcodeproj --enable-code-coverage
 script:
