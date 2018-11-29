@@ -2,7 +2,6 @@
 //  Error.swift
 //  CodableKit
 //
-//  Created by Gao on 2018/11/29.
 //
 
 import Foundation
@@ -28,7 +27,7 @@ internal extension DecodingError {
     /// - parameter value: The value whose type to describe.
     /// - returns: A string describing `value`.
     /// - precondition: `value` is one of the types below.
-    fileprivate static func _typeDescription(of value: Any) -> String {
+    internal static func _typeDescription(of value: Any) -> String {
         if value is NSNull {
             return "a null value"
         } else if value is NSNumber /* FIXME: If swift-corelibs-foundation isn't updated to use NSNumber, this check will be necessary: || value is Int || value is Double */ {
@@ -42,5 +41,31 @@ internal extension DecodingError {
         } else {
             return "\(type(of: value))"
         }
+    }
+}
+
+//===----------------------------------------------------------------------===//
+// Error Utilities
+//===----------------------------------------------------------------------===//
+
+internal extension EncodingError {
+    /// Returns a `.invalidValue` error describing the given invalid floating-point value.
+    ///
+    ///
+    /// - parameter value: The value that was invalid to encode.
+    /// - parameter path: The path of `CodingKey`s taken to encode this value.
+    /// - returns: An `EncodingError` with the appropriate path and debug description.
+    internal static func _invalidFloatingPointValue<T : FloatingPoint>(_ value: T, at codingPath: [CodingKey]) -> EncodingError {
+        let valueDescription: String
+        if value == T.infinity {
+            valueDescription = "\(T.self).infinity"
+        } else if value == -T.infinity {
+            valueDescription = "-\(T.self).infinity"
+        } else {
+            valueDescription = "\(T.self).nan"
+        }
+        
+        let debugDescription = "Unable to encode \(valueDescription) directly in JSON. Use JSONEncoder.NonConformingFloatEncodingStrategy.convertToString to specify how the value should be encoded."
+        return .invalidValue(value, EncodingError.Context(codingPath: codingPath, debugDescription: debugDescription))
     }
 }
