@@ -16,7 +16,7 @@
 import Foundation
 
 /// `JSONEncoder` facilitates the encoding of `Encodable` values into JSON.
-open class JSONEncoder {
+open class MagicJSONEncoder {
     // MARK: Options
 
     /// The formatting of the output JSON data.
@@ -247,7 +247,7 @@ fileprivate class _JSONEncoder : Encoder {
     fileprivate var storage: _JSONEncodingStorage
 
     /// Options set on the top-level encoder.
-    fileprivate let options: JSONEncoder._Options
+    fileprivate let options: MagicJSONEncoder._Options
 
     /// The path to the current point in encoding.
     public var codingPath: [CodingKey]
@@ -260,7 +260,7 @@ fileprivate class _JSONEncoder : Encoder {
     // MARK: - Initialization
 
     /// Initializes `self` with the given top-level encoder options.
-    fileprivate init(options: JSONEncoder._Options, codingPath: [CodingKey] = []) {
+    fileprivate init(options: MagicJSONEncoder._Options, codingPath: [CodingKey] = []) {
         self.options = options
         self.storage = _JSONEncodingStorage()
         self.codingPath = codingPath
@@ -394,7 +394,7 @@ fileprivate struct _JSONKeyedEncodingContainer<K : CodingKey> : KeyedEncodingCon
         case .useDefaultKeys:
             return key
         case .convertToSnakeCase:
-            let newKeyString = JSONEncoder.KeyEncodingStrategy._convertToSnakeCase(key.stringValue)
+            let newKeyString = MagicJSONEncoder.KeyEncodingStrategy._convertToSnakeCase(key.stringValue)
             return _JSONKey(stringValue: newKeyString, intValue: key.intValue)
         case .custom(let converter):
             return converter(codingPath + [key])
@@ -938,7 +938,7 @@ fileprivate class _JSONReferencingEncoder : _JSONEncoder {
 //===----------------------------------------------------------------------===//
 
 /// `JSONDecoder` facilitates the decoding of JSON into semantic `Decodable` types.
-open class JSONDecoder {
+open class MagicJSONDecoder {
     // MARK: Options
 
     /// The strategy to use for decoding `Date` values.
@@ -1126,7 +1126,7 @@ fileprivate class _JSONDecoder : Decoder {
     fileprivate var storage: _JSONDecodingStorage
 
     /// Options set on the top-level decoder.
-    fileprivate let options: JSONDecoder._Options
+    fileprivate let options: MagicJSONDecoder._Options
 
     /// The path to the current point in encoding.
     fileprivate(set) public var codingPath: [CodingKey]
@@ -1139,7 +1139,7 @@ fileprivate class _JSONDecoder : Decoder {
     // MARK: - Initialization
 
     /// Initializes `self` with the given top-level container and options.
-    fileprivate init(referencing container: Any, at codingPath: [CodingKey] = [], options: JSONDecoder._Options) {
+    fileprivate init(referencing container: Any, at codingPath: [CodingKey] = [], options: MagicJSONDecoder._Options) {
         self.storage = _JSONDecodingStorage()
         self.storage.push(container: container)
         self.codingPath = codingPath
@@ -1245,7 +1245,7 @@ fileprivate struct _JSONKeyedDecodingContainer<K : CodingKey> : KeyedDecodingCon
             // Convert the snake case keys in the container to camel case.
             // If we hit a duplicate key after conversion, then we'll use the first one we saw. Effectively an undefined behavior with JSON dictionaries.
             self.container = Dictionary(container.map {
-                key, value in (JSONDecoder.KeyDecodingStrategy._convertFromSnakeCase(key), value)
+                key, value in (MagicJSONDecoder.KeyDecodingStrategy._convertFromSnakeCase(key), value)
             }, uniquingKeysWith: { (first, _) in first })
         case .custom(let converter):
             self.container = Dictionary(container.map {
@@ -1270,7 +1270,7 @@ fileprivate struct _JSONKeyedDecodingContainer<K : CodingKey> : KeyedDecodingCon
         case .convertFromSnakeCase:
             // In this case we can attempt to recover the original value by reversing the transform
             let original = key.stringValue
-            let converted = JSONEncoder.KeyEncodingStrategy._convertToSnakeCase(original)
+            let converted = MagicJSONEncoder.KeyEncodingStrategy._convertToSnakeCase(original)
             if converted == original {
                 return "\(key) (\"\(original)\")"
             } else {
