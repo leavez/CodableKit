@@ -23,10 +23,13 @@ public struct CompatibleKeyedDecodingContainer<Key: CodingKey>:  KeyedDecodingCo
         }
         catch DecodingError.typeMismatch(let targetType, let context) {
             
-            if let transformableType = type as? CompatibleTypeConvertion.Type,
-                let v = transformableType.convert(with: _KeyedDecodeMethod(wrapped, key:key))
-            {
-                return v as! T
+            if let transformableType = type as? CompatibleTypeConvertion.Type {
+                do {
+                    let v = try transformableType.convert(with: _KeyedDecodeMethod(wrapped, key:key))
+                    return v as! T
+                } catch {
+                    // omit the error
+                }
             }
             // rethrow if we cannot handle it
             throw DecodingError.typeMismatch(targetType, context)
@@ -50,12 +53,15 @@ public struct CompatibleUnkeyedDecodingContainer: UnkeyedDecodingContainer {
         catch DecodingError.typeMismatch(let targetType, let context) {
             
             let _decode = _UnkeyedDecodeMethod(wrapped)
-            if let transformableType = type as? CompatibleTypeConvertion.Type,
-                let v = transformableType.convert(with: _decode)
-            {
-                // decode will change the inner value, so we should set it back
-                wrapped = _decode.inner
-                return v as! T
+            if let transformableType = type as? CompatibleTypeConvertion.Type {
+                do {
+                    let v = try transformableType.convert(with: _decode)
+                    // decode will change the inner value, so we should set it back
+                    wrapped = _decode.inner
+                    return v as! T
+                } catch {
+                    // omit the error
+                }
             }
             // rethrow if we cannot handle it
             throw DecodingError.typeMismatch(targetType, context)
@@ -78,11 +84,11 @@ public struct CompatibleSingleValueDecodingContainer: SingleValueDecodingContain
         }
         catch DecodingError.typeMismatch(let targetType, let context) {
             
-            if let transformableType = type as? CompatibleTypeConvertion.Type,
-               let v = transformableType.convert(with: _SingleValueDecodeMethod(wrapped))
-            {
-                return v as! T
-            }
+//            if let transformableType = type as? CompatibleTypeConvertion.Type,
+//               let v = transformableType.convert(with: _SingleValueDecodeMethod(wrapped))
+//            {
+//                return v as! T
+//            }
             // rethrow if we cannot handle it
             throw DecodingError.typeMismatch(targetType, context)
         }
@@ -159,9 +165,10 @@ extension CompatibleSingleValueDecodingContainer {
 }
 
 // --------------------------------------------------------------
-// Implement _DecodeMethod for keyed/unkeyed/single container
+// Implement DecodingContainer for keyed/unkeyed/single container
 // --------------------------------------------------------------
-private struct _KeyedDecodeMethod<Key: CodingKey>: _DecodeMethod {
+private struct _KeyedDecodeMethod<Key: CodingKey>: DecodingContainer {
+    
     let inner: KeyedDecodingContainer<Key>
     let key: Key
     
@@ -172,9 +179,15 @@ private struct _KeyedDecodeMethod<Key: CodingKey>: _DecodeMethod {
     func decode<T: Decodable>(_ type: T.Type) throws -> T {
         return try inner.decode(type, forKey: key)
     }
+    func nestedUnkeyedContainer() throws -> UnkeyedDecodingContainer {
+        return try inner.nestedUnkeyedContainer(forKey: key)
+    }
+    func nestedContainer<NestedKey: CodingKey>(keyedBy type: NestedKey.Type) throws -> KeyedDecodingContainer<NestedKey> {
+        return try inner.nestedContainer(keyedBy: type, forKey: key)
+    }
 }
 
-private final class _UnkeyedDecodeMethod: _DecodeMethod {
+private final class _UnkeyedDecodeMethod: DecodingContainer {
     var inner: UnkeyedDecodingContainer
     func decode<T>(_ type: T.Type) throws -> T where T : Decodable {
         return try inner.decode(type)
@@ -182,14 +195,26 @@ private final class _UnkeyedDecodeMethod: _DecodeMethod {
     init(_ inner: UnkeyedDecodingContainer) {
         self.inner = inner
     }
+    func nestedUnkeyedContainer() throws -> UnkeyedDecodingContainer {
+        return try inner.nestedUnkeyedContainer()
+    }
+    func nestedContainer<NestedKey: CodingKey>(keyedBy type: NestedKey.Type) throws -> KeyedDecodingContainer<NestedKey> {
+        return try inner.nestedContainer(keyedBy: type)
+    }
 }
 
-private struct _SingleValueDecodeMethod: _DecodeMethod {
+private struct _SingleValueDecodeMethod: DecodingContainer {
     let inner: SingleValueDecodingContainer
     func decode<T>(_ type: T.Type) throws -> T where T : Decodable {
         return try inner.decode(type)
     }
     init(_ inner: SingleValueDecodingContainer) {
         self.inner = inner
+    }
+    func nestedUnkeyedContainer() throws -> UnkeyedDecodingContainer {
+        throw DecodingError.dataCorruptedError(in: inner, debugDescription: "")
+    }
+    func nestedContainer<NestedKey: CodingKey>(keyedBy type: NestedKey.Type) throws -> KeyedDecodingContainer<NestedKey> {
+        throw DecodingError.dataCorruptedError(in: inner, debugDescription: "")
     }
 }

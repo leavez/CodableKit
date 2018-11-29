@@ -22,21 +22,23 @@ extension UInt64: CompatibleTypeConvertion {}
 
 extension CompatibleTypeConvertion where Self: FixedWidthInteger {
     
-    static func convert(with decode: _DecodeMethod) -> Self? {
+    static func convert(with decode: DecodingContainer) throws -> Self {
         if let s = try? decode.decode(String.self) {
             if let v = Self.init(s) {
                 return v
             }
             if Double.init(s) != nil {
-                // use convertion to double directly will lose precision, 
+                // use convertion to double directly will lose precision,
                 // so we trim the content after "." manually
                 if let index = s.index(of: ".") {
                     let sub = s[..<index]
-                    return Self.init(sub)
+                    if let v = Self.init(sub) {
+                        return v
+                    }
                 }
             }
         }
-        return nil
+        throw CompatibleTypeConnotConvertionError()
     }
     
 }
@@ -46,23 +48,23 @@ extension CompatibleTypeConvertion where Self: FixedWidthInteger {
 
 extension Double: CompatibleTypeConvertion {
     
-    static func convert(with decode: _DecodeMethod) -> Double? {
+    static func convert(with decode: DecodingContainer) throws -> Double {
         if let s = try? decode.decode(String.self),
             let v = Double.init(s) {
             return v
         }
-        return nil
+        throw CompatibleTypeConnotConvertionError()
     }
 }
 
 extension Float: CompatibleTypeConvertion {
     
-    static func convert(with decode: _DecodeMethod) -> Float? {
+    static func convert(with decode: DecodingContainer) throws -> Float {
         if let s = try? decode.decode(String.self),
             let v = Float.init(s) {
             return v
         }
-        return nil
+        throw CompatibleTypeConnotConvertionError()
     }
 }
 
@@ -70,12 +72,12 @@ extension Float: CompatibleTypeConvertion {
 import CoreGraphics
 extension CGFloat: CompatibleTypeConvertion {
     
-    static func convert(with decode: _DecodeMethod) -> CGFloat? {
+    static func convert(with decode: DecodingContainer) throws -> CGFloat {
         if let s = try? decode.decode(String.self),
             let v = Double(s) {
             return CGFloat(v)
         }
-        return nil
+        throw CompatibleTypeConnotConvertionError()
     }
 }
 #endif
@@ -84,7 +86,7 @@ extension CGFloat: CompatibleTypeConvertion {
 
 extension Bool: CompatibleTypeConvertion {
     
-    static func convert(with decode: _DecodeMethod) -> Bool? {
+    static func convert(with decode: DecodingContainer) throws -> Bool {
         
         if let v = try? decode.decode(Int.self) {
             return (v != 0)
@@ -96,10 +98,10 @@ extension Bool: CompatibleTypeConvertion {
             case "true", "True", "TRUE", "YES", "1":
                 return true
             default:
-                return nil
+                throw CompatibleTypeConnotConvertionError()
             }
         }
-        return nil
+        throw CompatibleTypeConnotConvertionError()
     }
 }
 
@@ -108,7 +110,7 @@ extension Bool: CompatibleTypeConvertion {
 
 extension String: CompatibleTypeConvertion {
     
-    static func convert(with decode: _DecodeMethod) -> String? {
+    static func convert(with decode: DecodingContainer) throws -> String {
         
         if let v = try? decode.decode(Int64.self) {
             return String(v)
@@ -119,7 +121,7 @@ extension String: CompatibleTypeConvertion {
         if let v = try? decode.decode(Bool.self) {
             return String(v)
         }
-        return nil
+        throw CompatibleTypeConnotConvertionError()
     }
 }
 
@@ -129,7 +131,7 @@ extension String: CompatibleTypeConvertion {
 
 extension Date: CompatibleTypeConvertion {
     
-    static func convert(with decode: _DecodeMethod) -> Date? {
+    static func convert(with decode: DecodingContainer) throws -> Date {
         // The data provided may not compatible with the dateStrategy in Decoder.
         // Then we try to use another 2 methods to decode the date, if we can save it.
         if let v = try? decode.decode(Double.self) {
@@ -139,7 +141,7 @@ extension Date: CompatibleTypeConvertion {
             let date = RFC3339DateFormatter.date(from: v) {
             return date
         }
-        return nil
+        throw CompatibleTypeConnotConvertionError()
     }
 }
 
