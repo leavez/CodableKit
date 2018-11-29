@@ -13,6 +13,7 @@
 //===----------------------------------------------------------------------===//
 // JSON Encoder
 //===----------------------------------------------------------------------===//
+import Foundation
 
 /// `JSONEncoder` facilitates the encoding of `Encodable` values into JSON.
 open class JSONEncoder {
