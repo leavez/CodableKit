@@ -93,4 +93,22 @@ class AutoConvertible_OptionalConversion_Test: XCTestCase {
         let model = try! JSONDecoder().decode(A.self, from: data)
         XCTAssertEqual(model.a, [123, 456, 7, 8])
     }
+    
+    func test_DictInUnkeyedContainer() {
+        struct A: Decodable {
+            let a: [String: Int]
+            init(from decoder: Decoder) throws {
+                let container = try decoder.container().compatible()
+                var unkeyedContainer = try container.nestedUnkeyedContainer(forKey: "a").compatible()
+                let  _ : Int = try unkeyedContainer.decode(Int.self)
+                a = try unkeyedContainer.decode([String: Int].self)
+            }
+        }
+        
+        let data = """
+        { "a" : [0, {"b0": "456", "b1": "7"}] }
+        """.data(using: .utf8)!
+        let model = try! JSONDecoder().decode(A.self, from: data)
+        XCTAssertEqual(model.a, ["b0": 456, "b1": 7])
+    }
 }
