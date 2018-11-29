@@ -81,7 +81,7 @@ class AutoConvertible_OptionalConversion_Test: XCTestCase {
             let a: [Int]
             init(from decoder: Decoder) throws {
                 let container = try decoder.container().compatible()
-                var unkeyedContainer = try container.nestedUnkeyedContainer(forKey: "a").compatible()
+                var unkeyedContainer = try container.nestedUnkeyedContainer(forKey: "a")
                 let  _ : Int = try unkeyedContainer.decode(Int.self)
                 a = try unkeyedContainer.decode([Int].self)
             }
@@ -99,7 +99,7 @@ class AutoConvertible_OptionalConversion_Test: XCTestCase {
             let a: [String: Int]
             init(from decoder: Decoder) throws {
                 let container = try decoder.container().compatible()
-                var unkeyedContainer = try container.nestedUnkeyedContainer(forKey: "a").compatible()
+                var unkeyedContainer = try container.nestedUnkeyedContainer(forKey: "a")
                 let  _ : Int = try unkeyedContainer.decode(Int.self)
                 a = try unkeyedContainer.decode([String: Int].self)
             }

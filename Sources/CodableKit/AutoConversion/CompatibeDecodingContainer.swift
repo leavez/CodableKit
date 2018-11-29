@@ -35,6 +35,17 @@ public struct CompatibleKeyedDecodingContainer<Key: CodingKey>:  KeyedDecodingCo
             throw DecodingError.typeMismatch(targetType, context)
         }
     }
+    public func nestedContainer<NestedKey: CodingKey>(keyedBy type: NestedKey.Type, forKey key: Key) throws -> KeyedDecodingContainer<NestedKey> {
+        let nested = try wrapped.nestedContainer(keyedBy: type, forKey: key)
+        return KeyedDecodingContainer(
+            CompatibleKeyedDecodingContainer<NestedKey>(nested)
+        )
+    }
+    public func nestedUnkeyedContainer(forKey key: Key) throws -> UnkeyedDecodingContainer {
+        return CompatibleUnkeyedDecodingContainer(
+            try wrapped.nestedUnkeyedContainer(forKey: key)
+        )
+    }
 }
 
 public struct CompatibleUnkeyedDecodingContainer: UnkeyedDecodingContainer {
@@ -67,6 +78,15 @@ public struct CompatibleUnkeyedDecodingContainer: UnkeyedDecodingContainer {
             throw DecodingError.typeMismatch(targetType, context)
         }
     }
+    public mutating func nestedContainer<NestedKey: CodingKey>(keyedBy type: NestedKey.Type) throws -> KeyedDecodingContainer<NestedKey> {
+        let nested = try wrapped.nestedContainer(keyedBy: type)
+        return KeyedDecodingContainer(CompatibleKeyedDecodingContainer(nested))
+    }
+    public mutating func nestedUnkeyedContainer() throws -> UnkeyedDecodingContainer {
+        return CompatibleUnkeyedDecodingContainer(
+            try wrapped.nestedUnkeyedContainer()
+        )
+    }
 }
 
 
@@ -90,12 +110,6 @@ extension CompatibleKeyedDecodingContainer {
     public func superDecoder(forKey key: Key) throws -> Decoder {
         return try wrapped.superDecoder(forKey: key)
     }
-    public func nestedContainer<NestedKey: CodingKey>(keyedBy type: NestedKey.Type, forKey key: Key) throws -> KeyedDecodingContainer<NestedKey> {
-        return try wrapped.nestedContainer(keyedBy: type, forKey: key)
-    }
-    public func nestedUnkeyedContainer(forKey key: Key) throws -> UnkeyedDecodingContainer {
-        return try wrapped.nestedUnkeyedContainer(forKey: key)
-    }
     public func decodeNil(forKey key: Key) throws -> Bool {
         return try wrapped.decodeNil(forKey: key)
     }
@@ -114,12 +128,6 @@ extension CompatibleUnkeyedDecodingContainer {
     }
     public var currentIndex: Int {
         return wrapped.currentIndex
-    }
-    public mutating func nestedContainer<NestedKey: CodingKey>(keyedBy type: NestedKey.Type) throws -> KeyedDecodingContainer<NestedKey> {
-        return try wrapped.nestedContainer(keyedBy: type)
-    }
-    public mutating func nestedUnkeyedContainer() throws -> UnkeyedDecodingContainer {
-        return try wrapped.nestedUnkeyedContainer()
     }
     public mutating func superDecoder() throws -> Decoder {
         return try wrapped.superDecoder()
