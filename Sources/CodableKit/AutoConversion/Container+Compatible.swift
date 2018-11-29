@@ -30,8 +30,4 @@ extension UnkeyedDecodingContainer {
         return CompatibleUnkeyedDecodingContainer(self)
     }
 }
-extension SingleValueDecodingContainer {
-    public func compatible() -> CompatibleSingleValueDecodingContainer {
-        return CompatibleSingleValueDecodingContainer(self)
-    }
-}
+

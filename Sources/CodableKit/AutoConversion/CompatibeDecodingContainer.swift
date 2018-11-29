@@ -69,31 +69,6 @@ public struct CompatibleUnkeyedDecodingContainer: UnkeyedDecodingContainer {
     }
 }
 
-public struct CompatibleSingleValueDecodingContainer: SingleValueDecodingContainer {
-    
-    public init(_ base: SingleValueDecodingContainer) {
-        self.wrapped = base
-    }
-    private let wrapped: SingleValueDecodingContainer
-    
-    // -- implement `magic` for the decode method ---
-    public func decode<T>(_ type: T.Type) throws -> T where T : Decodable {
-        // do some big things
-        do {
-            return try wrapped.decode(type)
-        }
-        catch DecodingError.typeMismatch(let targetType, let context) {
-            
-//            if let transformableType = type as? CompatibleTypeConvertion.Type,
-//               let v = transformableType.convert(with: _SingleValueDecodeMethod(wrapped))
-//            {
-//                return v as! T
-//            }
-            // rethrow if we cannot handle it
-            throw DecodingError.typeMismatch(targetType, context)
-        }
-    }
-}
 
 // --------------------------------------------------------------
 //     forwording implementation
@@ -154,15 +129,6 @@ extension CompatibleUnkeyedDecodingContainer {
     }
 }
 
-extension CompatibleSingleValueDecodingContainer {
-    
-    public var codingPath: [CodingKey] {
-        return wrapped.codingPath
-    }
-    public func decodeNil() -> Bool {
-        return wrapped.decodeNil()
-    }
-}
 
 // --------------------------------------------------------------
 // Implement DecodingContainer for keyed/unkeyed/single container
@@ -200,21 +166,5 @@ private final class _UnkeyedDecodeMethod: DecodingContainer {
     }
     func nestedContainer<NestedKey: CodingKey>(keyedBy type: NestedKey.Type) throws -> KeyedDecodingContainer<NestedKey> {
         return try inner.nestedContainer(keyedBy: type)
-    }
-}
-
-private struct _SingleValueDecodeMethod: DecodingContainer {
-    let inner: SingleValueDecodingContainer
-    func decode<T>(_ type: T.Type) throws -> T where T : Decodable {
-        return try inner.decode(type)
-    }
-    init(_ inner: SingleValueDecodingContainer) {
-        self.inner = inner
-    }
-    func nestedUnkeyedContainer() throws -> UnkeyedDecodingContainer {
-        throw DecodingError.dataCorruptedError(in: inner, debugDescription: "")
-    }
-    func nestedContainer<NestedKey: CodingKey>(keyedBy type: NestedKey.Type) throws -> KeyedDecodingContainer<NestedKey> {
-        throw DecodingError.dataCorruptedError(in: inner, debugDescription: "")
     }
 }
