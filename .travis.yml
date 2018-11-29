@@ -1,6 +1,7 @@
 language: swift
-osx_image: xcode10
+osx_image: xcode10.1
 script:
-    - swift test
+  - swift package generate-xcodeproj --enable-code-coverage
+  - xcodebuild -scheme CodableKit-Package -destination 'platform=macOS' build test
 after_success:
-    - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash)
