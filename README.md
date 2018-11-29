@@ -55,7 +55,7 @@ import PackageDescription
 let package = Package(
     name: "Example",
     dependencies: [
-        .package(url: "https://github.com/kylinroc/CodableKit.git", from: "0.3.0"),
+        .package(url: "https://github.com/kylinroc/CodableKit.git", from: "0.4.0"),
     ],
     targets: [
         .target(name: "Example", dependencies: ["CodableKit"]),
